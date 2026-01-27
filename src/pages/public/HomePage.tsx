@@ -16,6 +16,8 @@ export default function HomePage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const autoRotateRef = useRef<number>();
+  const TESTIMONIAL_COUNT = 3;
+  const FAQ_COUNT = 6; // <-- number of FAQ items rendered
 
   // Mobile menu toggle
   const toggleMobileMenu = () => {
@@ -29,8 +31,10 @@ export default function HomePage() {
 
   // FAQ toggle
   const toggleFAQ = (index: number) => {
+    if (index < 0 || index >= FAQ_COUNT) return;
     setOpenFAQ(openFAQ === index ? null : index);
   };
+
 
   // Carousel navigation
   const goToTestimonial = (index: number) => {
@@ -38,11 +42,11 @@ export default function HomePage() {
   };
 
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % 3);
+    setCurrentTestimonial((prev) => (prev + 1) % TESTIMONIAL_COUNT);
   };
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + 3) % 3);
+    setCurrentTestimonial((prev) => (prev - 1 + TESTIMONIAL_COUNT) % TESTIMONIAL_COUNT);
   };
 
   // Auto-rotate carousel
@@ -155,7 +159,7 @@ export default function HomePage() {
                 <div className="mega-dropdown absolute top-full left-0 mt-2 w-80 bg-white rounded-xl shadow-2xl border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
                   <div className="p-6">
                     <ul className="space-y-2">
-                      <li><a href="/pages/about_build_vest.html" className="block px-4 py-2 rounded-lg hover:bg-surface text-text-secondary hover:text-text-primary transition-colors">Company</a></li>
+                      <li><a href="pages/about_build_vest.html" className="block px-4 py-2 rounded-lg hover:bg-surface text-text-secondary hover:text-text-primary transition-colors">Company</a></li>
                       <li><a href="pages/frequently_asked_questions.html" className="block px-4 py-2 rounded-lg hover:bg-surface text-text-secondary hover:text-text-primary transition-colors">FAQs</a></li>
                       <li><a href="#" className="block px-4 py-2 rounded-lg hover:bg-surface text-text-secondary hover:text-text-primary transition-colors">Blog</a></li>
                       <li><a href="pages/legal_compliance_center.html" className="block px-4 py-2 rounded-lg hover:bg-surface text-text-secondary hover:text-text-primary transition-colors">Legal & Compliance</a></li>
@@ -240,7 +244,7 @@ export default function HomePage() {
                 <a href="pages/originator_onboarding.html" className="block py-2 text-text-secondary hover:text-secondary">Tokenization Overview</a>
                 <a href="pages/real_estate_developers.html" className="block py-2 text-text-secondary hover:text-secondary">For Real Estate Developers</a>
                 <a href="pages/corporate_debt_private_placements.html" className="block py-2 text-text-secondary hover:text-secondary">For Corporate Equity & Debt</a>
-                <a href="pages/infrastructure_projects.html" className="block py-2 text-text-secondary hover:text-secondary">For Infrastructure Projects</a>
+                <a href="pages/infrastructure_projects_landing_page.html" className="block py-2 text-text-secondary hover:text-secondary">For Infrastructure Projects</a>
               </div>
             </div>
 
@@ -498,7 +502,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Investment Card 1 */}
+            {/* Investment Card 1 */} // TODO (PHASE 2): Replace with Next.js routing
             <div className="card card-hover group cursor-pointer" onClick={() => window.location.href='pages/asset_detail_page.html'}>
               <div className="relative h-48 overflow-hidden rounded-t-xl">
                 <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c1976c8f-1764642434838.png" alt="Downtown Office Complex" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onError={(e) => { e.currentTarget.src='https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=800'; }} />
@@ -536,7 +540,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Investment Card 2 */}
+            {/* Investment Card 2 */} // TODO (PHASE 2): Replace with Next.js routing
             <div className="card card-hover group cursor-pointer" onClick={() => window.location.href='pages/asset_detail_page.html'}>
               <div className="relative h-48 overflow-hidden rounded-t-xl">
                 <img src="https://images.unsplash.com/photo-1601248864740-4170e5199963" alt="Solar Energy Project" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onError={(e) => { e.currentTarget.src='https://images.pixabay.com/photo/2017/09/12/13/21/photovoltaic-system-2742302_1280.jpg'; }} />
@@ -574,7 +578,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Investment Card 3 */}
+            {/* Investment Card 3 */} // TODO (PHASE 2): Replace with Next.js routing
             <div className="card card-hover group cursor-pointer" onClick={() => window.location.href='pages/asset_detail_page.html'}>
               <div className="relative h-48 overflow-hidden rounded-t-xl">
                 <img src="https://images.unsplash.com/photo-1613232218235-06b473107ca9" alt="Luxury Apartments" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onError={(e) => { e.currentTarget.src='https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800'; }} />
@@ -612,7 +616,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Investment Card 4 */}
+            {/* Investment Card 4 */} // TODO (PHASE 2): Replace with Next.js routing
             <div className="card card-hover group cursor-pointer" onClick={() => window.location.href='pages/asset_detail_page.html'}>
               <div className="relative h-48 overflow-hidden rounded-t-xl">
                 <img src="https://img.rocket.new/generatedImages/rocket_gen_img_11f9882c0-1764686105555.png" alt="Industrial Warehouse" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onError={(e) => { e.currentTarget.src='https://images.pexels.com/photos/236705/pexels-photo-236705.jpeg?auto=compress&cs=tinysrgb&w=800'; }} />
@@ -929,10 +933,20 @@ export default function HomePage() {
 
             {/* Carousel Indicators */}
             <div className="flex justify-center mt-8 space-x-2">
-              <button onClick={() => goToTestimonial(0)} className={`w-3 h-3 rounded-full transition-all duration-300 ${currentTestimonial === 0 ? 'bg-primary' : 'bg-surface-200'}`} aria-label="Go to testimonial 1"></button>
-              <button onClick={() => goToTestimonial(1)} className={`w-3 h-3 rounded-full transition-all duration-300 ${currentTestimonial === 1 ? 'bg-primary' : 'bg-surface-200'}`} aria-label="Go to testimonial 2"></button>
-              <button onClick={() => goToTestimonial(2)} className={`w-3 h-3 rounded-full transition-all duration-300 ${currentTestimonial === 2 ? 'bg-primary' : 'bg-surface-200'}`} aria-label="Go to testimonial 3"></button>
-            </div>
+                {Array.from({ length: TESTIMONIAL_COUNT }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToTestimonial(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      currentTestimonial === index
+                        ? 'bg-primary'
+                        : 'bg-surface-200'
+                    }`}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
+          </div>
+
           </div>
         </div>
       </section>
