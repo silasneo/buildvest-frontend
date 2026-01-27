@@ -18,8 +18,8 @@ This repo exists to:
 - Serve as the **source of truth for future API contracts**
 - Enable aggressive AI-assisted refactoring without risking the main product
 
-> This is **not** a redesign.
-> This is **not** a backend implementation.
+> This is **not** a redesign.  
+> This is **not** a backend implementation.  
 > This is a **faithful UI refactor**.
 
 ---
@@ -41,9 +41,17 @@ All data used at this stage is **mocked**.
 
 ## 🗂 Repository Structure
 
+```
 .
-├── legacy/                        # Read-only legacy HTML source
-│   └── pages/                     # Original BuildVest HTML + Tailwind files
+├── legacy/                        # Frozen snapshot of original repo root
+│   ├── index.html                 # Canonical public homepage
+│   ├── css/                       # Legacy global styles (Tailwind + custom)
+│   │   ├── tailwind.css
+│   │   └── main.css
+│   ├── img/                       # Legacy static assets
+│   │   └── ...
+│   └── pages/                     # Other legacy HTML pages
+│       └── ... 
 │
 ├── src/                           # New React + TypeScript frontend
 │   ├── layouts/                   # Role-aware layout shells
@@ -66,16 +74,32 @@ All data used at this stage is **mocked**.
 │
 ├── COPILOT_SYSTEM_PROMPT.md
 └── README.md
+```
 
+---
 
 ## 🔒 Legacy UI (IMPORTANT)
 
-The `/legacy/pages` directory contains the **original BuildVest HTML files**.
+The `/legacy` directory is a **direct snapshot of the original BuildVest repository root**.
+All files and **relative paths are preserved intentionally**.
 
-**Rules:**
-- These files are **read-only**
-- Do **not** modify them
-- They serve as the **visual and UX reference**
+Legacy HTML files (in "pages" directory) reference:
+- `../css/*`
+- `../index.html`
+- shared image paths
+
+Because of this, **the legacy directory structure must not be altered**.
+
+### Rules
+
+- Legacy files are **read-only**
+- Do **not** modify, rename, or reorganize them
+- They define the correct:
+  - layout
+  - copy
+  - spacing
+  - flow
+  - visual intent
 - All React components must faithfully reflect these files
 
 If something differs between React and legacy HTML, the **legacy HTML is correct**.
@@ -84,14 +108,16 @@ If something differs between React and legacy HTML, the **legacy HTML is correct
 
 ## 🧠 AI Usage Rules
 
-This repo is designed for **Copilot Pro Agent–assisted development**.
+This repository is designed for **GitHub Copilot Pro Agent–assisted development**.
 
 Before starting any AI coding session:
-1. Open `COPILOT_SYSTEM_PROMPT.md` (or the short version)
+
+1. Open `COPILOT_SYSTEM_PROMPT.md` 
 2. Paste it at the **start of the Copilot Agent session**
 3. Then issue phase-specific prompts
 
 If Copilot begins to drift:
+
 > “Re-read and strictly follow the Copilot System Prompt.”
 
 ---
@@ -106,9 +132,9 @@ The following will be implemented **later** and must NOT appear in this repo yet
 - Wallet logic or balances
 - Solana SPL token operations
 - Real KYC integrations
-- Production environment config
+- Production environment configuration
 
-This repo is **frontend-only** by design.
+This repository is **frontend-only by design**.
 
 ---
 
@@ -123,6 +149,7 @@ Once the UI is stable, this repo will inform:
 5. Final integration with the main BuildVest platform
 
 At that point, this frontend may:
+
 - Be merged into the main BuildVest repo, or
 - Remain a standalone frontend service
 
@@ -144,10 +171,9 @@ This repo prioritizes **correctness and maintainability** over speed.
 This repository is a **controlled refactor environment**.
 
 Its success is measured by:
+
 - How closely the React UI matches the original HTML
 - How clearly it communicates product intent
 - How easily backend APIs can be derived from it later
 
 If you’re unsure whether something belongs here yet — it probably doesn’t.
-
----
