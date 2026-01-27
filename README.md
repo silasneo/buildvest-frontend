@@ -42,33 +42,31 @@ All data used at this stage is **mocked**.
 ## 🗂 Repository Structure
 
 .
-├── legacy/ # Read-only legacy HTML source
-│ └── pages/ # Original BuildVest HTML + Tailwind files
+├── legacy/                        # Read-only legacy HTML source
+│   └── pages/                     # Original BuildVest HTML + Tailwind files
 │
-├── src/ # New React + TypeScript frontend
-│ ├── layouts/ # Role-aware layout shells
-│ ├── pages/ # Route-level pages
-│ │ ├── public/
-│ │ ├── auth/
-│ │ ├── investor/
-│ │ ├── originator/
-│ │ └── superadmin/
-│ ├── components/ # Reusable UI components
-│ │ ├── ui/
-│ │ ├── forms/
-│ │ ├── cards/
-│ │ ├── tables/
-│ │ └── modals/
-│ ├── features/ # Business-domain groupings (UI only)
-│ ├── hooks/
-│ ├── types/
-│ └── utils/
+├── src/                           # New React + TypeScript frontend
+│   ├── layouts/                   # Role-aware layout shells
+│   ├── pages/                     # Route-level pages
+│   │   ├── public/
+│   │   ├── auth/
+│   │   ├── investor/
+│   │   ├── originator/
+│   │   └── superadmin/
+│   ├── components/                # Reusable UI components
+│   │   ├── ui/
+│   │   ├── forms/
+│   │   ├── cards/
+│   │   ├── tables/
+│   │   └── modals/
+│   ├── features/                  # Business-domain groupings (UI only)
+│   ├── hooks/
+│   ├── types/
+│   └── utils/
 │
 ├── COPILOT_SYSTEM_PROMPT.md
 └── README.md
 
-
----
 
 ## 🔒 Legacy UI (IMPORTANT)
 
