@@ -15,7 +15,7 @@ export default function HomePage() {
   // State for testimonial carousel
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const autoRotateRef = useRef<NodeJS.Timeout>();
+  const autoRotateRef = useRef<number>();
 
   // Mobile menu toggle
   const toggleMobileMenu = () => {
@@ -47,7 +47,7 @@ export default function HomePage() {
 
   // Auto-rotate carousel
   useEffect(() => {
-    autoRotateRef.current = setInterval(() => {
+    autoRotateRef.current = window.setInterval(() => {
       nextTestimonial();
     }, 6000);
 
