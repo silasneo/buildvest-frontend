@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Investment Success - Your investment in real-world assets has been successfully processed. View transaction details and next steps.">
+    <title>Investment Successful - BuildVest</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-surface">
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center space-x-3">
+                        <img src="https://buildvest.net/buildvest-logo.png" alt="BuildVest" class="h-8 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                        <!-- span class="text-xl font-bold text-primary hidden sm:block">BuildVest</span -->
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="investor_dashboard.html" class="text-text-secondary hover:text-primary transition-colors duration-150 font-medium text-sm sm:text-base">Dashboard</a>
+                    <a href="investment_marketplace.html" class="text-text-secondary hover:text-primary transition-colors duration-150 font-medium text-sm sm:text-base">Marketplace</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="min-h-screen py-8 sm:py-12 lg:py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Success Message -->
+            <div class="text-center mb-8 sm:mb-12 animate-fade-in">
+                <div class="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-success rounded-full mb-6 animate-scale-in">
+                    <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-4">Investment Successful!</h1>
+                <p class="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto">Congratulations! Your investment has been successfully processed and you're now a proud investor in real-world assets.</p>
+            </div>
+
+            <!-- Transaction Details Card -->
+            <div class="card mb-6 sm:mb-8 animate-slide-up" style="animation-delay: 0.2s;">
+                <div class="p-6 sm:p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl sm:text-2xl font-bold text-text-primary">Investment Details</h2>
+                        <span class="badge badge-success">Completed</span>
+                    </div>
+
+                    <div class="space-y-4 sm:space-y-6">
+                        <!-- Asset Name -->
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-border">
+                            <span class="text-text-secondary mb-2 sm:mb-0">Asset Name</span>
+                            <span class="font-semibold text-text-primary text-lg">Downtown Office Complex</span>
+                        </div>
+
+                        <!-- Investment Amount -->
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-border">
+                            <span class="text-text-secondary mb-2 sm:mb-0">Investment Amount</span>
+                            <span class="font-bold text-primary text-2xl">$2,500.00</span>
+                        </div>
+
+                        <!-- Share Quantity -->
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-border">
+                            <span class="text-text-secondary mb-2 sm:mb-0">Shares Purchased</span>
+                            <span class="font-semibold text-text-primary">25 Tokens</span>
+                        </div>
+
+                        <!-- Transaction ID -->
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between pb-4 border-b border-border">
+                            <span class="text-text-secondary mb-2 sm:mb-0">Transaction ID</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="font-mono text-sm text-text-primary break-all" id="transactionId">0x7a8b9c...4d5e6f</span>
+                                <button onclick="copyTransactionId()" class="p-2 hover:bg-surface rounded-lg transition-colors duration-150 flex-shrink-0" title="Copy transaction ID">
+                                    <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Date & Time -->
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                            <span class="text-text-secondary mb-2 sm:mb-0">Transaction Date</span>
+                            <span class="font-semibold text-text-primary">December 4, 2025 at 6:43 PM</span>
+                        </div>
+                    </div>
+
+                    <!-- Download Receipt Button -->
+                    <div class="mt-8 pt-6 border-t border-border">
+                        <button onclick="downloadReceipt()" class="w-full sm:w-auto btn btn-outline">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Download Receipt
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transaction Timeline -->
+            <div class="card mb-6 sm:mb-8 animate-slide-up" style="animation-delay: 0.3s;">
+                <div class="p-6 sm:p-8">
+                    <h2 class="text-xl sm:text-2xl font-bold text-text-primary mb-6">What Happens Next</h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Timeline Item 1 -->
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-success rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 pt-1">
+                                <h3 class="font-semibold text-text-primary mb-1">Investment Confirmed</h3>
+                                <p class="text-sm text-text-secondary">Your payment has been processed and investment recorded on the blockchain.</p>
+                                <p class="text-xs text-success mt-1">Completed - December 4, 2025</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 2 -->
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 pt-1">
+                                <h3 class="font-semibold text-text-primary mb-1">Token Distribution</h3>
+                                <p class="text-sm text-text-secondary">Your investment tokens will be deposited to your wallet within 24-48 hours.</p>
+                                <p class="text-xs text-text-tertiary mt-1">Expected by December 6, 2025</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 3 -->
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-surface-200 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path>
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 pt-1">
+                                <h3 class="font-semibold text-text-primary mb-1">First Return Distribution</h3>
+                                <p class="text-sm text-text-secondary">You'll receive your first quarterly return based on the investment performance.</p>
+                                <p class="text-xs text-text-tertiary mt-1">Expected Q1 2026</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="card mb-6 sm:mb-8 animate-slide-up" style="animation-delay: 0.4s;">
+                <div class="p-6 sm:p-8">
+                    <h2 class="text-xl sm:text-2xl font-bold text-text-primary mb-6">Recommended Next Steps</h2>
+                    
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <!-- Action 1 -->
+                        <div class="flex items-start space-x-3 p-4 bg-surface rounded-lg hover:bg-surface-100 transition-colors duration-150">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-text-primary text-sm mb-1">Monitor Your Portfolio</h3>
+                                <p class="text-xs text-text-secondary">Track your investment performance and returns in real-time</p>
+                            </div>
+                        </div>
+
+                        <!-- Action 2 -->
+                        <div class="flex items-start space-x-3 p-4 bg-surface rounded-lg hover:bg-surface-100 transition-colors duration-150">
+                            <div class="flex-shrink-0 w-8 h-8 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"></path>
+                                    <path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-text-primary text-sm mb-1">Review Asset Details</h3>
+                                <p class="text-xs text-text-secondary">Access comprehensive reports and performance metrics</p>
+                            </div>
+                        </div>
+
+                        <!-- Action 3 -->
+                        <div class="flex items-start space-x-3 p-4 bg-surface rounded-lg hover:bg-surface-100 transition-colors duration-150">
+                            <div class="flex-shrink-0 w-8 h-8 bg-accent-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-text-primary text-sm mb-1">Diversify Your Portfolio</h3>
+                                <p class="text-xs text-text-secondary">Explore more investment opportunities across asset types</p>
+                            </div>
+                        </div>
+
+                        <!-- Action 4 -->
+                        <div class="flex items-start space-x-3 p-4 bg-surface rounded-lg hover:bg-surface-100 transition-colors duration-150">
+                            <div class="flex-shrink-0 w-8 h-8 bg-warning-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-text-primary text-sm mb-1">Share Your Success</h3>
+                                <p class="text-xs text-text-secondary">Invite friends and earn referral rewards</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="grid sm:grid-cols-3 gap-4 mb-8 animate-slide-up" style="animation-delay: 0.5s;">
+                <a href="investor_dashboard.html" class="btn btn-primary w-full justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                    </svg>
+                    View Portfolio
+                </a>
+                
+                <a href="investment_marketplace.html" class="btn btn-outline w-full justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    Explore More
+                </a>
+                
+                <button onclick="shareInvestment()" class="btn btn-outline w-full justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                    </svg>
+                    Share Success
+                </button>
+            </div>
+
+            <!-- Support Contact -->
+            <div class="card bg-primary-50 border-primary-200 animate-slide-up" style="animation-delay: 0.6s;">
+                <div class="p-6 sm:p-8">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                        <div class="mb-4 sm:mb-0">
+                            <h3 class="text-lg font-bold text-text-primary mb-2">Need Help?</h3>
+                            <p class="text-sm text-text-secondary">Our support team is here to assist you with any questions or concerns.</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <a href="mailto:support@buildvest.com" class="btn bg-white text-primary hover:bg-primary-50 border border-primary-200 justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                Email Support
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-3">
+                    <img src="https://buildvest.net/img/BuildvestLogo_icon_white.png" alt="BuildVest footer logo" class="h-8 w-auto" onerror="this.src='https://buildvest.net/img/BuildvestLogo_icon_white.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    <span class="text-lg font-bold">BuildVest</span>
+                </div>
+                <p class="text-slate-400 text-sm text-center md:text-left">© 2026 BuildVest. All Rights Reserved.</p>
+                <!-- div class="flex items-center space-x-6">
+                    <a href="javascript:void(0)" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                        </svg>
+                    </a>
+                    <a href="javascript:void(0)" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="LinkedIn">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                        </svg>
+                    </a>
+                    <a href="javascript:void(0)" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Facebook">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                        </svg>
+                    </a>
+                </div -->
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        /* Confetti Animation Styles */
+        #confettiCanvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Custom Animations */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scale-in {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+        }
+
+        .animate-slide-up {
+            opacity: 0;
+            animation: slide-up 0.6s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            animation: scale-in 0.5s ease-out forwards;
+        }
+
+        /* Responsive font sizing */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+
+    <script>
+        // Confetti Animation
+        class ConfettiParticle {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.w = Math.random() * 10 + 5;
+                this.h = Math.random() * 5 + 5;
+                this.speed = Math.random() * 3 + 2;
+                this.opacity = Math.random() * 0.5 + 0.5;
+                this.angle = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 10 - 5;
+                this.colors = ['#017EFE', '#10B981', '#F59E0B', '#8B5CF6', '#EF4444', '#EC4899'];
+                this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+            }
+
+            draw() {
+                this.ctx.save();
+                this.ctx.translate(this.x + this.w / 2, this.y + this.h / 2);
+                this.ctx.rotate((this.angle * Math.PI) / 180);
+                this.ctx.fillStyle = this.color;
+                this.ctx.globalAlpha = this.opacity;
+                this.ctx.fillRect(-this.w / 2, -this.h / 2, this.w, this.h);
+                this.ctx.restore();
+            }
+
+            update() {
+                this.y += this.speed;
+                this.angle += this.rotationSpeed;
+                this.opacity -= 0.003;
+
+                if (this.y > this.canvas.height || this.opacity <= 0) {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        // Initialize Confetti
+        const canvas = document.getElementById('confettiCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let confettiParticles = [];
+        const confettiCount = 150;
+
+        // Create confetti particles
+        for (let i = 0; i < confettiCount; i++) {
+            confettiParticles.push(new ConfettiParticle(canvas));
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            confettiParticles = confettiParticles.filter(particle => {
+                particle.draw();
+                return particle.update();
+            });
+
+            if (confettiParticles.length > 0) {
+                requestAnimationFrame(animateConfetti);
+            }
+        }
+
+        // Start confetti animation on page load
+        animateConfetti();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Copy Transaction ID
+        function copyTransactionId() {
+            const transactionId = document.getElementById('transactionId').textContent;
+            navigator.clipboard.writeText(transactionId).then(() => {
+                // Show success feedback
+                const button = event.currentTarget;
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy transaction ID:', err);
+                alert('Failed to copy transaction ID. Please try again.');
+            });
+        }
+
+        // Download Receipt
+        function downloadReceipt() {
+            // Simulate receipt download
+            const button = event.currentTarget;
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<svg class="animate-spin h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Downloading...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                button.innerHTML = originalHTML;
+                button.disabled = false;
+                alert('Receipt downloaded successfully!');
+            }, 2000);
+        }
+
+        // Share Investment
+        function shareInvestment() {
+            const shareData = {
+                title: 'BuildVest Investment',
+                text: 'I just invested in real-world assets with BuildVest! Join me in building wealth through tokenized investments.',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .then(() => console.log('Share successful'))
+                    .catch((error) => console.error('Error sharing:', error));
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                alert('Share this page: ' + window.location.href);
+            }
+        }
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

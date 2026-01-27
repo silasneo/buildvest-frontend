@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tokenize corporate debt and private placements to access retail capital markets. BuildVest enables compliant digital debt issuance for corporate treasurers and CFOs.">
+    <meta name="keywords" content="corporate debt tokenization, private placement digitization, digital bond issuance, corporate finance blockchain, debt capital markets">
+    <title>Corporate Debt & Private Placements | BuildVest - Digital Debt Platform</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+    
+    <style>
+        /* Dark header styling specifically for originator pages */
+            .originator-nav {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .originator-nav .nav-link {
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+        
+        .originator-nav .nav-link:hover {
+            color: #017EFE;
+        }
+        
+        .originator-nav .mobile-menu-btn svg {
+            color: #e5e5e5;
+        }
+        
+        .originator-nav .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .originator-nav .mobile-menu {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .originator-nav .mobile-menu a {
+            color: #ffffff;
+        }
+        
+        .originator-nav .mobile-menu a:hover {
+            color: #017EFE;
+        }
+        
+        .originator-nav .mobile-menu .border-t {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        /* Enhanced premium buttons in dark header */
+        .originator-nav .btn-outline {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+        
+        .originator-nav .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .originator-nav .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border: none;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .originator-nav .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            transform: translateY(-1px);
+        }
+    </style>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+
+<body>
+
+    <!-- Sticky Navigation -->
+    <nav id="mainNav" class="originator-nav fixed top-0 left-0 right-0 z-50 shadow-xl transition-all duration-300 ease-in-out">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="../index.html" class="flex items-center space-x-3">
+                        <img src="https://buildvest.net/buildvest-logo.png" alt="BuildVest" class="h-10 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#trust" class="text-text-secondary hover:text-primary transition-colors duration-150 font-medium">Why BuildVest</a>
+                    <a href="#how-it-works" class="text-text-secondary hover:text-primary transition-colors duration-150 font-medium">How It Works</a>
+                    <!-- a href="#case-studies" class="text-text-secondary hover:text-primary transition-colors duration-150 font-medium">Case Studies</a-->
+                    
+                    <a href="#faq" class="text-text-secondary hover:text-primary transition-colors duration-150 font-medium">FAQs</a>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="authentication_hub.html" class="btn btn-outline">Sign In</a>
+                    <a href="originator_onboarding.html" class="btn btn-primary">Learn More</a>
+                    <!--button onclick="scrollToListAsset()" class="btn btn-primary">List Your Asset</button-->
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="mobile-menu-btn md:hidden p-2 rounded-lg transition-colors duration-150 touch-target" aria-label="Toggle mobile menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu hidden md:hidden shadow-lg">
+            <div class="px-4 py-6 space-y-4">
+                <!--a href="landing_page.html" class="block font-medium py-2">For Investors</a>
+                <a href="originator_onboarding.html" class="block font-semibold py-2">For Originators</a-->
+                <a href="#trust" class="block font-medium py-2">Why BuildVest</a>
+                <a href="#how-it-works" class="block font-medium py-2">How It Works</a>            
+                <a href="#faq" class="block font-medium py-2">FAQ</a>
+                <div class="pt-4 space-y-3 border-t">
+                    <a href="authentication_hub.html" class="block w-full btn btn-outline text-center">Sign In</a>
+                    <a href="originator_onboarding.html" class="w-full btn btn-primary">Learn More</a>
+                    <!--button onclick="scrollToListAsset()" class="w-full btn btn-primary">List Your Asset</button-->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sticky Navigation ->
+    <nav id="mainNav" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-all duration-300 ease-in-out">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="investor_dashboard.html" class="btn btn-outline">Sign In</a>
+                    <a href="originator_onboarding.html" class="btn btn-primary">Issue Corporate Debt</a>
+                </div>
+
+                <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target" aria-label="Toggle mobile menu">
+                    <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <-- Mobile Menu ->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-border shadow-lg">
+            <div class="px-4 py-6 space-y-4">
+                <a href="../index.html" class="block py-2 text-text-primary font-semibold">Home</a>
+                <a href="investment_marketplace.html" class="block py-2 text-text-primary font-semibold">For Investors</a>
+                <a href="originator_onboarding.html" class="block py-2 text-text-primary font-semibold">For Originators</a>
+                <a href="about_build_vest.html" class="block py-2 text-text-primary font-semibold">About</a>
+                <div class="pt-4 space-y-3 border-t border-border">
+                    <a href="investor_dashboard.html" class="block w-full btn btn-outline text-center">Sign In</a>
+                    <a href="originator_onboarding.html" class="block w-full btn btn-primary text-center">Issue Corporate Debt</a>
+                </div>
+            </div>
+        </div>
+    </nav-->
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16935d25c-1765556160515.png" 
+                 alt="Corporate finance professionals discussing debt capital markets" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=2000'; this.onerror=null;">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl">
+                <div class="animate-fade-in">
+                    <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6">
+                        <svg class="w-5 h-5 text-white mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
+                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm font-semibold text-white">For Corporate Finance Teams</span>
+                    </div>
+
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
+                        Modern Capital Raising for Corporate Debt & Private Placements
+                    </h1>
+                    
+                    <p class="text-xl sm:text-2xl text-white/95 mb-10 leading-relaxed max-w-3xl">
+                        Issue digital corporate bonds, commercial paper, revenue-backed notes, and private placements. Access global investors, automate compliance, and streamline capital raising with tokenized debt instruments.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <a href="originator_onboarding.html" class="btn bg-white text-primary hover:bg-primary-50 text-lg px-10 py-5 shadow-2xl font-bold flex items-center justify-center">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            Issue Corporate Debt
+                            <span class="ml-3 text-sm font-normal opacity-80">Schedule consultation</span>
+                        </a>
+                        <a href="#how-it-works" class="btn bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border-2 border-white/40 text-lg px-10 py-5 shadow-2xl font-bold flex items-center justify-center">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            View Platform Overview
+                        </a>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-6 text-white">
+                        <div class="flex items-center space-x-2">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-sm font-semibold">SEC Reg D/S Compliant</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-sm font-semibold">Smart Contract Automation</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-sm font-semibold">Global Investor Access</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Statement Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold text-text-primary mb-4">Challenges in Traditional Corporate Debt Issuance</h2>
+                <p class="text-xl text-text-secondary max-w-3xl mx-auto">Mid-market companies face significant barriers when raising debt capital</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-error-100 rounded-xl flex items-center justify-center">
+                        <svg class="w-8 h-8 text-error" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-text-primary mb-2">Slow, Expensive Process</h3>
+                    <p class="text-text-secondary text-sm">Traditional debt issuance takes 90-180 days with high underwriting and legal fees</p>
+                </div>
+
+                <div class="card p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-error-100 rounded-xl flex items-center justify-center">
+                        <svg class="w-8 h-8 text-error" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-text-primary mb-2">Limited Investor Access</h3>
+                    <p class="text-text-secondary text-sm">Geographic restrictions and minimum investment thresholds exclude qualified investors</p>
+                </div>
+
+                <div class="card p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-error-100 rounded-xl flex items-center justify-center">
+                        <svg class="w-8 h-8 text-error" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-text-primary mb-2">Complex Compliance</h3>
+                    <p class="text-text-secondary text-sm">Fragmented documentation, manual KYC/AML processes, and ongoing reporting burden</p>
+                </div>
+
+                <div class="card p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-error-100 rounded-xl flex items-center justify-center">
+                        <svg class="w-8 h-8 text-error" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-text-primary mb-2">No Secondary Liquidity</h3>
+                    <p class="text-text-secondary text-sm">Investors locked in until maturity with no transparent secondary market for trading</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BuildVest Solution Section -->
+    <section id="trust"  class="py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold text-text-primary mb-4">The BuildVest Solution for Corporate Debt Issuers</h2>
+                <p class="text-xl text-text-secondary max-w-3xl mx-auto">Transform debt capital raising with digital securities infrastructure</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card text-center p-8 card-hover">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-primary-100 rounded-2xl flex items-center justify-center">
+                        <svg class="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mb-3">Digital Debt Issuance</h3>
+                    <p class="text-text-secondary">Issue corporate bonds, commercial paper, revenue-backed notes, and term debt as digital securities</p>
+                </div>
+
+                <div class="card text-center p-8 card-hover">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-primary-100 rounded-2xl flex items-center justify-center">
+                        <svg class="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mb-3">Tokenized Private Placements</h3>
+                    <p class="text-text-secondary">Conduct Regulation D/S compliant private placements with digital investor onboarding and verification</p>
+                </div>
+
+                <div class="card text-center p-8 card-hover">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-primary-100 rounded-2xl flex items-center justify-center">
+                        <svg class="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mb-3">Automated Compliance</h3>
+                    <p class="text-text-secondary">Built-in KYC/AML, accreditation verification, and automated regulatory reporting across jurisdictions</p>
+                </div>
+
+                <div class="card text-center p-8 card-hover">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-primary-100 rounded-2xl flex items-center justify-center">
+                        <svg class="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
+                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mb-3">Smart Contract Payments</h3>
+                    <p class="text-text-secondary">Automate coupon payments, principal redemptions, and investor distributions via blockchain</p>
+                </div>
+
+                <div class="card text-center p-8 card-hover">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-primary-100 rounded-2xl flex items-center justify-center">
+                        <svg class="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mb-3">Global Investor Distribution</h3>
+                    <p class="text-text-secondary">Access 10,000+ registered institutional and accredited investors across multiple markets</p>
+                </div>
+
+                <div class="card text-center p-8 card-hover">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-primary-100 rounded-2xl flex items-center justify-center">
+                        <svg class="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mb-3">Full Reporting Dashboard</h3>
+                    <p class="text-text-secondary">Comprehensive investor reporting, debt servicing analytics, and regulatory compliance tracking</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold text-text-primary mb-4">How It Works for Corporate Issuers</h2>
+                <p class="text-xl text-text-secondary max-w-3xl mx-auto">Issue digital debt instruments in four streamlined steps</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center group">
+                    <div class="relative mb-6">
+                        <div class="w-24 h-24 mx-auto bg-primary-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mb-3">Submit Corporate Documents</h3>
+                    <p class="text-text-secondary">Provide financial statements, legal docs, terms sheet, and debt instrument structure details</p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="relative mb-6">
+                        <div class="w-24 h-24 mx-auto bg-primary-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mb-3">Structure Your Digital Debt</h3>
+                    <p class="text-text-secondary">Our team configures debt terms, payment schedules, and tokenomics with regulatory compliance</p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="relative mb-6">
+                        <div class="w-24 h-24 mx-auto bg-primary-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mb-3">Launch Your Raise</h3>
+                    <p class="text-text-secondary">Debt offering goes live with smart contracts, qualified investors subscribe to digital notes</p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="relative mb-6">
+                        <div class="w-24 h-24 mx-auto bg-primary-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold">4</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-primary mb-3">Manage & Report</h3>
+                    <p class="text-text-secondary">Track investors, automate coupon payments, and provide transparent reporting to stakeholders</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="originator_onboarding.html" class="btn bg-primary text-white hover:bg-primary-dark text-lg px-10 py-4">Start Onboarding Process</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold text-text-primary mb-4">Corporate Debt Success Stories</h2>
+                <p class="text-xl text-text-secondary max-w-3xl mx-auto">Companies successfully raising capital through BuildVest's digital debt platform</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card overflow-hidden">
+                    <div class="relative h-48">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_186c0db53-1765556160900.png" alt="Mid-market corporate office" class="w-full h-full object-cover" onerror="this.src='https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=800'; this.onerror=null;">
+                        <div class="absolute top-4 left-4">
+                            <span class="badge bg-primary text-white">Active Raise</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-text-primary mb-2">Mid-Market Tech Company</h3>
+                        <div class="flex items-center space-x-2 text-text-secondary text-sm mb-4">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
+                                <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Commercial Paper Issuance</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-text-secondary mb-1">Amount Raised</p>
+                                <p class="text-lg font-bold text-primary">$3M</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-text-secondary mb-1">Yield</p>
+                                <p class="text-lg font-bold text-text-primary">8.5%</p>
+                            </div>
+                        </div>
+                        <p class="text-text-secondary text-sm">Issued 90-day commercial paper to 150 institutional investors for working capital financing</p>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden">
+                    <div class="relative h-48">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ab5f2233-1765152812351.png" alt="Public company headquarters" class="w-full h-full object-cover" onerror="this.src='https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800'; this.onerror=null;">
+                        <div class="absolute top-4 left-4">
+                            <span class="badge bg-primary text-white">Active Raise</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-text-primary mb-2">Public Manufacturing Company</h3>
+                        <div class="flex items-center space-x-2 text-text-secondary text-sm mb-4">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
+                            </svg>
+                            <span>Revenue-Backed Notes</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-text-secondary mb-1">Amount Raised</p>
+                                <p class="text-lg font-bold text-primary">$12M</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-text-secondary mb-1">Yield</p>
+                                <p class="text-lg font-bold text-text-primary">9.2%</p>
+                            </div>
+                        </div>
+                        <p class="text-text-secondary text-sm">Structured revenue-backed senior notes tied to contract revenues with quarterly coupon payments</p>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden">
+                    <div class="relative h-48">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1066be404-1765556159975.png" alt="Private company boardroom" class="w-full h-full object-cover" onerror="this.src='https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800'; this.onerror=null;">
+                        <div class="absolute top-4 left-4">
+                            <span class="badge bg-primary text-white">Active Raise</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-text-primary mb-2">Private Healthcare Group</h3>
+                        <div class="flex items-center space-x-2 text-text-secondary text-sm mb-4">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Private Placement</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-text-secondary mb-1">Amount Raised</p>
+                                <p class="text-lg font-bold text-primary">$8.5M</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-text-secondary mb-1">Avg. Ticket</p>
+                                <p class="text-lg font-bold text-text-primary">$50K</p>
+                            </div>
+                        </div>
+                        <p class="text-text-secondary text-sm">Reg D private placement for expansion capital with 5-year term and semi-annual interest payments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance & Governance Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold text-text-primary mb-4">Compliance & Governance Framework</h2>
+                <p class="text-xl text-text-secondary max-w-3xl mx-auto">Built for regulatory compliance and investor protection</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="card p-8">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-text-primary mb-3">Securities Compliance</h3>
+                            <ul class="space-y-2 text-text-secondary">
+                                <li class="flex items-start space-x-2">
+                                    <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>SEC Regulation D (506b, 506c) private placements</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>Regulation S for international investor access</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>Automated Form D filing and state blue sky compliance</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>Tokenized securities governance with on-chain transfer restrictions</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-8">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-16 h-16 bg-secondary-100 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-text-primary mb-3">Investor Protection</h3>
+                            <ul class="space-y-2 text-text-secondary">
+                                <li class="flex items-start space-x-2">
+                                    <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>Automated KYC/AML with identity verification partners</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>Accreditation verification for qualified investors</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>Smart contract-enforced payment schedules and redemptions</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <svg class="w-5 h-5 text-success mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>Transparent on-chain audit trails for all transactions</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-surface">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl sm:text-5xl font-bold text-text-primary mb-4">Frequently Asked Questions</h2>
+                <p class="text-xl text-text-secondary">Common questions about corporate debt issuance and private placements</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="card overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white transition-colors duration-150 touch-target" aria-expanded="false">
+                        <span class="font-semibold text-text-primary pr-4">What types of corporate debt instruments can be tokenized?</span>
+                        <svg class="w-6 h-6 text-text-secondary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-text-secondary leading-relaxed">BuildVest supports corporate bonds, senior/subordinated notes, commercial paper, revenue-backed notes, convertible debt, term debt, and structured private placements. Both secured and unsecured debt can be tokenized with customizable terms, payment schedules, and covenant structures.</p>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white transition-colors duration-150 touch-target" aria-expanded="false">
+                        <span class="font-semibold text-text-primary pr-4">How does tokenized debt issuance compare to traditional bank loans?</span>
+                        <svg class="w-6 h-6 text-text-secondary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-text-secondary leading-relaxed">Tokenized debt offers faster execution (30-60 days vs 90-180), lower issuance costs (1-3% vs 3-5%), access to global capital pools beyond traditional banks, flexible terms without restrictive bank covenants, and potential secondary market liquidity for investors. Companies maintain direct investor relationships and transparent pricing.</p>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white transition-colors duration-150 touch-target" aria-expanded="false">
+                        <span class="font-semibold text-text-primary pr-4">What are the minimum requirements to issue corporate debt on BuildVest?</span>
+                        <svg class="w-6 h-6 text-text-secondary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-text-secondary leading-relaxed">Minimum raise: $500K. Companies should have: 2+ years operating history, audited or reviewed financials, clear use of proceeds, ability to service debt obligations, and established business model. Both public and private companies qualify. Credit ratings are helpful but not required—we support unrated issuers.</p>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white transition-colors duration-150 touch-target" aria-expanded="false">
+                        <span class="font-semibold text-text-primary pr-4">How are coupon payments and principal redemptions automated?</span>
+                        <svg class="w-6 h-6 text-text-secondary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-text-secondary leading-relaxed">Smart contracts automatically execute payment distributions on scheduled dates. Companies fund payment wallets ahead of distribution dates, and blockchain technology distributes payments proportionally to all token holders instantly. All payments are recorded on-chain for transparent audit trails. Manual intervention only required for funding, not distribution.</p>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white transition-colors duration-150 touch-target" aria-expanded="false">
+                        <span class="font-semibold text-text-primary pr-4">What investor base can corporate issuers access?</span>
+                        <svg class="w-6 h-6 text-text-secondary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-text-secondary leading-relaxed">BuildVest provides access to: institutional investors (family offices, RIAs, funds), accredited individual investors across 50+ countries, specialized credit funds, and alternative investment platforms. Total registered investor base exceeds 10,000+ qualified participants. Issuers benefit from competitive pricing through distributed capital access.</p>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white transition-colors duration-150 touch-target" aria-expanded="false">
+                        <span class="font-semibold text-text-primary pr-4">How does secondary market liquidity work for debt tokens?</span>
+                        <svg class="w-6 h-6 text-text-secondary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-text-secondary leading-relaxed">Investors can trade debt tokens on BuildVest's secondary marketplace after initial lock-up periods (typically 12 months for Reg D). Issuers can retain approval rights for all transfers. Market-driven pricing with transparent bid/ask spreads. This liquidity premium can lower initial yield requirements by 100-200 basis points.</p>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white transition-colors duration-150 touch-target" aria-expanded="false">
+                        <span class="font-semibold text-text-primary pr-4">What is the pricing structure for debt issuance?</span>
+                        <svg class="w-6 h-6 text-text-secondary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-text-secondary leading-relaxed">Platform setup fee: 1-2% of raise amount (minimum $10K). Annual servicing fee: 0.25% of outstanding debt. Transaction fees: 0.5% on secondary market trades. No success fees or placement agent commissions. Total cost structure typically 50-60% lower than traditional underwriting fees.</p>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden">
+                    <button class="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white transition-colors duration-150 touch-target" aria-expanded="false">
+                        <span class="font-semibold text-text-primary pr-4">Can ratings agencies rate tokenized debt instruments?</span>
+                        <svg class="w-6 h-6 text-text-secondary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-5">
+                        <p class="text-text-secondary leading-relaxed">Yes. BuildVest partners with traditional credit rating agencies (S&P, Moody's, Fitch) and emerging digital credit scoring platforms. Rated debt typically achieves 30-50% higher subscription rates. For unrated issuers, we provide internal credit analysis and risk scoring visible to potential investors.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-primary to-primary-dark relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23FFFFFF\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+        
+        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold text-white mb-6">Ready to Issue Corporate Debt or Launch a Private Placement?</h2>
+            <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">Join companies raising capital efficiently through BuildVest's digital securities platform. Schedule a consultation with our capital markets team to discuss your debt issuance strategy.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+                <a href="originator_onboarding.html" class="btn bg-white text-primary hover:bg-primary-50 text-lg px-10 py-4 shadow-lg font-bold">
+                    Start Onboarding
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+                <a href="#" class="btn bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border-2 border-white/40 text-lg px-10 py-4 shadow-lg font-bold">
+                    Talk to Our Team
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-8 text-white">
+                <div class="flex items-center space-x-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="font-semibold">Fast 30-60 Day Close</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="font-semibold">Lower Cost Structure</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="font-semibold">Flexible Terms</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Footer -->
+<footer class="bg-slate-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            <!-- Company Info -->
+            <div>
+                <div class="flex items-center space-x-3 mb-4">
+                    <img src="https://buildvest.net/img/BuildvestLogo_icon_white.png" alt="BuildVest footer logo" class="h-8 w-auto" onerror="this.src='https://buildvest.net/img/BuildvestLogo_icon_white.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    <span class="text-xl font-bold">BuildVest</span>
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">Democratizing access to high-yield real-world assets through blockchain technology.</p>
+                <!-- Space for future certification logos -->
+                <div class="flex items-center gap-4">
+                    <div class="text-xs text-slate-500">Regulatory Certifications</div>
+                </div>
+            </div>
+
+            <!-- Platform Links -->
+            <div>
+                <h4 class="font-semibold mb-4">Platform</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="landing_page.html" class="text-slate-400 hover:text-white transition-colors duration-150">For Investors</a></li>
+                    <li><a href="originator_onboarding.html" class="text-slate-400 hover:text-white transition-colors duration-150">For Originators</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div>
+                <h4 class="font-semibold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="about_build_vest.html" class="text-slate-400 hover:text-white transition-colors duration-150">About</a></li>
+                    <li><a href="frequently_asked_questions.html" class="text-slate-400 hover:text-white transition-colors duration-150">FAQs</a></li>
+                    <li><a href="#" class="text-slate-400 hover:text-white transition-colors duration-150">Blog</a></li>
+                    <li><a href="legal_compliance_center.html" class="text-slate-400 hover:text-white transition-colors duration-150">Legal & Compliance</a></li>
+                </ul>
+            </div>
+
+            <!-- Social & Support -->
+            <div>
+                <h4 class="font-semibold mb-4">Connect</h4>
+                <div class="flex items-center space-x-4 mb-4">
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="LinkedIn">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Facebook">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                        </svg>
+                    </a>
+                </div>
+                <!-- a href="#" class="flex items-center text-sm text-slate-400 hover:text-white transition-colors duration-150">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    
+                </a-->
+            </div>
+        </div>
+
+        <!-- Disclaimer Section -->
+        <div class="border-t border-slate-800 pt-8 mb-8">
+            <div class="text-xs text-slate-500 leading-relaxed space-y-2">
+                <p><strong class="text-slate-400">Investment Disclaimer:</strong> Investing involves risks, including loss of principal. Past performance is not indicative of future results. BuildVest is not a financial advisor; consult professionals before investing. All investments are subject to regulatory approval and due diligence.</p>
+                <p><strong class="text-slate-400">Regulatory Compliance:</strong> BuildVest operates under applicable securities regulations. All offerings are subject to regulatory review and approval. Please review our Legal & Compliance section for detailed information.</p>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-slate-800 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <p class="text-slate-400 text-sm">© 2026 BuildVest. All Rights Reserved.</p>
+                <div class="flex items-center space-x-6 text-xs text-slate-500">
+                    <a href="legal_compliance_center.html" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+                    <a href="legal_compliance_center.html" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                    <a href="legal_compliance_center.html" class="hover:text-slate-400 transition-colors">Risk Disclosure</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // FAQ accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('svg');
+                const isExpanded = question.getAttribute('aria-expanded') === 'true';
+
+                // Close all other FAQs
+                faqQuestions.forEach(q => {
+                    if (q !== question) {
+                        q.nextElementSibling.classList.add('hidden');
+                        q.querySelector('svg').style.transform = 'rotate(0deg)';
+                        q.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Toggle current FAQ
+                if (isExpanded) {
+                    answer.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                    question.setAttribute('aria-expanded', 'false');
+                } else {
+                    answer.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                    question.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        if (mobileMenu) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileMenuBtn && mobileMenu && !mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

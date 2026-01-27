@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Treasury & Settlement Control Plane - Core financial oversight and settlement management">
+    <title>Treasury & Settlement | BuildVest SuperAdmin Portal</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    
+    <!-- Standalone Super Admin Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+
+    <!-- Sidebar Collapse Script -->
+    <script src="sidebar-toggle.js" defer></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#017EFE',
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#017EFE',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A'
+                        },
+                        secondary: {
+                            DEFAULT: '#03A504',
+                            50: '#F0FDF4',
+                            100: '#DCFCE7',
+                            200: '#BBF7D0',
+                            300: '#86EFAC',
+                            400: '#4ADE80',
+                            500: '#22C55E',
+                            600: '#03A504',
+                            700: '#15803D',
+                            800: '#166534',
+                            900: '#14532D'
+                        },
+                        accent: '#7C3AED',
+                        warning: '#F59E0B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate-900 text-white overflow-x-hidden">
+    <!-- Fixed Sidebar -->
+    <aside id="sidebar" class="fixed left-0 top-0 h-full w-72 bg-gradient-to-b from-slate-950 to-slate-900 border-r border-slate-800 z-40 transition-width duration-300 flex flex-col">
+        <!-- Logo Section -->
+        <div class="p-6 border-b border-slate-800 relative">
+            <div class="flex items-center space-x-3 mb-1">
+                <!-- Official BuildVest Logo -->
+                <img src="https://buildvest.net/img/BuildvestLogo_icon.png" 
+                     alt="BuildVest" 
+                     class="h-10 w-10 rounded-lg">
+                <span class="text-xl font-black text-white">BuildVest</span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold">Market Operator Console</p>
+            
+            <!-- Sidebar Toggle Button -->
+            <button id="sidebar-toggle" 
+                    aria-label="Toggle sidebar" 
+                    aria-expanded="true"
+                    class="absolute top-6 right-4 p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary">
+                <svg class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Chevron Left (default = expanded) -->
+                    <path id="toggle-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+            <!-- Dashboard Section -->
+            <div class="space-y-1">
+                <a href="super_admin_market_operator_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="global_asset_oversight_center.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>Assets</span>
+                </a>
+            </div>
+
+            <!-- User Management -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">User Management</p>
+                <div class="space-y-1">
+                    <a href="super_admin_user_entity_management_hub.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <span>Users</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Market Operations -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Market Operations</p>
+                <div class="space-y-1">
+                    <a href="treasury_settlement_control_plane.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-primary text-white font-semibold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span>Treasury & Settlement</span>
+                    </a>
+                    <a href="secondary_market_supervision.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                        <span>Secondary Market</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Governance & Risk -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Governance & Risk</p>
+                <div class="space-y-1">
+                    <a href="super_admin_compliance_risk_management_center.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span>Compliance & Risk</span>
+                    </a>
+                    <a href="audit_logs.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        <span>Audit Logs</span>
+                    </a>
+                    <a href="super_admin_analytics_reporting_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        <span>Analytics & Reporting</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- System -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">System</p>
+                <div class="space-y-1">
+                    <a href="super_admin_system_configuration_settings.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="p-4 border-t border-slate-800">
+            <div class="bg-slate-900 rounded-lg p-3">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-slate-400">System Status</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-green-500/20 text-green-400">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5 animate-pulse"></span>
+                        Operational
+                    </span>
+                </div>
+                <div class="flex items-center justify-between text-xs text-slate-500">
+                    <span>Uptime: 99.98%</span>
+                    <span>v2.4.1</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div id="main-content" class="ml-72 min-h-screen transition-margin duration-300">
+    
+        <!-- Top Navigation Bar -->
+        <header class="sticky top-0 z-30 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+            <div class="px-8 py-4">
+                <div class="flex items-center justify-between">
+                    <!-- Left: Environment Badge -->
+                    <div class="flex items-center space-x-4">
+                        <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                            PRODUCTION
+                        </span>
+                    </div>
+
+                    <!-- Center: Global Search -->
+                    <div class="flex-1 max-w-2xl mx-8">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                            <input type="text" 
+                                   placeholder="Search assets, transactions, wallets (⌘+K)" 
+                                   class="w-full pl-10 pr-4 py-2.5 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <kbd class="px-2 py-1 text-xs font-semibold text-slate-500 bg-slate-900 border border-slate-700 rounded">⌘K</kbd>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Notifications & Profile -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Notifications -->
+                        <button class="relative p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                            <span class="absolute top-1 right-1 w-2 h-2 bg-warning rounded-full"></span>
+                        </button>
+
+                        <!-- Admin Avatar Dropdown -->
+                        <div class="relative group">
+                            <button class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-800 transition-colors">
+                                <div class="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center font-bold text-sm">
+                                    JD
+                                </div>
+                                <div class="text-left hidden lg:block">
+                                    <p class="text-sm font-semibold text-white">John Doe</p>
+                                    <p class="text-xs text-slate-500">Super Admin</p>
+                                </div>
+                                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div class="absolute right-0 mt-2 w-56 bg-slate-800 rounded-xl shadow-2xl border border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
+                                <a href="#" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                    </svg>
+                                    <span class="text-sm">Audit Logs</span>
+                                </a>
+                                <div class="border-t border-slate-700 my-2"></div>
+                                <a href="super_admin_login.html" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-red-500/10 text-red-400 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                    </svg>
+                                    <span class="text-sm font-semibold">Sign Out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Breadcrumbs -->
+            <div class="px-8 pb-4">
+                <div class="flex items-center space-x-2 text-sm">
+                    <a href="super_admin_dashboard.html" class="text-slate-500 hover:text-white transition-colors">Home</a>
+                    <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <a href="#" class="text-slate-500 hover:text-white transition-colors">Operations</a>
+                    <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span class="text-white font-semibold">Treasury & Settlement</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Treasury Content -->
+        <main class="p-8">
+            <!-- Page Title -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-black text-white mb-2">Treasury & Settlement Control Plane</h1>
+                        <p class="text-slate-400">Core financial oversight, custodial wallet management, and settlement operations</p>
+                    </div>
+                    <button class="px-6 py-3 bg-primary hover:bg-primary-600 text-white font-bold rounded-lg transition-colors flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Export Treasury Report</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Treasury Overview Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+                <!-- Total Capital Raised -->
+                <div class="bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 rounded-2xl p-6 relative overflow-hidden group hover:shadow-lg hover:shadow-primary/20 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold px-2 py-1 bg-green-500/20 text-green-400 rounded-full">+8.2%</span>
+                        </div>
+                        <h3 class="text-sm font-semibold text-slate-400 mb-1">Total Capital Raised</h3>
+                        <p class="text-3xl font-black text-white mb-2">$45.2M</p>
+                        <p class="text-xs text-slate-500">Across all assets</p>
+                    </div>
+                </div>
+
+                <!-- Total Escrowed Funds -->
+                <div class="bg-gradient-to-br from-secondary/20 to-secondary/5 border border-secondary/30 rounded-2xl p-6 relative overflow-hidden group hover:shadow-lg hover:shadow-secondary/20 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            </div>
+                            <span class="inline-flex items-center px-2 py-1 bg-secondary/20 text-secondary rounded-full text-xs font-bold">
+                                <span class="w-1.5 h-1.5 bg-secondary rounded-full mr-1.5"></span>
+                                Secured
+                            </span>
+                        </div>
+                        <h3 class="text-sm font-semibold text-slate-400 mb-1">Total Escrowed Funds</h3>
+                        <p class="text-3xl font-black text-white mb-2">$8.6M</p>
+                        <p class="text-xs text-slate-500">USDC in custody</p>
+                    </div>
+                </div>
+
+                <!-- Upcoming Redemption Obligations -->
+                <div class="bg-gradient-to-br from-warning/20 to-warning/5 border border-warning/30 rounded-2xl p-6 relative overflow-hidden group hover:shadow-lg hover:shadow-warning/20 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-warning/10 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-warning/20 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold px-2 py-1 bg-warning/20 text-warning rounded-full">30 days</span>
+                        </div>
+                        <h3 class="text-sm font-semibold text-slate-400 mb-1">Upcoming Redemptions</h3>
+                        <p class="text-3xl font-black text-white mb-2">$2.8M</p>
+                        <p class="text-xs text-slate-500">Next 30 days</p>
+                    </div>
+                </div>
+
+                <!-- At-Risk Settlements -->
+                <div class="bg-gradient-to-br from-red-500/20 to-red-500/5 border border-red-500/30 rounded-2xl p-6 relative overflow-hidden group hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold px-2 py-1 bg-red-500/20 text-red-400 rounded-full">URGENT</span>
+                        </div>
+                        <h3 class="text-sm font-semibold text-slate-400 mb-1">At-Risk Settlements</h3>
+                        <p class="text-3xl font-black text-white mb-2">$420K</p>
+                        <p class="text-xs text-slate-500">3 assets underfunded</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="mb-6">
+                <div class="border-b border-slate-700">
+                    <nav class="flex space-x-6">
+                        <button class="px-4 py-3 text-sm font-semibold text-white border-b-2 border-primary" data-tab="assets">
+                            Per-Asset Treasury
+                        </button>
+                        <button class="px-4 py-3 text-sm font-semibold text-slate-400 hover:text-white transition-colors" data-tab="settlement">
+                            Settlement Queue
+                        </button>
+                        <button class="px-4 py-3 text-sm font-semibold text-slate-400 hover:text-white transition-colors" data-tab="wallets">
+                            Custodial Wallets
+                        </button>
+                        <button class="px-4 py-3 text-sm font-semibold text-slate-400 hover:text-white transition-colors" data-tab="reports">
+                            Treasury Reports
+                        </button>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Tab Content: Per-Asset Treasury -->
+            <div id="assets-tab" class="tab-content">
+                <!-- Filter Controls -->
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="relative">
+                            <svg class="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            <input type="text" placeholder="Search assets..." class="pl-10 pr-4 py-2 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm w-64">
+                        </div>
+                        <select class="px-4 py-2 bg-slate-800 border border-slate-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+                            <option>All Asset Types</option>
+                            <option>Real Estate</option>
+                            <option>Infrastructure</option>
+                            <option>Private Equity</option>
+                        </select>
+                        <select class="px-4 py-2 bg-slate-800 border border-slate-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+                            <option>All Statuses</option>
+                            <option>Fully Funded</option>
+                            <option>At Risk</option>
+                            <option>Shortfall</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button class="px-3 py-2 text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                        </button>
+                        <button class="px-3 py-2 text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Assets Grid -->
+                <div class="grid grid-cols-1 gap-6">
+                    <!-- Asset Card 1 - OK Status -->
+                    <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6 hover:border-slate-600 transition-all duration-300">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="flex items-start space-x-4">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1f71e4d29-1765276747998.png" 
+                                     alt="Asset" 
+                                     class="w-16 h-16 rounded-xl object-cover"
+                                     onerror="this.src='https://img.rocket.new/generatedImages/rocket_gen_img_1f71e4d29-1765276747998.png'">
+                                <div>
+                                    <h3 class="text-lg font-bold text-white mb-1">Downtown Office Complex</h3>
+                                    <div class="flex items-center space-x-3 text-sm text-slate-400">
+                                        <span>Lagos, Nigeria</span>
+                                        <span>•</span>
+                                        <span>Real Estate</span>
+                                        <span>•</span>
+                                        <span>Maturity: Mar 15, 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="inline-flex items-center px-3 py-1.5 bg-green-500/20 text-green-400 rounded-full text-xs font-bold">
+                                <span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5"></span>
+                                OK
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Required Redemption</p>
+                                <p class="text-xl font-black text-white">$2.5M</p>
+                            </div>
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Funded Amount</p>
+                                <p class="text-xl font-black text-white">$2.5M</p>
+                            </div>
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Shortfall</p>
+                                <p class="text-xl font-black text-green-400">$0</p>
+                            </div>
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Escrow Status</p>
+                                <p class="text-sm font-bold text-green-400">Ready</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-700 pt-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">Fiat Inflow Account:</span>
+                                    <span class="text-white font-mono">****8423 (reference)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">USDC Inflow Wallet:</span>
+                                    <span class="text-white font-mono">0x742d...8f3a</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">Fiat Redemption Account:</span>
+                                    <span class="text-white font-mono">****9142 (reference)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">USDC Escrow Wallet:</span>
+                                    <span class="text-white font-mono">0x8c4e...2b1f</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-end space-x-3">
+                                <button class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-colors text-sm">
+                                    View Settlement Checklist
+                                </button>
+                                <button class="px-4 py-2 bg-primary hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors text-sm">
+                                    View Full Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Asset Card 2 - At Risk Status -->
+                    <div class="bg-slate-800/50 backdrop-blur-sm border border-warning/50 rounded-2xl p-6 hover:border-warning transition-all duration-300">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="flex items-start space-x-4">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1f71e4d29-1765276747998.png" 
+                                     alt="Asset" 
+                                     class="w-16 h-16 rounded-xl object-cover"
+                                     onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200&h=200&fit=crop'">
+                                <div>
+                                    <h3 class="text-lg font-bold text-white mb-1">Solar Energy Project</h3>
+                                    <div class="flex items-center space-x-3 text-sm text-slate-400">
+                                        <span>Accra, Ghana</span>
+                                        <span>•</span>
+                                        <span>Infrastructure</span>
+                                        <span>•</span>
+                                        <span>Maturity: Feb 28, 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="inline-flex items-center px-3 py-1.5 bg-warning/20 text-warning rounded-full text-xs font-bold">
+                                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                </svg>
+                                At Risk
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Required Redemption</p>
+                                <p class="text-xl font-black text-white">$1.8M</p>
+                            </div>
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Funded Amount</p>
+                                <p class="text-xl font-black text-white">$1.5M</p>
+                            </div>
+                            <div class="bg-slate-900/50 rounded-lg p-4 border border-warning/30">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Shortfall</p>
+                                <p class="text-xl font-black text-warning">$300K</p>
+                            </div>
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Escrow Status</p>
+                                <p class="text-sm font-bold text-warning">Partial</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-700 pt-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">Fiat Inflow Account:</span>
+                                    <span class="text-white font-mono">****2847 (reference)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">USDC Inflow Wallet:</span>
+                                    <span class="text-white font-mono">0x3e8b...4c7d</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">Fiat Redemption Account:</span>
+                                    <span class="text-white font-mono">****7126 (reference)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">USDC Escrow Wallet:</span>
+                                    <span class="text-white font-mono">0x5f2a...9e3c</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-warning/10 border border-warning/30 rounded-lg p-4 mb-4">
+                                <div class="flex items-start space-x-3">
+                                    <svg class="w-5 h-5 text-warning flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm font-semibold text-warning mb-1">Action Required</p>
+                                        <p class="text-xs text-slate-300">$300,000 USDC shortfall detected. Contact originator to prefund redemption obligation or risk settlement delay.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-end space-x-3">
+                                <button class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-colors text-sm">
+                                    View Settlement Checklist
+                                </button>
+                                <button class="px-4 py-2 bg-warning hover:bg-warning/90 text-slate-900 font-semibold rounded-lg transition-colors text-sm">
+                                    Escalate to Originator
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Asset Card 3 - Critical Status -->
+                    <div class="bg-slate-800/50 backdrop-blur-sm border border-red-500/50 rounded-2xl p-6 hover:border-red-500 transition-all duration-300">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="flex items-start space-x-4">
+                                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200&h=200&fit=crop" 
+                                     alt="Asset" 
+                                     class="w-16 h-16 rounded-xl object-cover">
+                                <div>
+                                    <h3 class="text-lg font-bold text-white mb-1">Luxury Apartments</h3>
+                                    <div class="flex items-center space-x-3 text-sm text-slate-400">
+                                        <span>Nairobi, Kenya</span>
+                                        <span>•</span>
+                                        <span>Real Estate</span>
+                                        <span>•</span>
+                                        <span>Maturity: Jan 15, 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="inline-flex items-center px-3 py-1.5 bg-red-500/20 text-red-400 rounded-full text-xs font-bold">
+                                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                                CRITICAL
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Required Redemption</p>
+                                <p class="text-xl font-black text-white">$620K</p>
+                            </div>
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Funded Amount</p>
+                                <p class="text-xl font-black text-white">$500K</p>
+                            </div>
+                            <div class="bg-slate-900/50 rounded-lg p-4 border border-red-500/30">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Shortfall</p>
+                                <p class="text-xl font-black text-red-400">$120K</p>
+                            </div>
+                            <div class="bg-slate-900/50 rounded-lg p-4">
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Escrow Status</p>
+                                <p class="text-sm font-bold text-red-400">At Risk</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-700 pt-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">Fiat Inflow Account:</span>
+                                    <span class="text-white font-mono">****4195 (reference)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">USDC Inflow Wallet:</span>
+                                    <span class="text-white font-mono">0x9c7f...3e2a</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">Fiat Redemption Account:</span>
+                                    <span class="text-white font-mono">****6543 (reference)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">USDC Escrow Wallet:</span>
+                                    <span class="text-white font-mono">0x2b8d...7f4e</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-4">
+                                <div class="flex items-start space-x-3">
+                                    <svg class="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm font-semibold text-red-400 mb-1">Urgent Action Required</p>
+                                        <p class="text-xs text-slate-300 mb-2">Maturity in 30 days. $120,000 USDC shortfall must be resolved immediately to avoid settlement default.</p>
+                                        <p class="text-xs text-slate-400">Last contact attempt: 2 days ago • Next follow-up: Today</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-end space-x-3">
+                                <button class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-colors text-sm">
+                                    View Settlement Checklist
+                                </button>
+                                <button class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors text-sm">
+                                    Initiate Emergency Protocol
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex items-center justify-between mt-6">
+                    <p class="text-sm text-slate-400">Showing 3 of 24 assets</p>
+                    <div class="flex items-center space-x-2">
+                        <button class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Previous
+                        </button>
+                        <button class="px-3 py-2 bg-primary text-white rounded-lg font-semibold">1</button>
+                        <button class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 rounded-lg transition-colors">2</button>
+                        <button class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 rounded-lg transition-colors">3</button>
+                        <button class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 rounded-lg transition-colors">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Settlement Queue (Hidden by default) -->
+            <div id="settlement-tab" class="tab-content hidden">
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 text-center">
+                    <svg class="w-16 h-16 mx-auto text-slate-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold text-white mb-2">Settlement Queue</h3>
+                    <p class="text-slate-400">Approve escrow releases and manage settlement workflows with DocuSeal confirmations</p>
+                </div>
+            </div>
+
+            <!-- Tab Content: Custodial Wallets (Hidden by default) -->
+            <div id="wallets-tab" class="tab-content hidden">
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 text-center">
+                    <svg class="w-16 h-16 mx-auto text-slate-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold text-white mb-2">Custodial Wallets</h3>
+                    <p class="text-slate-400">Platform-managed wallet references and custody monitoring (no direct wallet signing)</p>
+                </div>
+            </div>
+
+            <!-- Tab Content: Treasury Reports (Hidden by default) -->
+            <div id="reports-tab" class="tab-content hidden">
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 text-center">
+                    <svg class="w-16 h-16 mx-auto text-slate-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold text-white mb-2">Treasury Reports</h3>
+                    <p class="text-slate-400">Generate comprehensive settlement reports for regulatory compliance and audit trails</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Tab Navigation
+        const tabs = document.querySelectorAll('[data-tab]');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.dataset.tab;
+                
+                // Update tab styling
+                tabs.forEach(t => {
+                    t.classList.remove('text-white', 'border-b-2', 'border-primary');
+                    t.classList.add('text-slate-400');
+                });
+                tab.classList.remove('text-slate-400');
+                tab.classList.add('text-white', 'border-b-2', 'border-primary');
+                
+                // Show/hide tab content
+                tabContents.forEach(content => {
+                    if (content.id === `${tabName}-tab`) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // ⌘+K for global search
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                const searchInput = document.querySelector('input[placeholder*="Search"]');
+                if (searchInput) searchInput.focus();
+            }
+        });
+    </script>
+
+<script id="dhws-dataInjector" src="../../public/dhws-data-injector.js"></script>
+</body>
+</html>

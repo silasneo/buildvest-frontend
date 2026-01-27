@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Originator All Notifications - Centralized notification management for asset issuers.">
+    <title>All Notifications - BuildVest Originator</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+    
+    <style>
+        .notification-item {
+            transition: all 0.2s ease;
+        }
+        .notification-item:hover {
+            background-color: #F8FAFC;
+        }
+        .notification-item.unread {
+            background-color: #F0F9FF;
+            border-left: 3px solid #017EFE;
+        }
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .filter-chip {
+            transition: all 0.2s ease;
+        }
+        .filter-chip:hover {
+            transform: translateY(-1px);
+        }
+        .filter-chip.active {
+            background-color: #017EFE;
+            color: white;
+            border-color: #017EFE;
+        }
+    </style>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-background">
+     <!-- Top Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white border-b border-border">
+        <div class="px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo & Mobile Menu -->
+                <div class="flex items-center space-x-4">
+                    <button id="sidebarToggle" class="lg:hidden p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                        <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <a href="originator_dashboard.html" class="flex items-center space-x-3">
+                        <img src="https://buildvest.net/buildvest-logo.png" alt="Buildvest" class="h-8 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    </a>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Notifications -->
+                    <button onclick="window.location.href='originator_all_notifications_page.html'" class="relative p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                        <svg class="w-6 h-6 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-warning rounded-full"></span>
+                    </button>
+
+                    <!-- User Menu -->
+                    <div class="relative">
+                        <button id="userMenuBtn" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1a5bb1a45-1764657839507.png" alt="User profile" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                            <span class="hidden sm:block text-sm font-medium text-text-primary">Urban Developments</span>
+                            <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <!-- User Dropdown -->
+                        <div id="userMenu" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-border py-2">
+                            <a href="originator_settings_page.html" class="block px-4 py-2 text-sm text-text-secondary hover:bg-surface transition-colors duration-150">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Organization Settings
+                            </a>
+                            <div class="border-t border-border my-2"></div>
+                            <a href="landing_page.html" class="block px-4 py-2 text-sm text-error hover:bg-surface transition-colors duration-150">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed left-0 top-16 bottom-0 w-64 bg-white border-r border-border z-30 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto">
+        <nav class="p-4 space-y-2">
+            <a href="originator_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="originator_assets_management.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+                <span>Assets</span>
+            </a>
+
+            <a href="originator_investors_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                <span>Investors</span>
+            </a>
+
+            <a href="originator_messages_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                </svg>
+                <span>Messages</span>
+                <span class="ml-auto badge badge-warning">3</span>
+            </a>
+
+            <a href="originator_treasury_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                </svg>
+                <span>Treasury</span>
+            </a>
+
+            <a href="originator_analytics_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                <span>Analytics</span>
+            </a>
+
+            <div class="border-t border-border my-4"></div>
+
+            <a href="originator_settings_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>Settings</span>
+            </a>
+
+            <a href="originator_help_support_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <span>Help & Support</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Sidebar Overlay (Mobile) -->
+    <div id="sidebarOverlay" class="hidden fixed inset-0 bg-slate-900/50 z-20 lg:hidden" onclick="closeSidebar()"></div>
+
+    <!-- Main Content -->
+    <main class="lg:ml-64 pt-16 min-h-screen">
+        <div class="p-4 sm:p-6 lg:p-8">
+            <!-- Header -->
+            <div class="mb-8">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-bold text-text-primary mb-2">All Notifications</h1>
+                        <p class="text-text-secondary">Centralized notification management for all actions and approvals</p>
+                    </div>
+                    <button onclick="markAllAsRead()" class="btn btn-outline btn-sm whitespace-nowrap">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Mark All as Read
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="card p-4 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                    <span class="text-sm font-semibold text-text-primary whitespace-nowrap">Filter by Type:</span>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="filterNotifications('all')" class="filter-chip active px-4 py-2 text-sm font-medium border border-border rounded-lg transition-all">
+                            All Notifications
+                        </button>
+                        <button onclick="filterNotifications('investment')" class="filter-chip px-4 py-2 text-sm font-medium border border-border rounded-lg transition-all">
+                            Investment
+                        </button>
+                        <button onclick="filterNotifications('compliance')" class="filter-chip px-4 py-2 text-sm font-medium border border-border rounded-lg transition-all">
+                            Compliance
+                        </button>
+                        <button onclick="filterNotifications('tokenization')" class="filter-chip px-4 py-2 text-sm font-medium border border-border rounded-lg transition-all">
+                            Tokenization
+                        </button>
+                        <button onclick="filterNotifications('treasury')" class="filter-chip px-4 py-2 text-sm font-medium border border-border rounded-lg transition-all">
+                            Treasury
+                        </button>
+                        <button onclick="filterNotifications('secondary-market')" class="filter-chip px-4 py-2 text-sm font-medium border border-border rounded-lg transition-all">
+                            Secondary Market
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications List -->
+            <div class="space-y-4">
+                <!-- Today Section -->
+                <div>
+                    <h3 class="text-sm font-semibold text-text-tertiary uppercase tracking-wider mb-3">Today</h3>
+                    
+                    <!-- Investment Notification -->
+                    <div class="notification-item unread card p-4 mb-3" data-type="investment">
+                        <div class="flex items-start space-x-4">
+                            <div class="notification-icon bg-success-100">
+                                <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="badge bg-success-100 text-success text-xs">Investment</span>
+                                            <span class="text-xs text-text-tertiary">2 hours ago</span>
+                                        </div>
+                                        <h4 class="text-base font-semibold text-text-primary mb-1">New Investment Received</h4>
+                                        <p class="text-sm text-text-secondary mb-2">Michael Chen invested $75,000 in Downtown Office Complex</p>
+                                        <p class="text-sm text-text-primary font-medium">Related Asset: Downtown Office Complex</p>
+                                    </div>
+                                    <button onclick="alert('Removing notification...')" class="text-text-tertiary hover:text-text-primary ml-4">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="alert('Viewing asset details...')" class="btn btn-primary btn-sm">View Asset</button>
+                                    <button onclick="alert('Acknowledging notification...')" class="btn btn-outline btn-sm">Acknowledge</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Market Notification -->
+                    <div class="notification-item unread card p-4 mb-3" data-type="secondary-market">
+                        <div class="flex items-start space-x-4">
+                            <div class="notification-icon bg-secondary-100">
+                                <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="badge bg-secondary-100 text-secondary text-xs">Secondary Market</span>
+                                            <span class="text-xs text-text-tertiary">4 hours ago</span>
+                                        </div>
+                                        <h4 class="text-base font-semibold text-text-primary mb-1">Secondary Market Activity Increased</h4>
+                                        <p class="text-sm text-text-secondary mb-2">Solar Energy Project has 6 new listings with elevated trading volume</p>
+                                        <p class="text-sm text-text-primary font-medium">Related Asset: Solar Energy Project</p>
+                                    </div>
+                                    <button onclick="alert('Removing notification...')" class="text-text-tertiary hover:text-text-primary ml-4">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="alert('Viewing market activity...')" class="btn btn-primary btn-sm">View Activity</button>
+                                    <button onclick="alert('Acknowledging notification...')" class="btn btn-outline btn-sm">Acknowledge</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Treasury Notification -->
+                    <div class="notification-item unread card p-4 mb-3" data-type="treasury">
+                        <div class="flex items-start space-x-4">
+                            <div class="notification-icon bg-error-100">
+                                <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="badge badge-error text-xs">Treasury</span>
+                                            <span class="text-xs text-text-tertiary">6 hours ago</span>
+                                        </div>
+                                        <h4 class="text-base font-semibold text-text-primary mb-1">Redemption Due - Prefunding Required</h4>
+                                        <p class="text-sm text-text-secondary mb-2">Redemption due in 10 days - prefunding of $1.2M required</p>
+                                        <p class="text-sm text-text-primary font-medium">Related Asset: Downtown Office Complex</p>
+                                    </div>
+                                    <button onclick="alert('Removing notification...')" class="text-text-tertiary hover:text-text-primary ml-4">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="alert('Opening funding panel...')" class="btn btn-error btn-sm">Fund Wallet</button>
+                                    <button onclick="alert('Reviewing details...')" class="btn btn-outline btn-sm">Review</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yesterday Section -->
+                <div>
+                    <h3 class="text-sm font-semibold text-text-tertiary uppercase tracking-wider mb-3 mt-8">Yesterday</h3>
+                    
+                    <!-- Tokenization Notification -->
+                    <div class="notification-item card p-4 mb-3" data-type="tokenization">
+                        <div class="flex items-start space-x-4">
+                            <div class="notification-icon bg-primary-100">
+                                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="badge bg-primary-100 text-primary text-xs">Tokenization</span>
+                                            <span class="text-xs text-text-tertiary">1 day ago</span>
+                                        </div>
+                                        <h4 class="text-base font-semibold text-text-primary mb-1">Funding Closed - Ready to Mint Tokens</h4>
+                                        <p class="text-sm text-text-secondary mb-2">Solar Energy Project funding successfully closed at $2.5M target</p>
+                                        <p class="text-sm text-text-primary font-medium">Related Asset: Solar Energy Project</p>
+                                    </div>
+                                    <button onclick="alert('Removing notification...')" class="text-text-tertiary hover:text-text-primary ml-4">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="alert('Viewing asset details...')" class="btn btn-primary btn-sm">View Asset</button>
+                                    <button onclick="alert('Acknowledging notification...')" class="btn btn-outline btn-sm">Acknowledge</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Treasury Notification -->
+                    <div class="notification-item card p-4 mb-3" data-type="treasury">
+                        <div class="flex items-start space-x-4">
+                            <div class="notification-icon bg-success-100">
+                                <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="badge bg-success-100 text-success text-xs">Treasury</span>
+                                            <span class="text-xs text-text-tertiary">1 day ago</span>
+                                        </div>
+                                        <h4 class="text-base font-semibold text-text-primary mb-1">Escrow Funded - Settlement Scheduled</h4>
+                                        <p class="text-sm text-text-secondary mb-2">Coastal Development escrow successfully funded, settlement on Dec 20</p>
+                                        <p class="text-sm text-text-primary font-medium">Related Asset: Coastal Development</p>
+                                    </div>
+                                    <button onclick="alert('Removing notification...')" class="text-text-tertiary hover:text-text-primary ml-4">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="alert('Viewing asset details...')" class="btn btn-primary btn-sm">View Asset</button>
+                                    <button onclick="alert('Acknowledging notification...')" class="btn btn-outline btn-sm">Acknowledge</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compliance Notification -->
+                    <div class="notification-item card p-4 mb-3" data-type="compliance">
+                        <div class="flex items-start space-x-4">
+                            <div class="notification-icon bg-warning-100">
+                                <svg class="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="badge badge-warning text-xs">Compliance</span>
+                                            <span class="text-xs text-text-tertiary">1 day ago</span>
+                                        </div>
+                                        <h4 class="text-base font-semibold text-text-primary mb-1">Updated Documentation Required</h4>
+                                        <p class="text-sm text-text-secondary mb-2">Annual financial statements needed for Luxury Apartments compliance</p>
+                                        <p class="text-sm text-text-primary font-medium">Related Asset: Luxury Apartments</p>
+                                    </div>
+                                    <button onclick="alert('Removing notification...')" class="text-text-tertiary hover:text-text-primary ml-4">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="alert('Reviewing requirements...')" class="btn btn-primary btn-sm">Review</button>
+                                    <button onclick="alert('Acknowledging notification...')" class="btn btn-outline btn-sm">Acknowledge</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- This Week Section -->
+                <div>
+                    <h3 class="text-sm font-semibold text-text-tertiary uppercase tracking-wider mb-3 mt-8">This Week</h3>
+                    
+                    <!-- Investment Notification -->
+                    <div class="notification-item card p-4 mb-3" data-type="investment">
+                        <div class="flex items-start space-x-4">
+                            <div class="notification-icon bg-success-100">
+                                <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="badge bg-success-100 text-success text-xs">Investment</span>
+                                            <span class="text-xs text-text-tertiary">3 days ago</span>
+                                        </div>
+                                        <h4 class="text-base font-semibold text-text-primary mb-1">Large Investment Received</h4>
+                                        <p class="text-sm text-text-secondary mb-2">Institutional investor committed $500,000 to Medical Office Portfolio</p>
+                                        <p class="text-sm text-text-primary font-medium">Related Asset: Medical Office Portfolio</p>
+                                    </div>
+                                    <button onclick="alert('Removing notification...')" class="text-text-tertiary hover:text-text-primary ml-4">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="alert('Viewing asset details...')" class="btn btn-primary btn-sm">View Asset</button>
+                                    <button onclick="alert('Acknowledging notification...')" class="btn btn-outline btn-sm">Acknowledge</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Market Notification -->
+                    <div class="notification-item card p-4 mb-3" data-type="secondary-market">
+                        <div class="flex items-start space-x-4">
+                            <div class="notification-icon bg-secondary-100">
+                                <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="badge bg-secondary-100 text-secondary text-xs">Secondary Market</span>
+                                            <span class="text-xs text-text-tertiary">5 days ago</span>
+                                        </div>
+                                        <h4 class="text-base font-semibold text-text-primary mb-1">Trading Volume Milestone Reached</h4>
+                                        <p class="text-sm text-text-secondary mb-2">Downtown Office Complex reached $1M in secondary trading volume</p>
+                                        <p class="text-sm text-text-primary font-medium">Related Asset: Downtown Office Complex</p>
+                                    </div>
+                                    <button onclick="alert('Removing notification...')" class="text-text-tertiary hover:text-text-primary ml-4">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="alert('Viewing market activity...')" class="btn btn-primary btn-sm">View Activity</button>
+                                    <button onclick="alert('Acknowledging notification...')" class="btn btn-outline btn-sm">Acknowledge</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sidebar toggle
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        });
+
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        }
+
+        // User menu toggle
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userMenu = document.getElementById('userMenu');
+
+        userMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userMenuBtn.contains(e.target) && !userMenu.contains(e.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+        // Mark all as read functionality
+        function markAllAsRead() {
+            const unreadNotifications = document.querySelectorAll('.notification-item.unread');
+            unreadNotifications.forEach(notification => {
+                notification.classList.remove('unread');
+            });
+            alert('All notifications marked as read');
+        }
+
+        // Filter notifications functionality
+        function filterNotifications(type) {
+            const filterChips = document.querySelectorAll('.filter-chip');
+            const notifications = document.querySelectorAll('.notification-item');
+            
+            // Update active filter chip
+            filterChips.forEach(chip => {
+                chip.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter notifications
+            notifications.forEach(notification => {
+                if (type === 'all') {
+                    notification.style.display = 'block';
+                } else {
+                    const notificationType = notification.getAttribute('data-type');
+                    notification.style.display = notificationType === type ? 'block' : 'none';
+                }
+            });
+        }
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

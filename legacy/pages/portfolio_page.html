@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Portfolio - Manage and monitor all your tokenized real-world asset investments in one place">
+    <title>Portfolio - BuildVest</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-surface">
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm">
+        <div class="flex items-center justify-between h-20 px-4 lg:px-8">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <button id="mobileSidebarToggle" class="lg:hidden p-2 hover:bg-surface rounded-lg transition-colors duration-150 touch-target" aria-label="Toggle sidebar menu">
+                    <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <a href="investor_dashboard.html" class="flex items-center space-x-3">
+                    <img src="https://buildvest.net/buildvest-logo.png" alt="BuildVest" class="h-10 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                </a>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center space-x-4">
+                <!-- Search -->
+                <button class="hidden md:flex items-center space-x-2 px-4 py-2 bg-surface rounded-xl hover:bg-surface-100 transition-colors duration-150 touch-target" aria-label="Search investments">
+                    <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <span class="text-sm text-text-secondary">Search</span>
+                </button>
+
+                <!-- Notifications -->
+                <a href="all_notifications_page.html" class="relative p-2 hover:bg-surface rounded-lg transition-colors duration-150 touch-target" aria-label="View notifications">
+                    <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                    </svg>
+                    <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+                </a>
+
+                <!-- User Profile -->
+                <div class="relative">
+                    <button id="profileBtn" class="flex items-center space-x-3 p-2 hover:bg-surface rounded-lg transition-colors duration-150 touch-target" aria-label="User profile menu">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16ffe2d9e-1763296688681.png" alt="User profile photo" class="w-10 h-10 rounded-full object-cover" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                        <div class="hidden md:block text-left">
+                            <p class="text-sm font-medium text-text-primary">John Anderson</p>
+                            <p class="text-xs text-text-secondary">Verified Investor</p>
+                        </div>
+                        <svg class="hidden md:block w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Profile Dropdown -->
+                    <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-border overflow-hidden animate-slide-down">
+                        <div class="p-4 border-b border-border">
+                            <p class="text-sm font-medium text-text-primary">John Anderson</p>
+                            <p class="text-xs text-text-secondary">john.anderson@email.com</p>
+                        </div>
+                        <div class="py-2">
+                            <a href="investor_settings_page.html" class="flex items-center space-x-3 px-4 py-2 hover:bg-surface transition-colors duration-150">
+                                <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                                <span class="text-sm text-text-primary">My Profile</span>
+                            </a>
+                            <a href="wallet_management.html" class="flex items-center space-x-3 px-4 py-2 hover:bg-surface transition-colors duration-150">
+                                <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                                </svg>
+                                <span class="text-sm text-text-primary">Wallet</span>
+                            </a>
+                        </div>
+                        <div class="border-t border-border py-2">
+                            <a href="landing_page.html" onclick="return confirm('Are you sure you want to log out?')" class="flex items-center space-x-3 px-4 py-2 hover:bg-surface transition-colors duration-150">
+                                <svg class="w-5 h-5 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                <span class="text-sm text-error">Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="flex pt-20">
+        <!-- Sidebar Navigation (Desktop) -->
+        <aside id="sidebar" class="hidden lg:flex fixed left-0 top-20 bottom-0 w-64 bg-white border-r border-border flex-col z-40">
+            <nav class="flex-1 p-4 space-y-2 overflow-y-auto scrollbar-thin">
+                <a href="investor_dashboard.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="internal_investment_marketplace.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                    Marketplace
+                </a>
+                <a href="portfolio_page.html" class="nav-link nav-link-active">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    Portfolio
+                </a>
+                <a href="secondary_market_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                    Secondary Market
+                </a>
+                <a href="wallet_management.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                    </svg>
+                    Wallet
+                </a>
+                <a href="investor_settings_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Settings
+                </a>
+                <a href="help_support_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    Help & Support
+                </a>
+            </nav>
+
+            <!-- Sidebar Footer -->
+            <div class="p-4 border-t border-border">
+                <div class="card p-4 bg-gradient-to-br from-primary-50 to-accent-50">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-text-primary">Refer & Earn</p>
+                            <p class="text-xs text-text-secondary">Get $50 bonus</p>
+                        </div>
+                    </div>
+                    <button class="w-full btn btn-primary text-sm py-2">Invite Friends</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Sidebar Overlay -->
+        <div id="mobileSidebarOverlay" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden" onclick="closeMobileSidebar()"></div>
+
+        <!-- Mobile Sidebar -->
+        <aside id="mobileSidebar" class="fixed left-0 top-20 bottom-0 w-64 bg-white border-r border-border flex-col z-50 transform -translate-x-full transition-transform duration-300 lg:hidden">
+            <nav class="flex-1 p-4 space-y-2 overflow-y-auto scrollbar-thin">
+                <a href="investor_dashboard.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="internal_investment_marketplace.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                    Marketplace
+                </a>
+                <a href="portfolio_page.html" class="nav-link nav-link-active">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    Portfolio
+                </a>
+                <a href="secondary_market_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                    Secondary Market
+                </a>
+                <a href="wallet_management.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                    </svg>
+                    Wallet
+                </a>
+                <a href="investor_settings_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Settings
+                </a>
+                <a href="help_support_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    Help & Support
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 lg:ml-64 p-4 lg:p-8 pb-24 lg:pb-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl lg:text-4xl font-bold text-text-primary mb-2">My Portfolio</h1>
+                <p class="text-text-secondary">Comprehensive view of your tokenized real-world asset investments</p>
+            </div>
+
+            <!-- Portfolio Summary Strip -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Total Invested -->
+                <div class="card card-hover p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path>
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="data-label mb-2">Total Invested</p>
+                        <p class="data-value text-3xl">$42,500.00</p>
+                        <p class="text-sm text-text-secondary mt-2">Across 7 investments</p>
+                    </div>
+                </div>
+
+                <!-- Current Portfolio Value -->
+                <div class="card card-hover p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 bg-secondary-100 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="flex items-center space-x-1 text-secondary">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-sm font-semibold">+12.5%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="data-label mb-2">Current Portfolio Value</p>
+                        <p class="data-value text-3xl">$47,812.50</p>
+                        <p class="text-sm text-text-secondary mt-2">+$5,312.50 gain</p>
+                    </div>
+                </div>
+
+                <!-- Expected Yield -->
+                <div class="card card-hover p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 bg-accent-100 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="data-label mb-2">Expected Yield</p>
+                        <p class="data-value text-3xl">13.2%</p>
+                        <p class="text-sm text-text-secondary mt-2">Weighted average APY</p>
+                    </div>
+                </div>
+
+                <!-- Next Maturity Date -->
+                <div class="card card-hover p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="badge badge-warning">Upcoming</span>
+                    </div>
+                    <div>
+                        <p class="data-label mb-2">Next Maturity Date</p>
+                        <p class="data-value text-2xl">March 15, 2026</p>
+                        <p class="text-sm text-text-secondary mt-2">Solar Energy Project</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters and Sorting -->
+            <div class="card p-6 mb-6">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    <!-- Search -->
+                    <div class="flex-1 max-w-md">
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Search investments..." class="w-full pl-10 pr-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150">
+                            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="flex flex-wrap items-center gap-3">
+                        <!-- Asset Type Filter -->
+                        <select id="assetTypeFilter" class="px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150 text-sm">
+                            <option value="">All Asset Types</option>
+                            <option value="real-estate">Real Estate</option>
+                            <option value="infrastructure">Infrastructure</option>
+                            <option value="corporate-debt">Corporate Debt</option>
+                        </select>
+
+                        <!-- Status Filter -->
+                        <select id="statusFilter" class="px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150 text-sm">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="matured">Matured</option>
+                            <option value="redeemed">Redeemed</option>
+                        </select>
+
+                        <!-- Sort By -->
+                        <select id="sortBy" class="px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150 text-sm">
+                            <option value="date-desc">Newest First</option>
+                            <option value="date-asc">Oldest First</option>
+                            <option value="value-desc">Highest Value</option>
+                            <option value="value-asc">Lowest Value</option>
+                            <option value="yield-desc">Highest Yield</option>
+                            <option value="yield-asc">Lowest Yield</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investment List -->
+            <div class="space-y-4" id="investmentList">
+                <!-- Investment Card 1 -->
+                <div class="card card-hover investment-item" data-asset-type="real-estate" data-status="active">
+                    <div class="p-6">
+                        <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+                            <!-- Asset Image and Name -->
+                            <div class="flex items-start space-x-4 lg:flex-1">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_18d7b7aff-1765343672028.png" alt="Downtown Office Complex" class="w-20 h-20 rounded-xl object-cover flex-shrink-0" onerror="this.src='https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="text-lg font-semibold text-text-primary mb-1">Downtown Office Complex</h3>
+                                    <div class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+                                        <span class="badge badge-primary">Real Estate</span>
+                                        <span>•</span>
+                                        <span>125 Tokens</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Investment Details Grid -->
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:flex-1">
+                                <!-- Invested Amount -->
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Invested Amount</p>
+                                    <p class="text-sm font-semibold text-text-primary">$5,000.00</p>
+                                </div>
+
+                                <!-- Current Value -->
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Current Value</p>
+                                    <p class="text-sm font-semibold text-text-primary">$5,710.00</p>
+                                </div>
+
+                                <!-- Yield / APY -->
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Yield / APY</p>
+                                    <p class="text-sm font-semibold text-secondary">14.2%</p>
+                                </div>
+
+                                <!-- Maturity Date -->
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Maturity Date</p>
+                                    <p class="text-sm font-medium text-text-primary">Jun 2027</p>
+                                </div>
+                            </div>
+
+                            <!-- Status and Action -->
+                            <div class="flex items-center gap-4">
+                                <span class="badge badge-success">Active</span>
+                                <a href="investment_details_page.html" class="btn btn-primary whitespace-nowrap">View Investment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Investment Card 2 -->
+                <div class="card card-hover investment-item" data-asset-type="infrastructure" data-status="active">
+                    <div class="p-6">
+                        <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+                            <div class="flex items-start space-x-4 lg:flex-1">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_15de69241-1764993586968.png" alt="Solar Energy Project" class="w-20 h-20 rounded-xl object-cover flex-shrink-0" onerror="this.src='https://images.pixabay.com/photo/2017/09/12/13/21/photovoltaic-system-2742302_1280.jpg'; this.onerror=null;">
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="text-lg font-semibold text-text-primary mb-1">Solar Energy Project</h3>
+                                    <div class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+                                        <span class="badge badge-secondary">Infrastructure</span>
+                                        <span>•</span>
+                                        <span>200 Tokens</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:flex-1">
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Invested Amount</p>
+                                    <p class="text-sm font-semibold text-text-primary">$8,000.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Current Value</p>
+                                    <p class="text-sm font-semibold text-text-primary">$8,944.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Yield / APY</p>
+                                    <p class="text-sm font-semibold text-secondary">11.8%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Maturity Date</p>
+                                    <p class="text-sm font-medium text-text-primary">Mar 2026</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <span class="badge badge-success">Active</span>
+                                <a href="investment_details_page.html" class="btn btn-primary whitespace-nowrap">View Investment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Investment Card 3 -->
+                <div class="card card-hover investment-item" data-asset-type="real-estate" data-status="active">
+                    <div class="p-6">
+                        <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+                            <div class="flex items-start space-x-4 lg:flex-1">
+                                <img src="https://images.unsplash.com/photo-1613232218235-06b473107ca9" alt="Luxury Apartments" class="w-20 h-20 rounded-xl object-cover flex-shrink-0" onerror="this.src='https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="text-lg font-semibold text-text-primary mb-1">Luxury Apartments</h3>
+                                    <div class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+                                        <span class="badge badge-primary">Real Estate</span>
+                                        <span>•</span>
+                                        <span>150 Tokens</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:flex-1">
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Invested Amount</p>
+                                    <p class="text-sm font-semibold text-text-primary">$6,000.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Current Value</p>
+                                    <p class="text-sm font-semibold text-text-primary">$6,810.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Yield / APY</p>
+                                    <p class="text-sm font-semibold text-secondary">13.5%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Maturity Date</p>
+                                    <p class="text-sm font-medium text-text-primary">Sep 2026</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <span class="badge badge-success">Active</span>
+                                <a href="investment_details_page.html" class="btn btn-primary whitespace-nowrap">View Investment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Investment Card 4 -->
+                <div class="card card-hover investment-item" data-asset-type="real-estate" data-status="active">
+                    <div class="p-6">
+                        <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+                            <div class="flex items-start space-x-4 lg:flex-1">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1e5a70da4-1765638832669.png" alt="Retail Shopping Center" class="w-20 h-20 rounded-xl object-cover flex-shrink-0" onerror="this.src='https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?q=80&w=100&auto=format&fit=crop'; this.onerror=null;">
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="text-lg font-semibold text-text-primary mb-1">Retail Shopping Center</h3>
+                                    <div class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+                                        <span class="badge badge-primary">Real Estate</span>
+                                        <span>•</span>
+                                        <span>100 Tokens</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:flex-1">
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Invested Amount</p>
+                                    <p class="text-sm font-semibold text-text-primary">$4,000.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Current Value</p>
+                                    <p class="text-sm font-semibold text-text-primary">$4,388.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Yield / APY</p>
+                                    <p class="text-sm font-semibold text-secondary">9.7%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Maturity Date</p>
+                                    <p class="text-sm font-medium text-text-primary">Dec 2026</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <span class="badge badge-success">Active</span>
+                                <a href="investment_details_page.html" class="btn btn-primary whitespace-nowrap">View Investment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Investment Card 5 - Matured -->
+                <div class="card card-hover investment-item" data-asset-type="corporate-debt" data-status="matured">
+                    <div class="p-6">
+                        <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+                            <div class="flex items-start space-x-4 lg:flex-1">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_18beffb33-1765783501776.png" alt="Corporate Bond Series A" class="w-20 h-20 rounded-xl object-cover flex-shrink-0" onerror="this.src='https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="text-lg font-semibold text-text-primary mb-1">Corporate Bond Series A</h3>
+                                    <div class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+                                        <span class="badge badge-accent">Corporate Debt</span>
+                                        <span>•</span>
+                                        <span>80 Tokens</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:flex-1">
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Invested Amount</p>
+                                    <p class="text-sm font-semibold text-text-primary">$3,200.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Current Value</p>
+                                    <p class="text-sm font-semibold text-text-primary">$3,520.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Yield / APY</p>
+                                    <p class="text-sm font-semibold text-secondary">10.0%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Maturity Date</p>
+                                    <p class="text-sm font-medium text-text-primary">Nov 2025</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <span class="badge badge-warning">Matured</span>
+                                <a href="investment_details_page.html" class="btn btn-primary whitespace-nowrap">View Investment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Investment Card 6 - Redeemed -->
+                <div class="card card-hover investment-item" data-asset-type="infrastructure" data-status="redeemed">
+                    <div class="p-6">
+                        <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+                            <div class="flex items-start space-x-4 lg:flex-1">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1f0d510de-1765663182319.png" alt="Wind Energy Farm" class="w-20 h-20 rounded-xl object-cover flex-shrink-0" onerror="this.src='https://images.pexels.com/photos/414943/pexels-photo-414943.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="text-lg font-semibold text-text-primary mb-1">Wind Energy Farm</h3>
+                                    <div class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+                                        <span class="badge badge-secondary">Infrastructure</span>
+                                        <span>•</span>
+                                        <span>120 Tokens</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:flex-1">
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Invested Amount</p>
+                                    <p class="text-sm font-semibold text-text-primary">$4,800.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Final Value</p>
+                                    <p class="text-sm font-semibold text-text-primary">$5,328.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Yield / APY</p>
+                                    <p class="text-sm font-semibold text-secondary">11.0%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Redeemed Date</p>
+                                    <p class="text-sm font-medium text-text-primary">Oct 2025</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <span class="badge badge-neutral">Redeemed</span>
+                                <a href="investment_details_page.html" class="btn btn-outline whitespace-nowrap">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Investment Card 7 -->
+                <div class="card card-hover investment-item" data-asset-type="real-estate" data-status="active">
+                    <div class="p-6">
+                        <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+                            <div class="flex items-start space-x-4 lg:flex-1">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_17cba12fd-1765201261730.png" alt="Industrial Warehouse Complex" class="w-20 h-20 rounded-xl object-cover flex-shrink-0" onerror="this.src='https://images.pexels.com/photos/4481256/pexels-photo-4481256.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="text-lg font-semibold text-text-primary mb-1">Industrial Warehouse Complex</h3>
+                                    <div class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+                                        <span class="badge badge-primary">Real Estate</span>
+                                        <span>•</span>
+                                        <span>180 Tokens</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:flex-1">
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Invested Amount</p>
+                                    <p class="text-sm font-semibold text-text-primary">$7,200.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Current Value</p>
+                                    <p class="text-sm font-semibold text-text-primary">$8,208.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Yield / APY</p>
+                                    <p class="text-sm font-semibold text-secondary">14.0%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-tertiary mb-1">Maturity Date</p>
+                                    <p class="text-sm font-medium text-text-primary">Aug 2027</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <span class="badge badge-success">Active</span>
+                                <a href="investment_details_page.html" class="btn btn-primary whitespace-nowrap">View Investment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State (Hidden by default, shown when no results) -->
+            <div id="emptyState" class="hidden card p-12 text-center">
+                <svg class="w-16 h-16 text-text-tertiary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h3 class="text-xl font-semibold text-text-primary mb-2">No investments found</h3>
+                <p class="text-text-secondary mb-6">Try adjusting your filters or search criteria</p>
+                <button onclick="clearFilters()" class="btn btn-primary">Clear Filters</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-border lg:hidden z-40">
+        <div class="grid grid-cols-5 h-16">
+            <a href="investor_dashboard.html" class="flex flex-col items-center justify-center space-y-1 text-text-secondary hover:text-primary transition-colors duration-150">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                <span class="text-xs font-medium">Home</span>
+            </a>
+            <a href="internal_investment_marketplace.html" class="flex flex-col items-center justify-center space-y-1 text-text-secondary hover:text-primary transition-colors duration-150">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <span class="text-xs font-medium">Explore</span>
+            </a>
+            <a href="internal_investment_marketplace.html" class="flex flex-col items-center justify-center -mt-4">
+                <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-lg">
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                </div>
+                <span class="text-xs font-medium text-text-secondary mt-1">Invest</span>
+            </a>
+            <a href="wallet_management.html" class="flex flex-col items-center justify-center space-y-1 text-text-secondary hover:text-primary transition-colors duration-150">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                </svg>
+                <span class="text-xs font-medium">Wallet</span>
+            </a>
+            <a href="portfolio_page.html" class="flex flex-col items-center justify-center space-y-1 text-primary">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-xs font-medium">Portfolio</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Mobile Sidebar Toggle
+        const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+
+        mobileSidebarToggle.addEventListener('click', () => {
+            mobileSidebar.classList.toggle('-translate-x-full');
+            mobileSidebarOverlay.classList.toggle('hidden');
+        });
+
+        function closeMobileSidebar() {
+            mobileSidebar.classList.add('-translate-x-full');
+            mobileSidebarOverlay.classList.add('hidden');
+        }
+
+        // Profile Dropdown
+        const profileBtn = document.getElementById('profileBtn');
+        const profileDropdown = document.getElementById('profileDropdown');
+
+        profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            profileDropdown.classList.add('hidden');
+        });
+
+        // Search and Filter Functionality
+        const searchInput = document.getElementById('searchInput');
+        const assetTypeFilter = document.getElementById('assetTypeFilter');
+        const statusFilter = document.getElementById('statusFilter');
+        const sortBy = document.getElementById('sortBy');
+        const investmentList = document.getElementById('investmentList');
+        const emptyState = document.getElementById('emptyState');
+
+        function filterInvestments() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const assetType = assetTypeFilter.value;
+            const status = statusFilter.value;
+            const items = Array.from(document.querySelectorAll('.investment-item'));
+
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const itemText = item.textContent.toLowerCase();
+                const itemAssetType = item.dataset.assetType;
+                const itemStatus = item.dataset.status;
+
+                const matchesSearch = searchTerm === '' || itemText.includes(searchTerm);
+                const matchesAssetType = assetType === '' || itemAssetType === assetType;
+                const matchesStatus = status === '' || itemStatus === status;
+
+                if (matchesSearch && matchesAssetType && matchesStatus) {
+                    item.style.display = '';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Show/hide empty state
+            if (visibleCount === 0) {
+                investmentList.style.display = 'none';
+                emptyState.classList.remove('hidden');
+            } else {
+                investmentList.style.display = '';
+                emptyState.classList.add('hidden');
+            }
+        }
+
+        function clearFilters() {
+            searchInput.value = '';
+            assetTypeFilter.value = '';
+            statusFilter.value = '';
+            sortBy.value = 'date-desc';
+            filterInvestments();
+        }
+
+        // Event listeners for filters
+        searchInput.addEventListener('input', filterInvestments);
+        assetTypeFilter.addEventListener('change', filterInvestments);
+        statusFilter.addEventListener('change', filterInvestments);
+
+        // Sorting functionality
+        sortBy.addEventListener('change', function() {
+            const items = Array.from(document.querySelectorAll('.investment-item'));
+            const container = investmentList;
+
+            items.sort((a, b) => {
+                switch(this.value) {
+                    case 'date-desc':
+                    case 'date-asc':
+                        // In a real app, you'd sort by actual dates
+                        return this.value === 'date-desc' ? 1 : -1;
+                    case 'value-desc':
+                    case 'value-asc':
+                        // In a real app, extract and compare actual values
+                        const aValue = parseFloat(a.querySelector('.investment-item').textContent.match(/\$[\d,]+\.\d+/)?.[0].replace(/[$,]/g, '') || 0);
+                        const bValue = parseFloat(b.querySelector('.investment-item').textContent.match(/\$[\d,]+\.\d+/)?.[0].replace(/[$,]/g, '') || 0);
+                        return this.value === 'value-desc' ? bValue - aValue : aValue - bValue;
+                    default:
+                        return 0;
+                }
+            });
+
+            // Re-append sorted items
+            items.forEach(item => container.appendChild(item));
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href !== 'javascript:void(0)') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

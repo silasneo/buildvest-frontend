@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review your investment details and confirm your transaction. Understand terms, risks, and expected timeline before final commitment.">
+    <title>Investment Review & Confirmation - BuildVest</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-surface">
+    <!-- Updated to plain Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center space-x-3">
+                        <img src="https://buildvest.net/buildvest-logo.png" alt="BuildVest" class="h-8 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                        <!-- span class="text-xl font-bold text-primary hidden sm:block">BuildVest</span -->
+                    </a>
+                </div>
+                <!-- div class="flex items-center space-x-4">
+                    <a href="investor_dashboard.html" class="text-text-secondary hover:text-primary transition-colors duration-150 font-medium text-sm sm:text-base">Dashboard</a>
+                    <a href="investment_marketplace.html" class="text-text-secondary hover:text-primary transition-colors duration-150 font-medium text-sm sm:text-base">Marketplace</a>
+                </div -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 min-h-screen">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Progress Indicator -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-2xl sm:text-3xl font-bold text-text-primary">Review & Confirm</h1>
+                    <span class="text-sm font-medium text-text-secondary">Step 3 of 4</span>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="relative">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-medium text-secondary">Amount</span>
+                        <span class="text-xs font-medium text-secondary">Payment</span>
+                        <span class="text-xs font-medium text-primary">Review</span>
+                        <span class="text-xs font-medium text-text-tertiary">Confirm</span>
+                    </div>
+                    <div class="w-full bg-surface-200 rounded-full h-2">
+                        <div class="bg-primary h-2 rounded-full transition-all duration-500" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Investment Summary Card -->
+                <div class="card p-6 animate-fade-in">
+                    <h2 class="text-xl font-bold text-text-primary mb-6">Investment Summary</h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Asset Information -->
+                        <div class="flex items-start space-x-4 pb-6 border-b border-border">
+                            <div class="relative h-24 w-24 flex-shrink-0 rounded-lg overflow-hidden">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c1976c8f-1764642434838.png" alt="Downtown Office Complex" class="w-full h-full object-cover" onerror="this.src='https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;">
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-text-primary mb-1">Downtown Office Complex</h3>
+                                <p class="text-sm text-text-secondary mb-3">Real Estate • Commercial Property</p>
+                                <div class="flex items-center space-x-2">
+                                    <span class="badge badge-success text-xs">Verified Asset</span>
+                                    <span class="badge badge-info text-xs">14.2% APY</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Investment Details -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-sm text-text-secondary mb-1">Investment Amount</p>
+                                    <p id="summaryAmount" class="font-mono text-2xl font-bold text-text-primary">$500.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-text-secondary mb-1">Number of Shares</p>
+                                    <p id="summaryShares" class="font-mono text-2xl font-bold text-primary">10</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-text-secondary mb-1">Share Price</p>
+                                    <p class="font-mono text-lg font-medium text-text-primary">$50.00</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-sm text-text-secondary mb-1">Payment Method</p>
+                                    <p id="paymentMethod" class="text-lg font-semibold text-text-primary">Bank Transfer (ACH)</p>
+                                </div>
+                                <div id="feeDisplay" class="hidden">
+                                    <p class="text-sm text-text-secondary mb-1">Payment Fee</p>
+                                    <p id="paymentFee" class="font-mono text-lg font-medium text-text-primary">$0.00</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-text-secondary mb-1">Total Investment</p>
+                                    <p id="totalAmount" class="font-mono text-2xl font-bold text-primary">$500.00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Expected Returns -->
+                        <div class="bg-secondary-50 rounded-xl p-5 border border-secondary-200">
+                            <div class="flex items-start space-x-3">
+                                <svg class="w-6 h-6 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path>
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"></path>
+                                </svg>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-text-primary mb-2">Expected Returns</h4>
+                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                        <div>
+                                            <p class="text-text-secondary">Annual Return (14.2%)</p>
+                                            <p id="annualReturn" class="font-mono font-bold text-secondary mt-1">$71.00</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-text-secondary">Quarterly Distribution</p>
+                                            <p id="quarterlyReturn" class="font-mono font-bold text-secondary mt-1">$17.75</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expected Timeline -->
+                <div class="card p-6 animate-slide-up">
+                    <h2 class="text-xl font-bold text-text-primary mb-4">Expected Timeline</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-primary-50 rounded-full flex items-center justify-center">
+                                <span class="text-primary font-bold">1</span>
+                            </div>
+                            <div class="flex-1 pt-1">
+                                <h4 class="font-semibold text-text-primary mb-1">Payment Processing</h4>
+                                <p class="text-sm text-text-secondary" id="processingTime">2-3 business days for bank transfer</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-accent-50 rounded-full flex items-center justify-center">
+                                <span class="text-accent font-bold">2</span>
+                            </div>
+                            <div class="flex-1 pt-1">
+                                <h4 class="font-semibold text-text-primary mb-1">Token Issuance</h4>
+                                <p class="text-sm text-text-secondary">Within 24 hours of payment confirmation</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-secondary-50 rounded-full flex items-center justify-center">
+                                <span class="text-secondary font-bold">3</span>
+                            </div>
+                            <div class="flex-1 pt-1">
+                                <h4 class="font-semibold text-text-primary mb-1">Portfolio Access</h4>
+                                <p class="text-sm text-text-secondary">Immediate access in your investor dashboard</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-warning-50 rounded-full flex items-center justify-center">
+                                <span class="text-warning font-bold">4</span>
+                            </div>
+                            <div class="flex-1 pt-1">
+                                <h4 class="font-semibold text-text-primary mb-1">First Distribution</h4>
+                                <p class="text-sm text-text-secondary">Quarterly dividends starting from next quarter</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms & Conditions -->
+                <div class="card p-6 animate-slide-up">
+                    <h2 class="text-xl font-bold text-text-primary mb-4">Terms & Conditions</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Expandable Terms Sections -->
+                        <div class="border border-border rounded-lg">
+                            <button class="terms-toggle w-full flex items-center justify-between p-4 text-left hover:bg-surface transition-colors" data-target="investmentTerms">
+                                <span class="font-semibold text-text-primary">Investment Terms</span>
+                                <svg class="w-5 h-5 text-text-secondary transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="investmentTerms" class="terms-content hidden p-4 pt-0 text-sm text-text-secondary space-y-2">
+                                <p>• Minimum holding period: 90 days from token issuance</p>
+                                <p>• Secondary market trading available after minimum holding period</p>
+                                <p>• Dividends distributed quarterly based on property performance</p>
+                                <p>• Returns are estimated and not guaranteed</p>
+                                <p>• Share ownership is represented by blockchain-based security tokens</p>
+                            </div>
+                        </div>
+
+                        <div class="border border-border rounded-lg">
+                            <button class="terms-toggle w-full flex items-center justify-between p-4 text-left hover:bg-surface transition-colors" data-target="riskDisclosure">
+                                <span class="font-semibold text-text-primary">Risk Disclosure</span>
+                                <svg class="w-5 h-5 text-text-secondary transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="riskDisclosure" class="terms-content hidden p-4 pt-0 text-sm text-text-secondary space-y-2">
+                                <p>• Real estate investments carry market and liquidity risks</p>
+                                <p>• Property values and rental income may fluctuate</p>
+                                <p>• No guarantee of capital preservation or returns</p>
+                                <p>• Limited liquidity during minimum holding period</p>
+                                <p>• Regulatory changes may affect token value and transferability</p>
+                                <p>• Investment is suitable only for experienced investors who can afford potential losses</p>
+                            </div>
+                        </div>
+
+                        <div class="border border-border rounded-lg">
+                            <button class="terms-toggle w-full flex items-center justify-between p-4 text-left hover:bg-surface transition-colors" data-target="platformFees">
+                                <span class="font-semibold text-text-primary">Platform Fees & Charges</span>
+                                <svg class="w-5 h-5 text-text-secondary transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="platformFees" class="terms-content hidden p-4 pt-0 text-sm text-text-secondary space-y-2">
+                                <p>• No platform fees for initial investment</p>
+                                <p>• 1% annual management fee deducted from distributions</p>
+                                <p>• Secondary market trades subject to 2% transaction fee</p>
+                                <p>• Payment processing fees vary by method (shown above)</p>
+                                <p>• Blockchain gas fees apply to token transfers</p>
+                            </div>
+                        </div>
+
+                        <div class="border border-border rounded-lg">
+                            <button class="terms-toggle w-full flex items-center justify-between p-4 text-left hover:bg-surface transition-colors" data-target="legalCompliance">
+                                <span class="font-semibold text-text-primary">Legal & Compliance</span>
+                                <svg class="w-5 h-5 text-text-secondary transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="legalCompliance" class="terms-content hidden p-4 pt-0 text-sm text-text-secondary space-y-2">
+                                <p>• Securities offered comply with SEC Regulation D, Rule 506(c)</p>
+                                <p>• Investors must be accredited or meet income/net worth requirements</p>
+                                <p>• Investment agreement governed by Delaware state law</p>
+                                <p>• Dispute resolution through binding arbitration</p>
+                                <p>• Tax reporting: Form 1099 issued annually for distributions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Risk Warning Banner -->
+                <div class="bg-error-50 border-l-4 border-error rounded-lg p-5 animate-fade-in">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-error flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-error mb-2">Important Risk Notice</h4>
+                            <p class="text-sm text-error">Real estate investments involve substantial risk. You may lose some or all of your investment. Only invest money you can afford to lose. Past performance does not guarantee future results. Please read all terms and risk disclosures carefully before proceeding.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Required Acknowledgments -->
+                <div class="card p-6 animate-slide-up">
+                    <h2 class="text-xl font-bold text-text-primary mb-4">Required Acknowledgments</h2>
+                    
+                    <div class="space-y-4">
+                        <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-lg hover:bg-surface transition-colors">
+                            <input type="checkbox" class="acknowledgment-checkbox mt-1 h-5 w-5 text-primary focus:ring-primary border-border rounded" required>
+                            <span class="text-sm text-text-primary">I have read and understood the investment terms and conditions</span>
+                        </label>
+
+                        <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-lg hover:bg-surface transition-colors">
+                            <input type="checkbox" class="acknowledgment-checkbox mt-1 h-5 w-5 text-primary focus:ring-primary border-border rounded" required>
+                            <span class="text-sm text-text-primary">I acknowledge the risks involved in real estate investing and understand that returns are not guaranteed</span>
+                        </label>
+
+                        <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-lg hover:bg-surface transition-colors">
+                            <input type="checkbox" class="acknowledgment-checkbox mt-1 h-5 w-5 text-primary focus:ring-primary border-border rounded" required>
+                            <span class="text-sm text-text-primary">I confirm that I am an accredited investor or meet the investment requirements</span>
+                        </label>
+
+                        <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-lg hover:bg-surface transition-colors">
+                            <input type="checkbox" class="acknowledgment-checkbox mt-1 h-5 w-5 text-primary focus:ring-primary border-border rounded" required>
+                            <span class="text-sm text-text-primary">I agree to the platform fees and understand all charges associated with this investment</span>
+                        </label>
+
+                        <label class="flex items-start space-x-3 cursor-pointer p-3 rounded-lg hover:bg-surface transition-colors">
+                            <input type="checkbox" class="acknowledgment-checkbox mt-1 h-5 w-5 text-primary focus:ring-primary border-border rounded" required>
+                            <span class="text-sm text-text-primary">I accept the 90-day minimum holding period before secondary market trading</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="window.location.href='payment_method_selection.html'" class="btn btn-ghost flex-1 sm:flex-none">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        Back to Payment
+                    </button>
+                    <button id="confirmBtn" class="btn btn-primary flex-1" disabled>
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Confirm Investment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-3">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_17cdaab5e-1764101894473.png" alt="BuildVest footer logo" class="h-8 w-auto" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    <span class="text-lg font-bold">BuildVest</span>
+                </div>
+                <p class="text-slate-400 text-sm text-center md:text-left">© 2026 BuildVest. All Rights Reserved.</p>
+                <!-- div class="flex items-center space-x-6">
+                    <a href="javascript:void(0)" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                        </svg>
+                    </a>
+                    <a href="javascript:void(0)" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="LinkedIn">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                        </svg>
+                    </a>
+                    <a href="javascript:void(0)" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Facebook">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                        </svg>
+                    </a>
+                </div -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Load investment data
+    let investmentData = {
+        assetName: 'Downtown Office Complex',
+        amount: 500,
+        shares: 10,
+        sharePrice: 50,
+        estimatedReturn: 71,
+        paymentMethod: 'bank',
+        paymentFee: 0
+    };
+
+    try {
+        const storedData = sessionStorage.getItem('investmentData');
+        if (storedData) {
+            investmentData = JSON.parse(storedData);
+        }
+    } catch (e) {
+        console.error('Error loading investment data:', e);
+    }
+
+    // Format currency
+    function formatCurrency(amount) {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(amount);
+    }
+
+    // Get payment method display name
+    function getPaymentMethodName(method) {
+        const methods = {
+            'bank': 'Bank Transfer (ACH)',
+            'card': 'Debit/Credit Card',
+            'crypto': 'Cryptocurrency'
+        };
+        return methods[method] || 'Bank Transfer (ACH)';
+    }
+
+    // Update processing time based on payment method
+    function getProcessingTime(method) {
+        const times = {
+            'bank': '2-3 business days for bank transfer',
+            'card': 'Instant for card payment',
+            'crypto': '10-30 minutes for cryptocurrency transfer'
+        };
+        return times[method] || '2-3 business days for bank transfer';
+    }
+
+    // Update display with stored data
+    document.getElementById('summaryAmount').textContent = formatCurrency(investmentData.amount);
+    document.getElementById('summaryShares').textContent = investmentData.shares.toLocaleString();
+    document.getElementById('paymentMethod').textContent = getPaymentMethodName(investmentData.paymentMethod);
+    document.getElementById('processingTime').textContent = getProcessingTime(investmentData.paymentMethod);
+
+    // Calculate and display fees and totals
+    const fee = investmentData.paymentFee || 0;
+    const total = investmentData.amount + fee;
+    
+    if (fee > 0) {
+        document.getElementById('feeDisplay').classList.remove('hidden');
+        document.getElementById('paymentFee').textContent = formatCurrency(fee);
+    }
+    
+    document.getElementById('totalAmount').textContent = formatCurrency(total);
+    document.getElementById('annualReturn').textContent = formatCurrency(investmentData.estimatedReturn);
+    document.getElementById('quarterlyReturn').textContent = formatCurrency(investmentData.estimatedReturn / 4);
+
+    // Terms toggle functionality
+    const termsToggles = document.querySelectorAll('.terms-toggle');
+    termsToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const targetId = toggle.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+            const icon = toggle.querySelector('svg');
+            
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        });
+    });
+
+    // Acknowledgment checkboxes validation
+    const checkboxes = document.querySelectorAll('.acknowledgment-checkbox');
+    const confirmBtn = document.getElementById('confirmBtn');
+
+    function validateAcknowledgments() {
+        const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+        confirmBtn.disabled = !allChecked;
+    }
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', validateAcknowledgments);
+    });
+
+    // Confirm button
+    confirmBtn.addEventListener('click', () => {
+        // Store final confirmation data
+        const confirmationData = {
+            ...investmentData,
+            confirmedAt: new Date().toISOString(),
+            transactionId: 'TXN-' + Math.random().toString(36).substr(2, 9).toUpperCase()
+        };
+        sessionStorage.setItem('confirmationData', JSON.stringify(confirmationData));
+        
+        // Navigate to success page
+        window.location.href = 'investment_success_confirmation.html';
+    });
+</script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

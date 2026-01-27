@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Analytics & Reporting Dashboard - Comprehensive business intelligence and operational insights">
+    <title>Analytics & Reporting Dashboard | BuildVest SuperAdmin</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    
+    <!-- Standalone Super Admin Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+    
+    <!-- Sidebar Collapse Script -->
+    <script src="sidebar-toggle.js" defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#017EFE',
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#017EFE',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A'
+                        },
+                        secondary: {
+                            DEFAULT: '#03A504',
+                            50: '#F0FDF4',
+                            100: '#DCFCE7',
+                            200: '#BBF7D0',
+                            300: '#86EFAC',
+                            400: '#4ADE80',
+                            500: '#22C55E',
+                            600: '#03A504',
+                            700: '#15803D',
+                            800: '#166534',
+                            900: '#14532D'
+                        },
+                        accent: '#7C3AED',
+                        warning: '#F59E0B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate-900 text-white overflow-x-hidden">
+    <!-- Fixed Sidebar -->
+    <aside id="sidebar" class="fixed left-0 top-0 h-full w-72 bg-gradient-to-b from-slate-950 to-slate-900 border-r border-slate-800 z-40 transition-width duration-300 flex flex-col">
+        <!-- Logo Section -->
+        <div class="p-6 border-b border-slate-800 relative">
+            <div class="flex items-center space-x-3 mb-1">
+                <!-- Official BuildVest Logo -->
+                <img src="https://buildvest.net/img/BuildvestLogo_icon.png" 
+                     alt="BuildVest" 
+                     class="h-10 w-10 rounded-lg">
+                <span class="text-xl font-black text-white">BuildVest</span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold">Market Operator Console</p>
+            
+            <!-- Sidebar Toggle Button -->
+            <button id="sidebar-toggle" 
+                    aria-label="Toggle sidebar" 
+                    aria-expanded="true"
+                    class="absolute top-6 right-4 p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary">
+                <svg class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Chevron Left (default = expanded) -->
+                    <path id="toggle-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+            <!-- Dashboard Section -->
+            <div class="space-y-1">
+                <a href="super_admin_market_operator_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="global_asset_oversight_center.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>Assets</span>
+                </a>
+            </div>
+
+            <!-- User Management -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">User Management</p>
+                <div class="space-y-1">
+                    <a href="super_admin_user_entity_management_hub.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <span>Users</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Market Operations -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Market Operations</p>
+                <div class="space-y-1">
+                    <a href="treasury_settlement_control_plane.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span>Treasury & Settlement</span>
+                    </a>
+                    <a href="secondary_market_supervision.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                        <span>Secondary Market</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Governance & Risk -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Governance & Risk</p>
+                <div class="space-y-1">
+                    <a href="super_admin_compliance_risk_management_center.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span>Compliance & Risk</span>
+                    </a>
+                    <a href="audit_logs.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        <span>Audit Logs</span>
+                    </a>
+                    <a href="super_admin_analytics_reporting_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-primary text-white font-semibold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        <span>Analytics & Reporting</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- System -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">System</p>
+                <div class="space-y-1">
+                    <a href="super_admin_system_configuration_settings.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="p-4 border-t border-slate-800">
+            <div class="bg-slate-900 rounded-lg p-3">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-slate-400">System Status</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-green-500/20 text-green-400">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5 animate-pulse"></span>
+                        Operational
+                    </span>
+                </div>
+                <div class="flex items-center justify-between text-xs text-slate-500">
+                    <span>Uptime: 99.98%</span>
+                    <span>v2.4.1</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div id="main-content" class="ml-72 min-h-screen transition-margin duration-300">
+        <!-- Top Navigation Bar -->
+        <header class="sticky top-0 z-30 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+            <div class="px-8 py-4">
+                <div class="flex items-center justify-between">
+                    <!-- Left: Environment Badge -->
+                    <div class="flex items-center space-x-4">
+                        <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                            PRODUCTION
+                        </span>
+                    </div>
+
+                    <!-- Center: Global Search -->
+                    <div class="flex-1 max-w-2xl mx-8">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                            <input type="text" 
+                                   placeholder="Search compliance cases, users, transactions..." 
+                                   class="w-full pl-10 pr-4 py-2.5 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Right: Notifications & Profile -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Notifications -->
+                        <button class="relative p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                            <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+
+                        <!-- Admin Avatar Dropdown -->
+                        <div class="relative group">
+                            <button class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-800 transition-colors">
+                                <div class="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center font-bold text-sm">
+                                    SA
+                                </div>
+                                <div class="text-left hidden lg:block">
+                                    <p class="text-sm font-semibold text-white">Super Admin</p>
+                                    <p class="text-xs text-slate-500">Compliance Officer</p>
+                                </div>
+                                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div class="absolute right-0 mt-2 w-56 bg-slate-800 rounded-xl shadow-2xl border border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
+                                <a href="#" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                    </svg>
+                                    <span class="text-sm">Audit Logs</span>
+                                </a>
+                                <div class="border-t border-slate-700 my-2"></div>
+                                <a href="super_admin_login.html" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-red-500/10 text-red-400 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                    </svg>
+                                    <span class="text-sm font-semibold">Sign Out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Breadcrumbs -->
+            <div class="px-8 pb-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2 text-sm">
+                        <a href="super_admin_market_operator_dashboard.html" class="text-slate-500 hover:text-white transition-colors">Home</a>
+                        <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                        <span class="text-white font-semibold">Analytics & Reporting Dashboard</span>
+                    </div>
+                    <!-- Analytics Quick Filters -->
+                    <div class="flex items-center space-x-2">
+                        <!-- First the Date Range Selector -->
+                        <select class="px-4 py-2 bg-slate-800 border border-slate-700 text-white text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>Last 7 Days</option>
+                            <option>Last 30 Days</option>
+                            <option>Last 90 Days</option>
+                            <option>Year to Date</option>
+                            <option>Custom Range</option>
+                        </select>&nbsp; | &nbsp;
+                        <!-- Then the actual filters -->
+                        <button class="px-3 py-1.5 text-xs font-semibold bg-primary text-white rounded-lg">All Metrics</button>
+                        <button class="px-3 py-1.5 text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">Revenue</button>
+                        <button class="px-3 py-1.5 text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">Users</button>
+                        <button class="px-3 py-1.5 text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors">Assets</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="p-8">
+            <!-- Page Title -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-black text-white mb-2">Analytics & Reporting Dashboard</h1>
+                <p class="text-slate-400">Comprehensive business intelligence and operational insights</p>
+            </div>
+
+            <!-- Executive KPI Panels -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+                <!-- Platform Growth -->
+                <div class="bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded font-semibold">+24.5%</span>
+                    </div>
+                    <p class="text-3xl font-black text-white mb-1">$48.2M</p>
+                    <p class="text-xs text-slate-400 font-semibold mb-4">Total Platform Volume</p>
+                    <div class="h-16" id="platformGrowthMini"></div>
+                </div>
+
+                <!-- Revenue Analytics -->
+                <div class="bg-gradient-to-br from-secondary/20 to-secondary/5 border border-secondary/30 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 bg-secondary/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded font-semibold">+18.3%</span>
+                    </div>
+                    <p class="text-3xl font-black text-white mb-1">$1.2M</p>
+                    <p class="text-xs text-slate-400 font-semibold mb-4">Platform Revenue (30d)</p>
+                    <div class="h-16" id="revenueTrendMini"></div>
+                </div>
+
+                <!-- User Acquisition -->
+                <div class="bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/30 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded font-semibold">+127</span>
+                    </div>
+                    <p class="text-3xl font-black text-white mb-1">10.4K</p>
+                    <p class="text-xs text-slate-400 font-semibold mb-4">Total Active Users</p>
+                    <div class="h-16" id="userAcquisitionMini"></div>
+                </div>
+
+                <!-- Asset Performance -->
+                <div class="bg-gradient-to-br from-warning/20 to-warning/5 border border-warning/30 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 bg-warning/20 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded font-semibold">94 Active</span>
+                    </div>
+                    <p class="text-3xl font-black text-white mb-1">128</p>
+                    <p class="text-xs text-slate-400 font-semibold mb-4">Total Assets Listed</p>
+                    <div class="h-16" id="assetPerformanceMini"></div>
+                </div>
+            </div>
+
+            <!-- Main Analytics Charts -->
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
+                <!-- Platform Growth Metrics -->
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-bold text-white">Platform Growth Metrics</h2>
+                        <select class="px-3 py-1.5 bg-slate-900 border border-slate-700 text-white text-xs rounded-lg focus:outline-none">
+                            <option>Last 30 Days</option>
+                            <option>Last 90 Days</option>
+                            <option>Year to Date</option>
+                        </select>
+                    </div>
+                    <div class="h-80">
+                        <canvas id="platformGrowthChart"></canvas>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-700">
+                        <div>
+                            <p class="text-xs text-slate-500 mb-1">Total Volume</p>
+                            <p class="text-lg font-bold text-white">$48.2M</p>
+                            <p class="text-xs text-green-400">↑ 24.5%</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 mb-1">Active Assets</p>
+                            <p class="text-lg font-bold text-white">94</p>
+                            <p class="text-xs text-green-400">↑ 12.8%</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 mb-1">Avg Investment</p>
+                            <p class="text-lg font-bold text-white">$15.2K</p>
+                            <p class="text-xs text-red-400">↓ 3.2%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Acquisition & Retention -->
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-bold text-white">User Acquisition & Retention</h2>
+                        <select class="px-3 py-1.5 bg-slate-900 border border-slate-700 text-white text-xs rounded-lg focus:outline-none">
+                            <option>Monthly</option>
+                            <option>Quarterly</option>
+                        </select>
+                    </div>
+                    <div class="h-80">
+                        <canvas id="userRetentionChart"></canvas>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-700">
+                        <div>
+                            <p class="text-xs text-slate-500 mb-1">New Users</p>
+                            <p class="text-lg font-bold text-white">1,247</p>
+                            <p class="text-xs text-green-400">↑ 15.8%</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 mb-1">Retention Rate</p>
+                            <p class="text-lg font-bold text-white">78.4%</p>
+                            <p class="text-xs text-green-400">↑ 2.1%</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 mb-1">Churn Rate</p>
+                            <p class="text-lg font-bold text-white">4.2%</p>
+                            <p class="text-xs text-red-400">↑ 0.5%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Analytics -->
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-8">
+                <!-- Geographic Distribution -->
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-bold text-white">Geographic Distribution</h2>
+                    </div>
+                    <div class="h-64">
+                        <canvas id="geoDistributionChart"></canvas>
+                    </div>
+                    <div class="mt-6 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 bg-primary rounded-full"></span>
+                                <span class="text-xs text-slate-400">Nigeria</span>
+                            </div>
+                            <span class="text-sm font-bold text-white">42.3%</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 bg-secondary rounded-full"></span>
+                                <span class="text-xs text-slate-400">Kenya</span>
+                            </div>
+                            <span class="text-sm font-bold text-white">28.7%</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 bg-accent rounded-full"></span>
+                                <span class="text-xs text-slate-400">Ghana</span>
+                            </div>
+                            <span class="text-sm font-bold text-white">18.4%</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 bg-warning rounded-full"></span>
+                                <span class="text-xs text-slate-400">Others</span>
+                            </div>
+                            <span class="text-sm font-bold text-white">10.6%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asset Category Performance -->
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-bold text-white">Asset Category Performance</h2>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-slate-400">Real Estate</span>
+                                <span class="text-sm font-bold text-white">$28.4M</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 58.9%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-slate-400">Infrastructure</span>
+                                <span class="text-sm font-bold text-white">$12.8M</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-secondary h-2 rounded-full" style="width: 26.6%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-slate-400">Private Equity</span>
+                                <span class="text-sm font-bold text-white">$5.2M</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full" style="width: 10.8%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-slate-400">Corporate Debt</span>
+                                <span class="text-sm font-bold text-white">$1.8M</span>
+                            </div>
+                            <div class="w-full bg-slate-700 rounded-full h-2">
+                                <div class="bg-warning h-2 rounded-full" style="width: 3.7%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-slate-700">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-semibold text-slate-400">Total Volume</span>
+                            <span class="text-lg font-black text-white">$48.2M</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Market Activity -->
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-bold text-white">Secondary Market Activity</h2>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-white">24h Volume</span>
+                                <span class="text-lg font-black text-primary">$1.2M</span>
+                            </div>
+                            <p class="text-xs text-green-400">↑ 18.3% vs yesterday</p>
+                        </div>
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-white">Active Listings</span>
+                                <span class="text-lg font-black text-secondary">247</span>
+                            </div>
+                            <p class="text-xs text-green-400">↑ 12 new listings</p>
+                        </div>
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-white">Avg Spread</span>
+                                <span class="text-lg font-black text-accent">2.3%</span>
+                            </div>
+                            <p class="text-xs text-red-400">↑ 0.2% vs last week</p>
+                        </div>
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-white">Completed Trades</span>
+                                <span class="text-lg font-black text-warning">1,847</span>
+                            </div>
+                            <p class="text-xs text-green-400">↑ 24.5% this month</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Report Builder -->
+            <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-white mb-2">Custom Report Builder</h2>
+                        <p class="text-sm text-slate-400">Build ad-hoc reports with drag-and-drop metrics and flexible filtering</p>
+                    </div>
+                    <button class="px-4 py-2 bg-primary hover:bg-primary/90 text-white text-sm font-semibold rounded-lg transition-colors">
+                        Build Report
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Available Metrics -->
+                    <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+                        <h3 class="text-sm font-semibold text-white mb-4">Available Metrics</h3>
+                        <div class="space-y-2">
+                            <div class="px-3 py-2 bg-slate-800 hover:bg-slate-700 rounded text-xs text-slate-300 cursor-move transition-colors">
+                                📊 Platform Volume
+                            </div>
+                            <div class="px-3 py-2 bg-slate-800 hover:bg-slate-700 rounded text-xs text-slate-300 cursor-move transition-colors">
+                                👥 User Growth
+                            </div>
+                            <div class="px-3 py-2 bg-slate-800 hover:bg-slate-700 rounded text-xs text-slate-300 cursor-move transition-colors">
+                                💰 Revenue Metrics
+                            </div>
+                            <div class="px-3 py-2 bg-slate-800 hover:bg-slate-700 rounded text-xs text-slate-300 cursor-move transition-colors">
+                                🏢 Asset Performance
+                            </div>
+                            <div class="px-3 py-2 bg-slate-800 hover:bg-slate-700 rounded text-xs text-slate-300 cursor-move transition-colors">
+                                🔄 Secondary Market
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Configuration -->
+                    <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+                        <h3 class="text-sm font-semibold text-white mb-4">Report Configuration</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="text-xs text-slate-400 mb-1 block">Report Name</label>
+                                <input type="text" placeholder="Q4 Performance Report" class="w-full px-3 py-2 bg-slate-800 border border-slate-700 text-white text-xs rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-400 mb-1 block">Date Range</label>
+                                <select class="w-full px-3 py-2 bg-slate-800 border border-slate-700 text-white text-xs rounded-lg focus:outline-none">
+                                    <option>Last 30 Days</option>
+                                    <option>Last 90 Days</option>
+                                    <option>Year to Date</option>
+                                    <option>Custom Range</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs text-slate-400 mb-1 block">Export Format</label>
+                                <select class="w-full px-3 py-2 bg-slate-800 border border-slate-700 text-white text-xs rounded-lg focus:outline-none">
+                                    <option>PDF Report</option>
+                                    <option>Excel Spreadsheet</option>
+                                    <option>CSV Data</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Templates -->
+                    <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+                        <h3 class="text-sm font-semibold text-white mb-4">Quick Templates</h3>
+                        <div class="space-y-2">
+                            <button class="w-full px-3 py-2 bg-primary/20 hover:bg-primary/30 text-primary text-xs font-semibold rounded-lg transition-colors text-left">
+                                Executive Summary
+                            </button>
+                            <button class="w-full px-3 py-2 bg-secondary/20 hover:bg-secondary/30 text-secondary text-xs font-semibold rounded-lg transition-colors text-left">
+                                Regulatory Compliance
+                            </button>
+                            <button class="w-full px-3 py-2 bg-accent/20 hover:bg-accent/30 text-accent text-xs font-semibold rounded-lg transition-colors text-left">
+                                Asset Performance
+                            </button>
+                            <button class="w-full px-3 py-2 bg-warning/20 hover:bg-warning/30 text-warning text-xs font-semibold rounded-lg transition-colors text-left">
+                                User Analytics
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-Time Data Monitoring -->
+            <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-white mb-2">Real-Time Data Monitoring</h2>
+                        <p class="text-sm text-slate-400">Live metrics with automated refresh and threshold-based notifications</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-green-500/20 text-green-400">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                            LIVE
+                        </span>
+                        <button class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold rounded-lg transition-colors">
+                            Configure Alerts
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <!-- Live Transaction Volume -->
+                    <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                                <p class="text-xs font-semibold text-slate-400">Live Transactions</p>
+                            </div>
+                        </div>
+                        <p class="text-2xl font-black text-white mb-1">$847K</p>
+                        <p class="text-xs text-green-400">↑ $12.4K in last hour</p>
+                    </div>
+
+                    <!-- Active Users -->
+                    <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                                <p class="text-xs font-semibold text-slate-400">Active Users Now</p>
+                            </div>
+                        </div>
+                        <p class="text-2xl font-black text-white mb-1">1,247</p>
+                        <p class="text-xs text-green-400">↑ 84 in last 15 min</p>
+                    </div>
+
+                    <!-- System Performance -->
+                    <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                                <p class="text-xs font-semibold text-slate-400">Avg Response Time</p>
+                            </div>
+                        </div>
+                        <p class="text-2xl font-black text-white mb-1">142ms</p>
+                        <p class="text-xs text-green-400">↓ 8ms improvement</p>
+                    </div>
+
+                    <!-- Alert Status -->
+                    <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                                <p class="text-xs font-semibold text-slate-400">Active Alerts</p>
+                            </div>
+                        </div>
+                        <p class="text-2xl font-black text-white mb-1">0</p>
+                        <p class="text-xs text-green-400">All systems operational</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Platform Growth Chart
+        const platformGrowthCtx = document.getElementById('platformGrowthChart');
+        if (platformGrowthCtx) {
+            new Chart(platformGrowthCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Platform Volume',
+                        data: [38.2, 42.1, 45.8, 48.2],
+                        borderColor: '#017EFE',
+                        backgroundColor: 'rgba(1, 126, 254, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { color: 'rgba(148, 163, 184, 0.1)' }
+                        },
+                        x: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        // User Retention Chart
+        const userRetentionCtx = document.getElementById('userRetentionChart');
+        if (userRetentionCtx) {
+            new Chart(userRetentionCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+                    datasets: [{
+                        label: 'New Users',
+                        data: [847, 1023, 1156, 1247],
+                        backgroundColor: '#017EFE'
+                    }, {
+                        label: 'Retained Users',
+                        data: [624, 789, 892, 976],
+                        backgroundColor: '#03A504'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true, labels: { color: '#94a3b8' } }
+                    },
+                    scales: {
+                        y: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { color: 'rgba(148, 163, 184, 0.1)' }
+                        },
+                        x: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Geographic Distribution Chart
+        const geoDistributionCtx = document.getElementById('geoDistributionChart');
+        if (geoDistributionCtx) {
+            new Chart(geoDistributionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Nigeria', 'Kenya', 'Ghana', 'Others'],
+                    datasets: [{
+                        data: [42.3, 28.7, 18.4, 10.6],
+                        backgroundColor: ['#017EFE', '#03A504', '#7C3AED', '#F59E0B']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        // Real-time update simulation
+        setInterval(() => {
+            const liveVolume = document.querySelector('[class*="Live Transactions"]');
+            if (liveVolume) {
+                const currentValue = parseFloat(liveVolume.closest('.bg-slate-900\\/50').querySelector('.text-2xl').textContent.replace('$', '').replace('K', ''));
+                const newValue = (currentValue + Math.random() * 2).toFixed(1);
+                liveVolume.closest('.bg-slate-900\\/50').querySelector('.text-2xl').textContent = `$${newValue}K`;
+            }
+        }, 5000);
+    </script>
+<script id="dhws-dataInjector" src="../../public/dhws-data-injector.js"></script>
+</body>
+</html>

@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Global Asset Oversight Center - Comprehensive asset lifecycle management">
+    <title>Asset Oversight Center | BuildVest SuperAdmin</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    
+    <!-- Standalone Super Admin Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+    
+    <!-- Sidebar Collapse Script -->
+    <script src="sidebar-toggle.js" defer></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#017EFE',
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#017EFE',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A'
+                        },
+                        secondary: {
+                            DEFAULT: '#03A504',
+                            50: '#F0FDF4',
+                            100: '#DCFCE7',
+                            200: '#BBF7D0',
+                            300: '#86EFAC',
+                            400: '#4ADE80',
+                            500: '#22C55E',
+                            600: '#03A504',
+                            700: '#15803D',
+                            800: '#166534',
+                            900: '#14532D'
+                        },
+                        accent: '#7C3AED',
+                        warning: '#F59E0B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate-900 text-white overflow-x-hidden">
+    <!-- Fixed Sidebar -->
+    <aside id="sidebar" class="fixed left-0 top-0 h-full w-72 bg-gradient-to-b from-slate-950 to-slate-900 border-r border-slate-800 z-40 transition-width duration-300 flex flex-col">
+        <!-- Logo Section -->
+        <div class="p-6 border-b border-slate-800 relative">
+            <div class="flex items-center space-x-3 mb-1">
+                <!-- Official BuildVest Logo -->
+                <img src="https://buildvest.net/img/BuildvestLogo_icon.png" 
+                     alt="BuildVest" 
+                     class="h-10 w-10 rounded-lg">
+                <span class="text-xl font-black text-white">BuildVest</span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold">Market Operator Console</p>
+            
+            <!-- Sidebar Toggle Button -->
+            <button id="sidebar-toggle" 
+                    aria-label="Toggle sidebar" 
+                    aria-expanded="true"
+                    class="absolute top-6 right-4 p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary">
+                <svg class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Chevron Left (default = expanded) -->
+                    <path id="toggle-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+            <!-- Dashboard Section -->
+            <div class="space-y-1">
+                <a href="super_admin_market_operator_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="global_asset_oversight_center.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-primary text-white font-semibold">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>Assets</span>
+                </a>
+            </div>
+
+            <!-- User Management -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">User Management</p>
+                <div class="space-y-1">
+                    <a href="super_admin_user_entity_management_hub.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <span>Users</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Market Operations -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Market Operations</p>
+                <div class="space-y-1">
+                    <a href="treasury_settlement_control_plane.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span>Treasury & Settlement</span>
+                    </a>
+                    <a href="secondary_market_supervision.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                        <span>Secondary Market</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Governance & Risk -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Governance & Risk</p>
+                <div class="space-y-1">
+                    <a href="super_admin_compliance_risk_management_center.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span>Compliance & Risk</span>
+                    </a>
+                    <a href="audit_logs.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        <span>Audit Logs</span>
+                    </a>
+                    <a href="super_admin_analytics_reporting_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        <span>Analytics & Reporting</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- System -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">System</p>
+                <div class="space-y-1">
+                    <a href="super_admin_system_configuration_settings.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="p-4 border-t border-slate-800">
+            <div class="bg-slate-900 rounded-lg p-3">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-slate-400">System Status</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-green-500/20 text-green-400">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5 animate-pulse"></span>
+                        Operational
+                    </span>
+                </div>
+                <div class="flex items-center justify-between text-xs text-slate-500">
+                    <span>Uptime: 99.98%</span>
+                    <span>v2.4.1</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div id="main-content" class="ml-72 min-h-screen">
+        <!-- Top Navigation Bar -->
+        <header class="sticky top-0 z-30 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+            <div class="px-8 py-4">
+                <div class="flex items-center justify-between">
+                    <!-- Left: Environment Badge -->
+                    <div class="flex items-center space-x-4">
+                        <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                            PRODUCTION
+                        </span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs text-slate-500">Total Assets:</span>
+                            <span class="text-xs font-bold text-white">128</span>
+                        </div>
+                    </div>
+
+                    <!-- Center: Global Search -->
+                    <div class="flex-1 max-w-2xl mx-8">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                            <input type="text" 
+                                   id="assetSearch"
+                                   placeholder="Search by asset name, originator, or token ID..." 
+                                   class="w-full pl-10 pr-4 py-2.5 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Right: Notifications & Profile -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Notifications -->
+                        <button class="relative p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                            <span class="absolute top-1 right-1 w-2 h-2 bg-warning rounded-full"></span>
+                        </button>
+
+                        <!-- Admin Avatar Dropdown -->
+                        <div class="relative group">
+                            <button class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-800 transition-colors">
+                                <div class="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center font-bold text-sm">
+                                    SA
+                                </div>
+                                <div class="text-left hidden lg:block">
+                                    <p class="text-sm font-semibold text-white">Super Admin</p>
+                                    <p class="text-xs text-slate-500">Asset Oversight</p>
+                                </div>
+                                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div class="absolute right-0 mt-2 w-56 bg-slate-800 rounded-xl shadow-2xl border border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
+                                <a href="#" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                    </svg>
+                                    <span class="text-sm">Audit Logs</span>
+                                </a>
+                                <div class="border-t border-slate-700 my-2"></div>
+                                <a href="super_admin_login.html" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-red-500/10 text-red-400 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                    </svg>
+                                    <span class="text-sm font-semibold">Sign Out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Page Content -->
+        <main class="p-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-3 mb-3">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white">Global Asset Oversight Center</h1>
+                        <p class="text-slate-400 text-sm mt-1">Comprehensive view of all tokenized real estate assets across Africa</p>
+                    </div>
+                </div>
+                
+                <div class="bg-primary/10 border border-primary/30 rounded-lg p-4 mt-4">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div class="flex-1">
+                            <p class="text-primary text-sm font-medium">Oversight Role</p>
+                            <p class="text-slate-400 text-sm mt-1">Monitor asset lifecycle, originator compliance, and investor distributions. All controls require DocuSeal approval.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asset Overview Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <!-- Total Assets -->
+                <div class="bg-slate-800 border border-slate-700 rounded-lg p-6 hover:border-primary/50 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">TOTAL_ASSETS</span>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-1">128</div>
+                    <div class="text-sm text-slate-400 mb-2">Tokenized Assets</div>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-secondary font-medium">+12</span>
+                        <span class="text-slate-400">this month</span>
+                    </div>
+                </div>
+
+                <!-- Total AUM -->
+                <div class="bg-slate-800 border border-slate-700 rounded-lg p-6 hover:border-purple-500/50 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">AUM</span>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-1">$2.4B</div>
+                    <div class="text-sm text-slate-400 mb-2">Assets Under Management</div>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center text-secondary font-medium">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                            <span>+8.2%</span>
+                        </div>
+                        <span class="text-slate-400">vs last month</span>
+                    </div>
+                </div>
+
+                <!-- Active Originator -->
+                <div class="bg-slate-800 border border-slate-700 rounded-lg p-6 hover:border-secondary/50 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">ORIGINATORS</span>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-1">45</div>
+                    <div class="text-sm text-slate-400 mb-2">Active Originators</div>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-secondary font-medium">+5</span>
+                        <span class="text-slate-400">this quarter</span>
+                    </div>
+                </div>
+
+                <!-- Compliance Alerts -->
+                <div class="bg-slate-800 border border-warning/50 rounded-lg p-6 hover:border-warning transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-warning/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono text-warning">ALERTS</span>
+                    </div>
+                    <div class="text-3xl font-bold text-warning mb-1">2</div>
+                    <div class="text-sm text-slate-400 mb-2">Active Compliance Alerts</div>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-warning font-medium">Requires action</span>
+                        <span class="text-slate-400">urgent</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Critical Alerts Panel -->
+            <div class="bg-warning/10 border border-warning/30 rounded-lg p-6 mb-8">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 bg-warning/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-warning mb-3">Asset Oversight Alerts — Immediate Attention Required</h3>
+                        <div class="space-y-3">
+                            <div class="bg-slate-800 border border-warning/30 rounded-lg p-4">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/20 text-warning font-mono">
+                                                ORIGINATOR_COMPLIANCE
+                                            </span>
+                                            <span class="text-xs text-slate-400 font-mono">ORIG-2024-012</span>
+                                        </div>
+                                        <p class="text-white"><span class="font-semibold text-white">Nairobi Developments Ltd</span> — Pending quarterly report submission</p>
+                                        <p class="text-sm text-slate-400 mt-1">Due: 2025-12-15 | Overdue by 3 days | Action: Escalate</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="px-4 py-2 bg-warning/20 text-warning text-sm font-medium rounded-lg hover:bg-warning/30 transition-colors">
+                                            Review →
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-slate-800 border border-warning/30 rounded-lg p-4">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/20 text-warning font-mono">
+                                                DISTRIBUTION_DELAY
+                                            </span>
+                                            <span class="text-xs text-slate-400 font-mono">ASSET-2024-089</span>
+                                        </div>
+                                        <p class="text-white"><span class="font-semibold text-white">Lagos Office Tower</span> — Delayed dividend distribution</p>
+                                        <p class="text-sm text-slate-400 mt-1">Scheduled: 2025-12-10 | Delay: 8 days | Affected investors: 45</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="px-4 py-2 bg-warning/20 text-warning text-sm font-medium rounded-lg hover:bg-warning/30 transition-colors">
+                                            Investigate →
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Assets Table -->
+            <div class="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-700 bg-slate-900">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Active Assets</h2>
+                            <p class="text-sm text-slate-400 mt-1">128 tokenized real estate assets</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors text-sm">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </button>
+                            <select class="px-3 py-2 bg-slate-700 border border-slate-600 text-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option>All Assets</option>
+                                <option>Active</option>
+                                <option>Funding</option>
+                                <option>Mature</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-slate-900/50">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Asset</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Originator</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Value</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Tokens</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Investors</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Yield</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Health</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700">
+                            <!-- High Value Asset Row -->
+                            <tr class="hover:bg-slate-700/30 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span class="text-white font-bold text-sm">LO</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-white">Lagos Office Tower</div>
+                                            <div class="text-xs text-slate-400 font-mono">ASSET-2024-089</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/30">
+                                        ● Active
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">Nairobi Developments Ltd</div>
+                                    <div class="text-xs text-slate-400 font-mono">ORIG-2024-012</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">$45M</div>
+                                    <div class="text-xs text-slate-400">NGN Equivalent</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">4,500,000</div>
+                                    <div class="text-xs text-secondary">100% Issued</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">156</div>
+                                    <div class="text-xs text-slate-400">Active</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-secondary">12.5%</div>
+                                    <div class="text-xs text-slate-400">APY</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/30">
+                                        Healthy
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button onclick="openAssetDetail('ASSET-2024-089')" class="text-slate-400 hover:text-white text-sm font-medium">
+                                        View Details →
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Funding Asset Row -->
+                            <tr class="hover:bg-slate-700/30 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span class="text-white font-bold text-sm">KR</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-white">Kigali Residential Complex</div>
+                                            <div class="text-xs text-slate-400 font-mono">ASSET-2024-156</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-500/10 text-orange-400 border border-orange-500/30">
+                                        Funding
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">Rwanda Property Group</div>
+                                    <div class="text-xs text-slate-400 font-mono">ORIG-2024-018</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">$28M</div>
+                                    <div class="text-xs text-slate-400">RWF Equivalent</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">2,800,000</div>
+                                    <div class="text-xs text-orange-400">65% Issued</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">89</div>
+                                    <div class="text-xs text-slate-400">Committed</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-secondary">11.8%</div>
+                                    <div class="text-xs text-slate-400">Projected</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-500/10 text-orange-400 border border-orange-500/30">
+                                        Monitoring
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button onclick="openAssetDetail('ASSET-2024-156')" class="text-slate-400 hover:text-white text-sm font-medium">
+                                        View Details →
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Mature Asset Row -->
+                            <tr class="hover:bg-slate-700/30 transition-colors opacity-75">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-slate-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span class="text-white font-bold text-sm">AC</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-white">Accra Commercial Hub</div>
+                                            <div class="text-xs text-slate-400 font-mono">ASSET-2023-045</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/10 text-slate-400 border border-slate-500/30">
+                                        Mature
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">Ghana Real Estate Co</div>
+                                    <div class="text-xs text-slate-400 font-mono">ORIG-2023-007</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">$35M</div>
+                                    <div class="text-xs text-slate-400">GHS Equivalent</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">3,500,000</div>
+                                    <div class="text-xs text-slate-400">Fully Redeemed</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">0</div>
+                                    <div class="text-xs text-slate-400">Closed</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-slate-400">13.2%</div>
+                                    <div class="text-xs text-slate-400">Realized</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/10 text-slate-400 border border-slate-500/30">
+                                        Archived
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button onclick="openAssetDetail('ASSET-2023-045')" class="text-slate-400 hover:text-white text-sm font-medium">
+                                        View Archive →
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="px-6 py-4 border-t border-slate-700 bg-slate-900">
+                    <div class="flex items-center justify-between text-sm">
+                        <p class="text-slate-400">Showing <span class="font-medium text-white">3</span> of <span class="font-medium text-white">128</span> assets</p>
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 text-slate-400 rounded-lg hover:border-primary transition-colors">Previous</button>
+                            <button class="px-3 py-1.5 bg-primary text-white rounded-lg">1</button>
+                            <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 text-white rounded-lg hover:border-primary transition-colors">2</button>
+                            <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 text-white rounded-lg hover:border-primary transition-colors">3</button>
+                            <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 text-white rounded-lg hover:border-primary transition-colors">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Asset Detail Modal -->
+    <div id="assetDetailModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 rounded-2xl shadow-2xl w-full max-w-7xl h-[90vh] overflow-hidden flex flex-col">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-700 bg-slate-950">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">LO</span>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-white">Lagos Office Tower</h2>
+                        <p class="text-xs text-slate-400 font-mono">ASSET-2024-089 • Active • Originator: Nairobi Developments Ltd</p>
+                    </div>
+                </div>
+                <button onclick="closeAssetDetail()" class="text-slate-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="border-b border-slate-700 bg-slate-950">
+                <div class="flex space-x-8 px-6 overflow-x-auto">
+                    <button data-tab="overview" class="tab-btn py-4 text-white border-b-2 border-primary font-semibold text-sm">Overview</button>
+                    <button data-tab="investors" class="tab-btn py-4 text-slate-400 font-semibold text-sm hover:text-white transition-colors">Investors</button>
+                    <button data-tab="blockchain" class="tab-btn py-4 text-slate-400 font-semibold text-sm hover:text-white transition-colors">Blockchain</button>
+                    <button data-tab="treasury" class="tab-btn py-4 text-slate-400 font-semibold text-sm hover:text-white transition-colors">Treasury</button>
+                    <button data-tab="secondary" class="tab-btn py-4 text-slate-400 font-semibold text-sm hover:text-white transition-colors">Secondary Market</button>
+                    <button data-tab="documents" class="tab-btn py-4 text-slate-400 font-semibold text-sm hover:text-white transition-colors">Documents</button>
+                    <button data-tab="audit" class="tab-btn py-4 text-slate-400 font-semibold text-sm hover:text-white transition-colors">Audit Trail</button>
+                </div>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="flex-1 overflow-y-auto p-6">
+                <!-- Overview Tab -->
+                <div id="overview-tab" class="tab-content">
+                    <!-- Asset Summary -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <!-- Value -->
+                        <div class="bg-slate-800 border border-slate-700 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-xs font-mono text-slate-400">VALUE</span>
+                            </div>
+                            <div class="text-2xl font-bold text-white mb-1">$45M</div>
+                            <div class="text-sm text-slate-400">NGN Equivalent</div>
+                        </div>
+
+                        <!-- Tokens -->
+                        <div class="bg-slate-800 border border-slate-700 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-xs font-mono text-slate-400">TOKENS</span>
+                            </div>
+                            <div class="text-2xl font-bold text-white mb-1">4.5M</div>
+                            <div class="text-sm text-slate-400">Total Issued</div>
+                        </div>
+
+                        <!-- Investors -->
+                        <div class="bg-slate-800 border border-slate-700 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-xs font-mono text-slate-400">INVESTORS</span>
+                            </div>
+                            <div class="text-2xl font-bold text-white mb-1">156</div>
+                            <div class="text-sm text-slate-400">Active Holders</div>
+                        </div>
+
+                        <!-- Yield -->
+                        <div class="bg-slate-800 border border-slate-700 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 bg-warning/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-xs font-mono text-slate-400">YIELD</span>
+                            </div>
+                            <div class="text-2xl font-bold text-secondary mb-1">12.5%</div>
+                            <div class="text-sm text-slate-400">Current APY</div>
+                        </div>
+                    </div>
+
+                    <!-- Asset Details -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <!-- Basic Information -->
+                        <div class="bg-slate-800 border border-slate-700 rounded-lg p-6">
+                            <h3 class="text-lg font-bold text-white mb-4">Basic Information</h3>
+                            <dl class="space-y-3">
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">Location</dt>
+                                    <dd class="text-white font-medium">Lagos, Nigeria</dd>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">Type</dt>
+                                    <dd class="text-white font-medium">Commercial Office</dd>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">Size</dt>
+                                    <dd class="text-white font-medium">150,000 sq ft</dd>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">Occupancy</dt>
+                                    <dd class="text-white font-medium">92%</dd>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">Token Price</dt>
+                                    <dd class="text-white font-medium">$10.00</dd>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">Maturity Date</dt>
+                                    <dd class="text-white font-medium">2030-12-31</dd>
+                                </div>
+                            </dl>
+                        </div>
+
+                        <!-- Originator Information -->
+                        <div class="bg-slate-800 border border-slate-700 rounded-lg p-6">
+                            <h3 class="text-lg font-bold text-white mb-4">Originator Details</h3>
+                            <dl class="space-y-3">
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">Company</dt>
+                                    <dd class="text-white font-medium">Nairobi Developments Ltd</dd>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">ID</dt>
+                                    <dd class="text-white font-mono">ORIG-2024-012</dd>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">Compliance Status</dt>
+                                    <dd><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-secondary/20 text-secondary">Compliant</span></dd>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">Assets Managed</dt>
+                                    <dd class="text-white font-medium">8</dd>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">Total AUM</dt>
+                                    <dd class="text-white font-medium">$280M</dd>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <dt class="text-slate-400">Performance Rating</dt>
+                                    <dd class="text-white font-medium">4.8/5</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <!-- Performance Metrics -->
+                    <div class="bg-slate-800 border border-slate-700 rounded-lg p-6 mb-8">
+                        <h3 class="text-lg font-bold text-white mb-4">Performance Metrics</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Rental Income -->
+                            <div>
+                                <p class="text-sm text-slate-400 mb-2">Monthly Rental Income</p>
+                                <p class="text-2xl font-bold text-white">$375,000</p>
+                                <p class="text-xs text-secondary mt-1">+5.2% MoM</p>
+                            </div>
+                            <!-- NOI -->
+                            <div>
+                                <p class="text-sm text-slate-400 mb-2">Net Operating Income</p>
+                                <p class="text-2xl font-bold text-white">$280,000</p>
+                                <p class="text-xs text-secondary mt-1">+3.8% MoM</p>
+                            </div>
+                            <!-- Cap Rate -->
+                            <div>
+                                <p class="text-sm text-slate-400 mb-2">Cap Rate</p>
+                                <p class="text-2xl font-bold text-white">8.5%</p>
+                                <p class="text-xs text-slate-400 mt-1">Industry Avg: 7.2%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Special Controls -->
+                    <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-6 mb-6">
+                        <h3 class="text-lg font-bold text-white mb-4">Administrative Controls</h3>
+                        <p class="text-sm text-slate-400 mb-4">All privileged actions require DocuSeal confirmation and are logged in the audit trail.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <button class="px-4 py-3 bg-red-500/20 hover:bg-red-500/30 border border-red-500/50 text-red-400 font-semibold rounded-lg transition-colors">
+                                Freeze Asset
+                            </button>
+                            <button class="px-4 py-3 bg-orange-500/20 hover:bg-orange-500/30 border border-orange-500/50 text-orange-400 font-semibold rounded-lg transition-colors">
+                                Pause Secondary Trading
+                            </button>
+                            <button class="px-4 py-3 bg-warning/20 hover:bg-warning/30 border border-warning/50 text-warning font-semibold rounded-lg transition-colors">
+                                Escalate to Compliance
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="text-center text-slate-500 py-8">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <p class="text-sm font-semibold">Complete asset details view</p>
+                        <p class="text-xs text-slate-600 mt-1">Full implementation with all tabs and controls</p>
+                    </div>
+                </div>
+
+                <!-- Investors Tab -->
+                <div id="investors-tab" class="tab-content hidden">
+                    <div id="investorsTableContainer">
+                        <!-- Investors table will be dynamically rendered here -->
+                    </div>
+                </div>
+
+                <!-- Blockchain Tab -->
+                <div id="blockchain-tab" class="tab-content hidden">
+                    <div class="text-center text-slate-500 py-8">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                        <p class="text-sm font-semibold">Blockchain records</p>
+                        <p class="text-xs text-slate-600 mt-1">On-chain transactions and wallet references (custodial)</p>
+                    </div>
+                </div>
+
+                <!-- Treasury Tab -->
+                <div id="treasury-tab" class="tab-content hidden">
+                    <div class="text-center text-slate-500 py-8">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <p class="text-sm font-semibold">Treasury status</p>
+                        <p class="text-xs text-slate-600 mt-1">Escrow accounts and redemption readiness</p>
+                    </div>
+                </div>
+
+                <!-- Secondary Market Tab -->
+                <div id="secondary-tab" class="tab-content hidden">
+                    <div class="text-center text-slate-500 py-8">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                        <p class="text-sm font-semibold">Secondary market activity</p>
+                        <p class="text-xs text-slate-600 mt-1">Trading volume, listings, and market controls</p>
+                    </div>
+                </div>
+
+                <!-- Documents Tab -->
+                <div id="documents-tab" class="tab-content hidden">
+                    <div class="text-center text-slate-500 py-8">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                        <p class="text-sm font-semibold">Document repository (Read-only)</p>
+                        <p class="text-xs text-slate-600 mt-1">Asset documents, contracts, and signed agreements</p>
+                    </div>
+                </div>
+
+                <!-- Audit Trail Tab -->
+                <div id="audit-tab" class="tab-content hidden">
+                    <div class="text-center text-slate-500 py-8">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        <p class="text-sm font-semibold">Complete audit trail</p>
+                        <p class="text-xs text-slate-600 mt-1">All administrative actions and state changes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock investor data for demonstration
+        const mockInvestors = [
+            {
+                id: 'INV-2024-001',
+                name: 'James Okoro',
+                amountInvested: 50000,
+                currency: 'NGN',
+                paymentStatus: 'Completed',
+                agreementStatus: 'Signed',
+                agreementSentDate: '2024-12-10',
+                agreementSignedDate: '2024-12-11',
+                tokensIssued: 'Yes',
+                tokenAmount: 5000,
+                investmentDate: '2024-12-09',
+                daysSincePayment: 9
+            },
+            {
+                id: 'INV-2024-002',
+                name: 'Sarah Chen',
+                amountInvested: 75000,
+                currency: 'NGN',
+                paymentStatus: 'Completed',
+                agreementStatus: 'Pending',
+                agreementSentDate: '2024-12-12',
+                agreementSignedDate: null,
+                tokensIssued: 'Pending',
+                tokenAmount: 7500,
+                investmentDate: '2024-12-10',
+                daysSincePayment: 8
+            },
+            {
+                id: 'INV-2024-003',
+                name: 'Michael Adebayo',
+                amountInvested: 100000,
+                currency: 'NGN',
+                paymentStatus: 'Completed',
+                agreementStatus: 'Signed',
+                agreementSentDate: '2024-12-08',
+                agreementSignedDate: '2024-12-09',
+                tokensIssued: 'Yes',
+                tokenAmount: 10000,
+                investmentDate: '2024-12-07',
+                daysSincePayment: 11
+            },
+            {
+                id: 'INV-2024-004',
+                name: 'Amina Yusuf',
+                amountInvested: 60000,
+                currency: 'NGN',
+                paymentStatus: 'Completed',
+                agreementStatus: 'Pending',
+                agreementSentDate: '2024-12-14',
+                agreementSignedDate: null,
+                tokensIssued: 'Pending',
+                tokenAmount: 6000,
+                investmentDate: '2024-12-13',
+                daysSincePayment: 5
+            },
+            {
+                id: 'INV-2024-005',
+                name: 'David Thompson',
+                amountInvested: 120000,
+                currency: 'NGN',
+                paymentStatus: 'Completed',
+                agreementStatus: 'Signed',
+                agreementSentDate: '2024-12-05',
+                agreementSignedDate: '2024-12-06',
+                tokensIssued: 'Yes',
+                tokenAmount: 12000,
+                investmentDate: '2024-12-04',
+                daysSincePayment: 14
+            }
+        ];
+
+        // Filter state
+        let currentFilters = {
+            agreementStatus: 'All',
+            tokenIssuance: 'All'
+        };
+
+        // Asset search functionality
+        document.getElementById('assetSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            console.log('Searching for:', searchTerm);
+        });
+
+        // Asset Detail Modal
+        function openAssetDetail(assetId) {
+            document.getElementById('assetDetailModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            console.log('Opening asset detail for:', assetId);
+            
+            // Reset filters when opening modal
+            currentFilters = {
+                agreementStatus: 'All',
+                tokenIssuance: 'All'
+            };
+            
+            // Render investors table
+            renderInvestorsTable();
+            
+            // Add filter listeners (since they are in the modal, add them after opening)
+            document.getElementById('agreementStatusFilter').addEventListener('change', handleFilterChange);
+            document.getElementById('tokenIssuanceFilter').addEventListener('change', handleFilterChange);
+        }
+
+        function closeAssetDetail() {
+            document.getElementById('assetDetailModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            
+            // Remove filter listeners to prevent memory leaks
+            document.getElementById('agreementStatusFilter').removeEventListener('change', handleFilterChange);
+            document.getElementById('tokenIssuanceFilter').removeEventListener('change', handleFilterChange);
+        }
+
+        // Handle filter changes
+        function handleFilterChange(e) {
+            const filterType = e.target.id === 'agreementStatusFilter' ? 'agreementStatus' : 'tokenIssuance';
+            currentFilters[filterType] = e.target.value;
+            renderInvestorsTable();
+        }
+
+        // Filter investors based on current filters
+        function filterInvestors(investors) {
+            return investors.filter(investor => {
+                const agreementMatch = currentFilters.agreementStatus === 'All' || 
+                                       investor.agreementStatus === currentFilters.agreementStatus;
+                const tokenMatch = currentFilters.tokenIssuance === 'All' || 
+                                  (currentFilters.tokenIssuance === 'Issued' && investor.tokensIssued === 'Yes') ||
+                                  (currentFilters.tokenIssuance === 'Pending' && investor.tokensIssued === 'Pending');
+                
+                return agreementMatch && tokenMatch;
+            });
+        }
+
+        // Render investors table
+        function renderInvestorsTable() {
+            const filteredInvestors = filterInvestors(mockInvestors);
+            const unsignedCount = filteredInvestors.filter(inv => inv.agreementStatus === 'Pending').length;
+            
+            const tableHTML = `
+                <!-- Filters Section -->
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center space-x-4">
+                        <!-- Agreement Status Filter -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-2">Agreement Status</label>
+                            <select id="agreementStatusFilter" class="px-4 py-2 bg-slate-900 border border-slate-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+                                <option value="All" ${currentFilters.agreementStatus === 'All' ? 'selected' : ''}>All</option>
+                                <option value="Signed" ${currentFilters.agreementStatus === 'Signed' ? 'selected' : ''}>Signed</option>
+                                <option value="Pending" ${currentFilters.agreementStatus === 'Pending' ? 'selected' : ''}>Pending Signature</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Token Issuance Filter -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-2">Token Issuance</label>
+                            <select id="tokenIssuanceFilter" class="px-4 py-2 bg-slate-900 border border-slate-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+                                <option value="All" ${currentFilters.tokenIssuance === 'All' ? 'selected' : ''}>All</option>
+                                <option value="Issued" ${currentFilters.tokenIssuance === 'Issued' ? 'selected' : ''}>Issued</option>
+                                <option value="Pending" ${currentFilters.tokenIssuance === 'Pending' ? 'selected' : ''}>Pending</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    ${unsignedCount > 0 ? `
+                    <!-- Send Reminder Button -->
+                    <button onclick="sendSigningReminder()" class="px-5 py-2.5 bg-warning/20 hover:bg-warning/30 border border-warning/50 text-warning font-semibold rounded-lg transition-colors flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                        <span>Send Signing Reminder</span>
+                    </button>
+                    ` : ''}
+                </div>
+
+                <!-- Investors Table -->
+                <div class="bg-slate-900/30 rounded-xl border border-slate-700 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-slate-900/50">
+                                <tr class="border-b border-slate-700">
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Investor</th>
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Amount Invested</th>
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Payment Status</th>
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Agreement Status</th>
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Tokens Issued</th>
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Investment Date</th>
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-700">
+                                ${filteredInvestors.map(investor => `
+                                    <tr class="hover:bg-slate-700/30 transition-colors">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm font-semibold text-white">${investor.name}</div>
+                                            <div class="text-xs text-slate-400 font-mono">${investor.id}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-white">₦${investor.amountInvested.toLocaleString()}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                                investor.paymentStatus === 'Completed' 
+                                                ? 'bg-secondary/20 text-secondary'
+                                                : 'bg-warning/20 text-warning'
+                                            }">
+                                                ${investor.paymentStatus}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                                investor.agreementStatus === 'Signed' 
+                                                ? 'bg-secondary/20 text-secondary'
+                                                : 'bg-warning/20 text-warning'
+                                            }">
+                                                ${investor.agreementStatus}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                                investor.tokensIssued === 'Yes' 
+                                                ? 'bg-secondary/20 text-secondary'
+                                                : 'bg-warning/20 text-warning'
+                                            }">
+                                                ${investor.tokensIssued}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-white">${investor.investmentDate}</div>
+                                            <div class="text-xs text-slate-400">${investor.daysSincePayment} days ago</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <button class="text-primary hover:text-primary-light text-sm font-medium">
+                                                View Details →
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('investorsTableContainer').innerHTML = tableHTML;
+        }
+
+        // Send signing reminder function
+        function sendSigningReminder() {
+            console.log('Sending signing reminders to pending investors');
+            // In real implementation, this would trigger an API call
+            alert('Signing reminders sent to ' + document.querySelectorAll('[data-agreement="Pending"]').length + ' investors');
+        }
+
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabName = this.dataset.tab;
+                
+                // Update button styles
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('text-white', 'border-primary');
+                    b.classList.add('text-slate-400');
+                    b.style.borderBottom = 'none';
+                });
+                this.classList.remove('text-slate-400');
+                this.classList.add('text-white', 'border-b-2', 'border-primary');
+                
+                // Update tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(tabName + '-tab').classList.remove('hidden');
+                
+                // If switching to investors tab, render the table
+                if (tabName === 'investors') {
+                    renderInvestorsTable();
+                }
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Escape to close modal
+            if (e.key === 'Escape') {
+                closeAssetDetail();
+            }
+            
+            // ⌘+K for search
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('assetSearch').focus();
+            }
+        });
+
+        // Initial tab setup (ensure overview is active)
+        document.querySelector('.tab-btn[data-tab="overview"]').click();
+    </script>
+<script id="dhws-dataInjector" src="../../public/dhws-data-injector.js"></script>
+</body>
+</html>

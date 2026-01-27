@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enter your investment amount for tokenized real-world assets. Calculate shares and start investing with as little as $100.">
+    <title>Investment Amount Entry - BuildVest</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-surface">
+    <!-- Updated to minimal Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center space-x-3">
+                        <img src="https://buildvest.net/buildvest-logo.png" alt="BuildVest" class="h-8 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                        <!-- span class="text-xl font-bold text-primary hidden sm:block">BuildVest</span -->
+                    </a>
+                </div>
+                <!--div class="flex items-center space-x-4">
+                    <a href="investor_dashboard.html" class="text-text-secondary hover:text-primary transition-colors duration-150 font-medium text-sm sm:text-base">Dashboard</a>
+                    <a href="investment_marketplace.html" class="text-text-secondary hover:text-primary transition-colors duration-150 font-medium text-sm sm:text-base">Marketplace</a>
+                </div-->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 min-h-screen">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Progress Indicator -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-2xl sm:text-3xl font-bold text-text-primary">Complete Your Investment</h1>
+                    <span class="text-sm font-medium text-text-secondary">Step 1 of 4</span>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="relative">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-medium text-primary">Amount</span>
+                        <span class="text-xs font-medium text-text-tertiary">Payment</span>
+                        <span class="text-xs font-medium text-text-tertiary">Review</span>
+                        <span class="text-xs font-medium text-text-tertiary">Confirm</span>
+                    </div>
+                    <div class="w-full bg-surface-200 rounded-full h-2">
+                        <div class="bg-primary h-2 rounded-full transition-all duration-500" style="width: 25%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Investment Form - Main Content -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Asset Summary Card -->
+                    <div class="card p-6 animate-fade-in">
+                        <div class="flex items-start space-x-4">
+                            <div class="relative h-24 w-24 flex-shrink-0 rounded-lg overflow-hidden">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1e61a598c-1764101894505.png" alt="Downtown Office Complex - modern commercial real estate investment opportunity" class="w-full h-full object-cover" onerror="this.src='https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <h2 class="text-xl font-bold text-text-primary mb-1">Downtown Office Complex</h2>
+                                        <p class="text-sm text-text-secondary">Real Estate • Commercial Property</p>
+                                    </div>
+                                    <span class="badge badge-success flex-shrink-0">Verified</span>
+                                </div>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4">
+                                    <div>
+                                        <p class="text-xs text-text-secondary mb-1">Target Return</p>
+                                        <p class="text-lg font-bold text-secondary">14.2% APY</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-text-secondary mb-1">Min. Investment</p>
+                                        <p class="text-lg font-bold text-text-primary">$100</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-text-secondary mb-1">Share Price</p>
+                                        <p class="text-lg font-bold text-text-primary">$50.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investment Amount Input -->
+                    <div class="card p-6 animate-slide-up">
+                        <h3 class="text-lg font-bold text-text-primary mb-4">Enter Investment Amount</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label for="investmentAmount" class="block text-sm font-medium text-text-primary mb-2">
+                                    Investment Amount (USD)
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary font-medium text-lg">$</span>
+                                    <input 
+                                        type="number" 
+                                        id="investmentAmount" 
+                                        class="input pl-10 text-lg font-semibold" 
+                                        placeholder="100.00" 
+                                        min="100" 
+                                        max="50000"
+                                        step="50"
+                                        value="500"
+                                        inputmode="decimal"
+                                        aria-describedby="amountHelp amountError"
+                                    >
+                                </div>
+                                <p id="amountHelp" class="text-sm text-text-secondary mt-2">Minimum investment: $100 • Maximum: $50,000</p>
+                                <p id="amountError" class="text-sm text-error mt-2 hidden"></p>
+                            </div>
+
+                            <!-- Quick Amount Buttons -->
+                            <div class="grid grid-cols-4 gap-2">
+                                <button class="quick-amount-btn btn btn-ghost text-sm py-2" data-amount="100">$100</button>
+                                <button class="quick-amount-btn btn btn-ghost text-sm py-2" data-amount="500">$500</button>
+                                <button class="quick-amount-btn btn btn-ghost text-sm py-2" data-amount="1000">$1,000</button>
+                                <button class="quick-amount-btn btn btn-ghost text-sm py-2" data-amount="5000">$5,000</button>
+                            </div>
+
+                            <!-- Share Calculator -->
+                            <div class="bg-primary-50 rounded-xl p-6 border-2 border-primary-200">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center space-x-2">
+                                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path>
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <h4 class="font-semibold text-text-primary">Share Calculation</h4>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-text-secondary">Investment Amount</span>
+                                        <span id="displayAmount" class="font-mono text-lg font-bold text-text-primary">$500.00</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-text-secondary">Share Price</span>
+                                        <span class="font-mono text-lg font-medium text-text-primary">$50.00</span>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-medium text-text-primary">Shares You'll Receive</span>
+                                        <span id="calculatedShares" class="font-mono text-2xl font-bold text-primary">10</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs text-text-secondary">Estimated Annual Return</span>
+                                        <span id="estimatedReturn" class="font-mono text-sm font-semibold text-secondary">$71.00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Investment Tier Benefits -->
+                            <div class="bg-accent-50 rounded-xl p-4 border border-accent-200">
+                                <div class="flex items-start space-x-3">
+                                    <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <div class="flex-1">
+                                        <h5 class="font-semibold text-text-primary text-sm mb-1">Standard Tier Benefits</h5>
+                                        <ul class="text-xs text-text-secondary space-y-1">
+                                            <li>• Quarterly dividend distributions</li>
+                                            <li>• Access to investor updates and reports</li>
+                                            <li>• Secondary market trading after 90 days</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bonus Structure Info -->
+                            <div id="bonusInfo" class="bg-warning-50 rounded-xl p-4 border border-warning-200 hidden">
+                                <div class="flex items-start space-x-3">
+                                    <svg class="w-5 h-5 text-warning flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                    <div class="flex-1">
+                                        <h5 class="font-semibold text-text-primary text-sm mb-1">Early Investor Bonus</h5>
+                                        <p class="text-xs text-text-secondary">Invest $1,000+ to receive 2% bonus shares and priority access to future offerings</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="window.location.href='asset_detail_page.html'" class="btn btn-ghost flex-1 sm:flex-none">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                            Back to Asset
+                        </button>
+                        <button id="continueBtn" class="btn btn-primary flex-1" disabled>
+                            Continue to Payment
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Investment Summary Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="card p-6 sticky top-24 animate-fade-in">
+                        <h3 class="text-lg font-bold text-text-primary mb-4">Investment Summary</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-sm text-text-secondary mb-1">Asset Name</p>
+                                <p class="font-semibold text-text-primary">Downtown Office Complex</p>
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <div>
+                                <p class="text-sm text-text-secondary mb-1">Investment Amount</p>
+                                <p id="summaryAmount" class="font-mono text-xl font-bold text-text-primary">$500.00</p>
+                            </div>
+
+                            <div>
+                                <p class="text-sm text-text-secondary mb-1">Number of Shares</p>
+                                <p id="summaryShares" class="font-mono text-xl font-bold text-primary">10</p>
+                            </div>
+
+                            <div>
+                                <p class="text-sm text-text-secondary mb-1">Share Price</p>
+                                <p class="font-mono text-base font-medium text-text-primary">$50.00</p>
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <div class="bg-surface rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm text-text-secondary">Target Annual Return</span>
+                                    <span class="font-semibold text-secondary">14.2%</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-text-secondary">Est. Annual Income</span>
+                                    <span id="summaryReturn" class="font-mono font-semibold text-secondary">$71.00</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-primary-50 rounded-lg p-4">
+                                <div class="flex items-start space-x-2">
+                                    <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-xs font-medium text-text-primary mb-1">Investment Details</p>
+                                        <p class="text-xs text-text-secondary">Returns are distributed quarterly. Minimum holding period: 90 days</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="card p-4 mt-4 animate-fade-in">
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-xs font-medium text-text-secondary">SEC Compliant</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-xs font-medium text-text-secondary">Bank-Level Security</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-xs font-medium text-text-secondary">Verified Asset</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-3">
+                    <img src="https://buildvest.net/img/BuildvestLogo_icon_white.png" alt="BuildVest footer logo" class="h-8 w-auto" onerror="this.src='https://buildvest.net/img/BuildvestLogo_icon_white.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    <span class="text-lg font-bold">BuildVest</span>
+                </div>
+                <p class="text-slate-400 text-sm text-center md:text-left">© 2026 BuildVest. All Rights Reserved.</p>
+                <!-- div class="flex items-center space-x-6">
+                    <a href="javascript:void(0)" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                        </svg>
+                    </a>
+                    <a href="javascript:void(0)" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="LinkedIn">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                        </svg>
+                    </a>
+                    <a href="javascript:void(0)" class="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Facebook">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                        </svg>
+                    </a>
+                </div -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Investment amount calculation
+    const investmentInput = document.getElementById('investmentAmount');
+    const displayAmount = document.getElementById('displayAmount');
+    const calculatedShares = document.getElementById('calculatedShares');
+    const estimatedReturn = document.getElementById('estimatedReturn');
+    const summaryAmount = document.getElementById('summaryAmount');
+    const summaryShares = document.getElementById('summaryShares');
+    const summaryReturn = document.getElementById('summaryReturn');
+    const continueBtn = document.getElementById('continueBtn');
+    const amountError = document.getElementById('amountError');
+    const bonusInfo = document.getElementById('bonusInfo');
+
+    const SHARE_PRICE = 50;
+    const MIN_INVESTMENT = 100;
+    const MAX_INVESTMENT = 50000;
+    const TARGET_RETURN = 0.142; // 14.2%
+    const BONUS_THRESHOLD = 1000;
+
+    function formatCurrency(amount) {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(amount);
+    }
+
+    function validateAndCalculate() {
+        const amount = parseFloat(investmentInput.value) || 0;
+        
+        // Clear previous errors
+        amountError.classList.add('hidden');
+        investmentInput.classList.remove('input-error');
+        continueBtn.disabled = true;
+
+        // Validation
+        if (amount < MIN_INVESTMENT) {
+            amountError.textContent = `Minimum investment is ${formatCurrency(MIN_INVESTMENT)}`;
+            amountError.classList.remove('hidden');
+            investmentInput.classList.add('input-error');
+            return;
+        }
+
+        if (amount > MAX_INVESTMENT) {
+            amountError.textContent = `Maximum investment is ${formatCurrency(MAX_INVESTMENT)}`;
+            amountError.classList.remove('hidden');
+            investmentInput.classList.add('input-error');
+            return;
+        }
+
+        // Calculate shares
+        const shares = Math.floor(amount / SHARE_PRICE);
+        const actualInvestment = shares * SHARE_PRICE;
+        const annualReturn = actualInvestment * TARGET_RETURN;
+
+        // Update displays
+        displayAmount.textContent = formatCurrency(actualInvestment);
+        calculatedShares.textContent = shares.toLocaleString();
+        estimatedReturn.textContent = formatCurrency(annualReturn);
+        summaryAmount.textContent = formatCurrency(actualInvestment);
+        summaryShares.textContent = shares.toLocaleString();
+        summaryReturn.textContent = formatCurrency(annualReturn);
+
+        // Show bonus info if applicable
+        if (amount >= BONUS_THRESHOLD) {
+            bonusInfo.classList.remove('hidden');
+        } else {
+            bonusInfo.classList.add('hidden');
+        }
+
+        // Enable continue button
+        continueBtn.disabled = false;
+    }
+
+    // Input event listener
+    investmentInput.addEventListener('input', validateAndCalculate);
+
+    // Quick amount buttons
+    const quickAmountBtns = document.querySelectorAll('.quick-amount-btn');
+    quickAmountBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const amount = btn.getAttribute('data-amount');
+            investmentInput.value = amount;
+            validateAndCalculate();
+        });
+    });
+
+    // Continue button
+    continueBtn.addEventListener('click', () => {
+        // Store investment data in sessionStorage for next step
+        const investmentData = {
+            assetName: 'Downtown Office Complex',
+            amount: parseFloat(investmentInput.value),
+            shares: parseInt(calculatedShares.textContent.replace(/,/g, '')),
+            sharePrice: SHARE_PRICE,
+            estimatedReturn: parseFloat(estimatedReturn.textContent.replace(/[$,]/g, ''))
+        };
+        sessionStorage.setItem('investmentData', JSON.stringify(investmentData));
+        
+        // Navigate to payment page (placeholder for now)
+        alert('Proceeding to payment method selection...\n\nIn the full application, this would navigate to the payment page.');
+        // window.location.href = 'investment_payment_method.html';
+    });
+
+    // Initialize calculation on page load
+    validateAndCalculate();
+
+    // Prevent form submission on Enter key
+    investmentInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (!continueBtn.disabled) {
+                continueBtn.click();
+            }
+        }
+    });
+</script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Settings - Manage your profile, security, verification, and preferences">
+    <title>Investor Settings - BuildVest</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-surface">
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm">
+        <div class="flex items-center justify-between h-20 px-4 lg:px-8">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <button id="mobileSidebarToggle" class="lg:hidden p-2 hover:bg-surface rounded-lg transition-colors duration-150 touch-target" aria-label="Toggle sidebar menu">
+                    <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <a href="investor_dashboard.html" class="flex items-center space-x-3">
+                    <img src="https://buildvest.net/buildvest-logo.png" alt="BuildVest" class="h-10 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                </a>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center space-x-4">
+                <!-- Search -->
+                <button class="hidden md:flex items-center space-x-2 px-4 py-2 bg-surface rounded-xl hover:bg-surface-100 transition-colors duration-150 touch-target" aria-label="Search investments">
+                    <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <span class="text-sm text-text-secondary">Search</span>
+                </button>
+
+                <!-- Notifications -->
+                <div class="relative">
+                    <a href="all_notifications_page.html" class="relative p-2 hover:bg-surface rounded-lg transition-colors duration-150 touch-target block" aria-label="View notifications">
+                        <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+                    </a>
+                </div>
+
+                <!-- User Profile -->
+                <div class="relative">
+                    <button id="profileBtn" class="flex items-center space-x-3 p-2 hover:bg-surface rounded-lg transition-colors duration-150 touch-target" aria-label="User profile menu">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14889e74f-1763294788752.png" alt="User profile photo of John Anderson" class="w-10 h-10 rounded-full object-cover" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                        <div class="hidden md:block text-left">
+                            <p class="text-sm font-medium text-text-primary">John Anderson</p>
+                            <p class="text-xs text-text-secondary">Verified Investor</p>
+                        </div>
+                        <svg class="hidden md:block w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Profile Dropdown -->
+                    <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-border overflow-hidden animate-slide-down">
+                        <div class="p-4 border-b border-border">
+                            <p class="text-sm font-medium text-text-primary">John Anderson</p>
+                            <p class="text-xs text-text-secondary">john.anderson@email.com</p>
+                        </div>
+                        <div class="py-2">
+                            <a href="investor_dashboard.html" class="flex items-center space-x-3 px-4 py-2 hover:bg-surface transition-colors duration-150">
+                                <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                                <span class="text-sm text-text-primary">My Profile</span>
+                            </a>
+                            <a href="wallet_management.html" class="flex items-center space-x-3 px-4 py-2 hover:bg-surface transition-colors duration-150">
+                                <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                                </svg>
+                                <span class="text-sm text-text-primary">Wallet</span>
+                            </a>
+                            <!--a href="investor_settings_page.html" class="flex items-center space-x-3 px-4 py-2 hover:bg-surface transition-colors duration-150">
+                                <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span class="text-sm text-text-primary">Settings</span>
+                            </a-->
+                        </div>
+                        <div class="border-t border-border py-2">
+                            <button id="logoutBtn" class="w-full flex items-center space-x-3 px-4 py-2 hover:bg-surface transition-colors duration-150 text-left">
+                                <svg class="w-5 h-5 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                <span class="text-sm text-error">Sign Out</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="flex pt-20">
+        <!-- Sidebar Navigation (Desktop) -->
+        <aside id="sidebar" class="hidden lg:flex fixed left-0 top-20 bottom-0 w-64 bg-white border-r border-border flex-col z-40">
+            <nav class="flex-1 p-4 space-y-2 overflow-y-auto scrollbar-thin">
+                <a href="investor_dashboard.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="internal_investment_marketplace.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                    Marketplace
+                </a>
+                <a href="portfolio_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    Portfolio
+                </a>
+                <a href="secondary_market_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                    Secondary Market
+                </a>
+                <a href="wallet_management.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                    </svg>
+                    Wallet
+                </a>
+                <a href="investor_settings_page.html" class="nav-link nav-link-active">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Settings
+                </a>
+                <a href="help_support_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    Help & Support
+                </a>
+            </nav>
+
+            <!-- Sidebar Footer -->
+            <div class="p-4 border-t border-border">
+                <div class="card p-4 bg-gradient-to-br from-primary-50 to-accent-50">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-text-primary">Refer & Earn</p>
+                            <p class="text-xs text-text-secondary">Get $50 bonus</p>
+                        </div>
+                    </div>
+                    <button class="w-full btn btn-primary text-sm py-2">Invite Friends</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Sidebar Overlay -->
+        <div id="mobileSidebarOverlay" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden" onclick="closeMobileSidebar()"></div>
+
+        <!-- Mobile Sidebar -->
+        <aside id="mobileSidebar" class="fixed left-0 top-20 bottom-0 w-64 bg-white border-r border-border flex-col z-50 transform -translate-x-full transition-transform duration-300 lg:hidden">
+            <nav class="flex-1 p-4 space-y-2 overflow-y-auto scrollbar-thin">
+                <a href="investor_dashboard.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="internal_investment_marketplace.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                    Marketplace
+                </a>
+                <a href="portfolio_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    Portfolio
+                </a>
+                <a href="investor_settings_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                    Secondary Market
+                </a>
+                <a href="wallet_management.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                    </svg>
+                    Wallet
+                </a>
+                <a href="investor_settings_page.html" class="nav-link nav-link-active">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Settings
+                </a>
+                <a href="help_support_page.html" class="nav-link">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    Help & Support
+                </a>
+            </nav>
+
+            <!-- Mobile Sidebar Footer -->
+            <div class="p-4 border-t border-border">
+                <div class="card p-4 bg-gradient-to-br from-primary-50 to-accent-50">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-text-primary">Refer & Earn</p>
+                            <p class="text-xs text-text-secondary">Get $50 bonus</p>
+                        </div>
+                    </div>
+                    <button class="w-full btn btn-primary text-sm py-2">Invite Friends</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 lg:ml-64 p-4 lg:p-8 pb-24 lg:pb-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl lg:text-4xl font-bold text-text-primary mb-2">Investor Settings</h1>
+                <p class="text-text-secondary">Manage your profile, security, verification status, and preferences</p>
+            </div>
+
+<!-- Tab Navigation - Desktop -->
+<div class="hidden lg:block mb-8">
+    <div class="border-b border-border">
+        <nav class="flex space-x-8 overflow-x-auto" aria-label="Settings tabs">
+            <button onclick="switchTab('profile')" class="tab-button tab-active" data-tab="profile">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                </svg>
+                Profile & KYC
+            </button>
+            <button onclick="switchTab('security')" class="tab-button" data-tab="security">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+                Security
+            </button>
+            <button onclick="switchTab('verification')" class="tab-button" data-tab="verification">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+                Verification
+            </button>
+            <button onclick="switchTab('payout')" class="tab-button" data-tab="payout">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                Payout & Bank
+            </button>
+            <button onclick="switchTab('referrals')" class="tab-button" data-tab="referrals">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                </svg>
+                Referrals
+            </button>
+            <button onclick="switchTab('preferences')" class="tab-button" data-tab="preferences">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                </svg>
+                Preferences
+            </button>
+        </nav>
+    </div>
+</div>
+
+<!-- Tab Navigation - Mobile (Accordion Style) -->
+<div class="lg:hidden mb-6">
+    <div class="space-y-2">
+        <button onclick="toggleMobileTab('profile')" class="w-full flex items-center justify-between p-4 bg-white border border-border rounded-lg">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                </svg>
+                <span class="font-medium text-text-primary">Profile & KYC</span>
+            </div>
+            <svg class="w-5 h-5 text-text-secondary mobile-tab-icon" data-mobile-tab="profile" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        <button onclick="toggleMobileTab('security')" class="w-full flex items-center justify-between p-4 bg-white border border-border rounded-lg">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+                <span class="font-medium text-text-primary">Security</span>
+            </div>
+            <svg class="w-5 h-5 text-text-secondary mobile-tab-icon" data-mobile-tab="security" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        <button onclick="toggleMobileTab('verification')" class="w-full flex items-center justify-between p-4 bg-white border border-border rounded-lg">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+                <span class="font-medium text-text-primary">Verification</span>
+            </div>
+            <svg class="w-5 h-5 text-text-secondary mobile-tab-icon" data-mobile-tab="verification" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        <button onclick="toggleMobileTab('payout')" class="w-full flex items-center justify-between p-4 bg-white border border-border rounded-lg">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                <span class="font-medium text-text-primary">Payout & Bank</span>
+            </div>
+            <svg class="w-5 h-5 text-text-secondary mobile-tab-icon" data-mobile-tab="payout" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        <button onclick="toggleMobileTab('referrals')" class="w-full flex items-center justify-between p-4 bg-white border border-border rounded-lg">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                </svg>
+                <span class="font-medium text-text-primary">Referrals</span>
+            </div>
+            <svg class="w-5 h-5 text-text-secondary mobile-tab-icon" data-mobile-tab="referrals" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        <button onclick="toggleMobileTab('preferences')" class="w-full flex items-center justify-between p-4 bg-white border border-border rounded-lg">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                </svg>
+                <span class="font-medium text-text-primary">Preferences</span>
+            </div>
+            <svg class="w-5 h-5 text-text-secondary mobile-tab-icon" data-mobile-tab="preferences" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+    </div>
+</div>
+
+            <!-- Tab Content -->
+            <div id="tabContent">
+                <!-- Profile & KYC Tab -->
+                <div id="profile-tab" class="tab-content tab-content-active">
+                    <div class="card p-6 mb-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-bold text-text-primary">Profile Information</h2>
+                            <span class="badge badge-success">KYC Verified</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Full Name</label>
+                                <input type="text" value="John Anderson" class="w-full px-4 py-3 border border-border rounded-lg bg-surface text-text-secondary cursor-not-allowed" readonly>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Email Address</label>
+                                <input type="email" value="john.anderson@email.com" class="w-full px-4 py-3 border border-border rounded-lg bg-surface text-text-secondary cursor-not-allowed" readonly>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Phone Number</label>
+                                <input type="tel" value="+1 (555) 123-4567" class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Date of Birth</label>
+                                <input type="text" value="January 15, 1985" class="w-full px-4 py-3 border border-border rounded-lg bg-surface text-text-secondary cursor-not-allowed" readonly>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Country</label>
+                                <input type="text" value="United States" class="w-full px-4 py-3 border border-border rounded-lg bg-surface text-text-secondary cursor-not-allowed" readonly>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Investor Type</label>
+                                <input type="text" value="Accredited Investor" class="w-full px-4 py-3 border border-border rounded-lg bg-surface text-text-secondary cursor-not-allowed" readonly>
+                            </div>
+                        </div>
+
+                        <!-- KYC Status -->
+                        <div class="mt-6 p-4 bg-gradient-to-br from-success-50 to-primary-50 rounded-lg border border-success-200">
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-success rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-text-primary">KYC Verification Complete</p>
+                                        <p class="text-sm text-text-secondary mt-1">Your identity has been successfully verified</p>
+                                        <p class="text-xs text-text-tertiary mt-2">Last updated: December 10, 2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end mt-6 pt-6 border-t border-border space-x-3">
+                            <button class="btn btn-secondary">Update Profile</button>
+                            <button class="btn btn-primary">Re-verify KYC</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Tab -->
+                <div id="security-tab" class="tab-content hidden">
+                    <div class="card p-6 mb-6">
+                        <h2 class="text-xl font-bold text-text-primary mb-6">Security Settings</h2>
+
+                        <div class="space-y-6">
+                            <!-- Password Management -->
+                            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between p-4 bg-surface rounded-lg space-y-4 lg:space-y-0">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-text-primary">Password</p>
+                                        <p class="text-sm text-text-secondary">Last changed 3 months ago</p>
+                                    </div>
+                                </div>
+                                <button class="btn btn-secondary w-full lg:w-auto">Change Password</button>
+                            </div>
+
+                            <!-- 2FA -->
+                            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between p-4 bg-surface rounded-lg space-y-4 lg:space-y-0">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-secondary-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-text-primary">Two-Factor Authentication</p>
+                                        <p class="text-sm text-text-secondary">Add an extra layer of security</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="badge badge-success">Enabled</span>
+                                    <button class="btn btn-error w-full lg:w-auto">Disable</button>
+                                </div>
+                            </div>
+
+                            <!-- Active Sessions -->
+                            <div class="p-4 bg-surface rounded-lg">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 bg-accent-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-text-primary">Active Sessions</p>
+                                            <p class="text-sm text-text-secondary">Manage your devices</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-3 mt-4">
+                                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between p-3 border border-border rounded-lg space-y-2 lg:space-y-0">
+                                        <div>
+                                            <p class="text-sm font-medium text-text-primary">MacBook Pro • Chrome</p>
+                                            <p class="text-xs text-text-secondary">San Francisco, CA • Current session</p>
+                                        </div>
+                                        <span class="badge badge-success">Active</span>
+                                    </div>
+                                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between p-3 border border-border rounded-lg space-y-2 lg:space-y-0">
+                                        <div>
+                                            <p class="text-sm font-medium text-text-primary">iPhone 14 • Safari</p>
+                                            <p class="text-xs text-text-secondary">San Francisco, CA • Last active 2 hours ago</p>
+                                        </div>
+                                        <button class="text-sm text-error hover:text-error-600 text-left lg:text-center">Revoke</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Wallet Connections -->
+                            <div class="p-4 bg-surface rounded-lg">
+                                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4 space-y-4 lg:space-y-0">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-text-primary">Wallet Connections</p>
+                                            <p class="text-sm text-text-secondary">Connected blockchain wallets</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary w-full lg:w-auto">Connect Wallet</button>
+                                </div>
+                                
+                                <div class="space-y-3 mt-4">
+                                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between p-3 border border-border rounded-lg space-y-2 lg:space-y-0">
+                                        <div>
+                                            <p class="text-sm font-medium text-text-primary">Solana Wallet</p>
+                                            <p class="text-xs text-text-secondary font-mono">7xKX...9mPq</p>
+                                        </div>
+                                        <button class="text-sm text-error hover:text-error-600 text-left lg:text-center">Disconnect</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verification Tab -->
+                <div id="verification-tab" class="tab-content hidden">
+                    <div class="card p-6 mb-6">
+                        <h2 class="text-xl font-bold text-text-primary mb-6">Verification Status</h2>
+
+                        <!-- Verification Overview -->
+                        <div class="mb-6 p-6 bg-gradient-to-br from-success-50 to-primary-50 rounded-lg border border-success-200">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-16 h-16 bg-success rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-2">
+                                        <h3 class="text-lg font-bold text-text-primary">Identity Verified</h3>
+                                        <span class="badge badge-success mt-2 lg:mt-0">Complete</span>
+                                    </div>
+                                    <p class="text-text-secondary mb-4">Your identity verification has been successfully completed and approved.</p>
+                                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                                        <div>
+                                            <p class="text-xs text-text-tertiary">Verification Date</p>
+                                            <p class="text-sm font-medium text-text-primary">December 10, 2025</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-text-tertiary">Document Type</p>
+                                            <p class="text-sm font-medium text-text-primary">Driver's License</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-text-tertiary">Status</p>
+                                            <p class="text-sm font-medium text-success">Approved</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Verification Progress -->
+                        <div class="mb-6">
+                            <h3 class="font-semibold text-text-primary mb-4">Verification Stages</h3>
+                            <div class="space-y-4">
+                                <!-- Stage 1 -->
+                                <div class="flex items-start space-x-4 p-4 bg-surface rounded-lg border border-success-200">
+                                    <div class="w-10 h-10 bg-success rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-1">
+                                            <p class="font-medium text-text-primary">Email Verification</p>
+                                            <span class="badge badge-success mt-1 lg:mt-0">Completed</span>
+                                        </div>
+                                        <p class="text-sm text-text-secondary">Email verified on December 8, 2025</p>
+                                    </div>
+                                </div>
+
+                                <!-- Stage 2 -->
+                                <div class="flex items-start space-x-4 p-4 bg-surface rounded-lg border border-success-200">
+                                    <div class="w-10 h-10 bg-success rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-1">
+                                            <p class="font-medium text-text-primary">Identity Document Upload</p>
+                                            <span class="badge badge-success mt-1 lg:mt-0">Completed</span>
+                                        </div>
+                                        <p class="text-sm text-text-secondary">Driver's License uploaded on December 9, 2025</p>
+                                    </div>
+                                </div>
+
+                                <!-- Stage 3 -->
+                                <div class="flex items-start space-x-4 p-4 bg-surface rounded-lg border border-success-200">
+                                    <div class="w-10 h-10 bg-success rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-1">
+                                            <p class="font-medium text-text-primary">Document Review</p>
+                                            <span class="badge badge-success mt-1 lg:mt-0">Approved</span>
+                                        </div>
+                                        <p class="text-sm text-text-secondary">Documents reviewed and approved on December 10, 2025</p>
+                                    </div>
+                                </div>
+
+                                <!-- Stage 4 -->
+                                <div class="flex items-start space-x-4 p-4 bg-surface rounded-lg border border-success-200">
+                                    <div class="w-10 h-10 bg-success rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-1">
+                                            <p class="font-medium text-text-primary">Final Approval</p>
+                                            <span class="badge badge-success mt-1 lg:mt-0">Complete</span>
+                                        </div>
+                                        <p class="text-sm text-text-secondary">KYC verification finalized on December 10, 2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Full Dashboard Link -->
+                        <div class="mt-6 p-4 bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg border border-primary-200">
+                            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-text-primary">View Full Verification Dashboard</p>
+                                        <p class="text-sm text-text-secondary">Access detailed verification status, document history, and compliance information</p>
+                                    </div>
+                                </div>
+                                <a href="verification_status_dashboard.html" class="btn btn-primary flex items-center space-x-2 w-full lg:w-auto justify-center">
+                                    <span>Open Dashboard</span>
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col lg:flex-row justify-end mt-6 pt-6 border-t border-border space-y-3 lg:space-y-0 lg:space-x-3">
+                            <button class="btn btn-secondary w-full lg:w-auto">Download Documents</button>
+                            <button class="btn btn-primary w-full lg:w-auto">Submit New Documents</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preferences Tab -->
+                <div id="preferences-tab" class="tab-content hidden">
+                    <div class="card p-6 mb-6">
+                        <h2 class="text-xl font-bold text-text-primary mb-6">Account Preferences</h2>
+
+                        <div class="space-y-6">
+                            <!-- Notification Settings -->
+                            <div>
+                                <h3 class="font-semibold text-text-primary mb-4">Notification Settings</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between p-4 bg-surface rounded-lg">
+                                        <div>
+                                            <p class="font-medium text-text-primary">Email Notifications</p>
+                                            <p class="text-sm text-text-secondary">Receive updates via email</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between p-4 bg-surface rounded-lg">
+                                        <div>
+                                            <p class="font-medium text-text-primary">Investment Updates</p>
+                                            <p class="text-sm text-text-secondary">Notifications about your investments</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between p-4 bg-surface rounded-lg">
+                                        <div>
+                                            <p class="font-medium text-text-primary">New Opportunities</p>
+                                            <p class="text-sm text-text-secondary">Alerts for new investment opportunities</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between p-4 bg-surface rounded-lg">
+                                        <div>
+                                            <p class="font-medium text-text-primary">Marketing Communications</p>
+                                            <p class="text-sm text-text-secondary">Promotional emails and updates</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Currency Display -->
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Currency Display</label>
+                                <select class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                                    <option>USD ($)</option>
+                                    <option>EUR (€)</option>
+                                    <option>GBP (£)</option>
+                                    <option>JPY (¥)</option>
+                                </select>
+                            </div>
+
+                            <!-- Language -->
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Language</label>
+                                <select class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                                    <option>English</option>
+                                    <option>Spanish</option>
+                                    <option>French</option>
+                                    <option>German</option>
+                                    <option>Chinese</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end mt-6 pt-6 border-t border-border">
+                            <button class="btn btn-primary w-full lg:w-auto">Save Preferences</button>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Referrals Tab -->
+<div id="referrals-tab" class="tab-content hidden">
+    <div class="card p-6 mb-6">
+        <h2 class="text-xl font-bold text-text-primary mb-2">Referral Program</h2>
+        <p class="text-text-secondary mb-6">Invite friends and earn rewards for every successful referral</p>
+
+        <!-- Referral Stats Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="p-6 bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg border border-primary-200">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-text-secondary">Total Referrals</p>
+                        <p class="text-2xl font-bold text-text-primary">24</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 bg-gradient-to-br from-success-50 to-primary-50 rounded-lg border border-success-200">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-success rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-text-secondary">Successful</p>
+                        <p class="text-2xl font-bold text-text-primary">18</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 bg-gradient-to-br from-accent-50 to-secondary-50 rounded-lg border border-accent-200">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-accent rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-text-secondary">Total Earnings</p>
+                        <p class="text-2xl font-bold text-text-primary">$900</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Referral Link Section -->
+        <div class="mb-8 p-6 bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg border border-primary-200">
+            <h3 class="font-semibold text-text-primary mb-4">Your Referral Link</h3>
+            <div class="flex flex-col lg:flex-row space-y-3 lg:space-y-0 lg:space-x-3">
+                <input type="text" value="https://buildvest.com/ref/JOHN2025" readonly class="flex-1 px-4 py-3 border border-border rounded-lg bg-white text-text-primary font-mono">
+                <button class="btn btn-primary whitespace-nowrap">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    </svg>
+                    Copy Link
+                </button>
+            </div>
+            <div class="flex flex-wrap gap-3 mt-4">
+                <button class="btn btn-secondary flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    <span>Share on Facebook</span>
+                </button>
+                <button class="btn btn-secondary flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                    <span>Share on Twitter</span>
+                </button>
+                <button class="btn btn-secondary flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span>Share on LinkedIn</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Referral Earnings History -->
+        <div class="mb-8">
+            <h3 class="font-semibold text-text-primary mb-4">Earnings History</h3>
+            <div class="space-y-3">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between p-4 bg-surface border border-border rounded-lg">
+                    <div class="flex items-center space-x-4 mb-3 lg:mb-0">
+                        <div class="w-10 h-10 bg-success-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-medium text-text-primary">Sarah Johnson referral completed</p>
+                            <p class="text-sm text-text-secondary">December 5, 2025</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-lg font-bold text-success">+$50</p>
+                        <span class="badge badge-success">Paid</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between p-4 bg-surface border border-border rounded-lg">
+                    <div class="flex items-center space-x-4 mb-3 lg:mb-0">
+                        <div class="w-10 h-10 bg-success-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-medium text-text-primary">Michael Chen referral completed</p>
+                            <p class="text-sm text-text-secondary">November 28, 2025</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-lg font-bold text-success">+$50</p>
+                        <span class="badge badge-success">Paid</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between p-4 bg-surface border border-border rounded-lg">
+                    <div class="flex items-center space-x-4 mb-3 lg:mb-0">
+                        <div class="w-10 h-10 bg-warning-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-medium text-text-primary">Emily Davis completing KYC</p>
+                            <p class="text-sm text-text-secondary">December 10, 2025</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-lg font-bold text-warning">$50</p>
+                        <span class="badge badge-warning">Pending</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Referral Program Details -->
+        <div class="p-6 bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg border border-primary-200">
+            <h3 class="font-semibold text-text-primary mb-4">How It Works</h3>
+            <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                    <div>
+                        <p class="font-medium text-text-primary">Share Your Link</p>
+                        <p class="text-sm text-text-secondary">Send your unique referral link to friends and family</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                    <div>
+                        <p class="font-medium text-text-primary">They Sign Up & Invest</p>
+                        <p class="text-sm text-text-secondary">Your referral creates an account and makes their first investment of $100+</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                    <div>
+                        <p class="font-medium text-text-primary">Earn Rewards</p>
+                        <p class="text-sm text-text-secondary">Receive $50 bonus for each successful referral. They get $50 too!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 p-4 bg-white rounded-lg">
+                <div class="flex items-start space-x-3">
+                    <svg class="w-6 h-6 text-accent flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div>
+                        <p class="text-sm font-medium text-text-primary">No limit on earnings!</p>
+                        <p class="text-sm text-text-secondary">Refer unlimited friends and earn $50 for each successful referral. Terms and conditions apply.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Payout & Bank Settings Tab -->
+<div id="payout-tab" class="tab-content hidden">
+    <div class="card p-6 mb-6">
+        <h2 class="text-xl font-bold text-text-primary mb-6">Payout & Bank Settings</h2>
+
+        <!-- Bank Accounts Section -->
+        <div class="mb-8">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
+                <div>
+                    <h3 class="font-semibold text-text-primary mb-1">Linked Bank Accounts</h3>
+                    <p class="text-sm text-text-secondary">Manage your bank accounts for receiving investment returns</p>
+                </div>
+                <button class="btn btn-primary mt-4 lg:mt-0 w-full lg:w-auto">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Add Bank Account
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Primary Bank Account -->
+                <div class="p-4 bg-gradient-to-br from-primary-50 to-accent-50 border border-primary-200 rounded-lg">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                        <div class="flex items-start space-x-4 flex-1">
+                            <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <p class="font-semibold text-text-primary">Chase Bank</p>
+                                    <span class="badge badge-primary">Primary</span>
+                                </div>
+                                <p class="text-sm text-text-secondary">Account ending in ****4567</p>
+                                <p class="text-xs text-text-tertiary mt-1">Added: November 15, 2025</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2 mt-3 lg:mt-0">
+                            <button class="btn btn-secondary text-sm py-2 px-4">Edit</button>
+                            <button class="text-sm text-error hover:text-error-600 px-4">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Bank Account -->
+                <div class="p-4 bg-surface border border-border rounded-lg">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                        <div class="flex items-start space-x-4 flex-1">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-text-primary mb-1">Bank of America</p>
+                                <p class="text-sm text-text-secondary">Account ending in ****8921</p>
+                                <p class="text-xs text-text-tertiary mt-1">Added: October 20, 2025</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2 mt-3 lg:mt-0">
+                            <button class="btn btn-secondary text-sm py-2 px-4">Set Primary</button>
+                            <button class="btn btn-secondary text-sm py-2 px-4">Edit</button>
+                            <button class="text-sm text-error hover:text-error-600 px-4">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Crypto Payout Addresses Section -->
+        <div class="mb-8">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
+                <div>
+                    <h3 class="font-semibold text-text-primary mb-1">Cryptocurrency Payout Addresses</h3>
+                    <p class="text-sm text-text-secondary">Manage your crypto wallet addresses for receiving digital asset returns</p>
+                </div>
+                <button class="btn btn-primary mt-4 lg:mt-0 w-full lg:w-auto">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Add Crypto Address
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <!-- USDC Address -->
+                <div class="p-4 bg-surface border border-border rounded-lg">
+                    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between">
+                        <div class="flex items-start space-x-4 flex-1">
+                            <div class="w-12 h-12 bg-accent-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <p class="font-semibold text-text-primary">USDC (Solana)</p>
+                                    <span class="badge badge-success">Verified</span>
+                                </div>
+                                <p class="text-sm text-text-secondary font-mono break-all">7xKXzy8v...HDR9mPq</p>
+                                <p class="text-xs text-text-tertiary mt-1">Added: December 1, 2025</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2 mt-3 lg:mt-0">
+                            <button class="btn btn-secondary text-sm py-2 px-4">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                </svg>
+                                Copy
+                            </button>
+                            <button class="text-sm text-error hover:text-error-600 px-4">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ETH Address -->
+                <div class="p-4 bg-surface border border-border rounded-lg">
+                    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between">
+                        <div class="flex items-start space-x-4 flex-1">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <p class="font-semibold text-text-primary">Ethereum (ERC-20)</p>
+                                    <span class="badge badge-warning">Pending Verification</span>
+                                </div>
+                                <p class="text-sm text-text-secondary font-mono break-all">0x742d35...89AB3f</p>
+                                <p class="text-xs text-text-tertiary mt-1">Added: December 10, 2025</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2 mt-3 lg:mt-0">
+                            <button class="btn btn-primary text-sm py-2 px-4">Verify</button>
+                            <button class="btn btn-secondary text-sm py-2 px-4">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                </svg>
+                                Copy
+                            </button>
+                            <button class="text-sm text-error hover:text-error-600 px-4">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payout Preferences -->
+        <div class="p-4 bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg border border-primary-200">
+            <h3 class="font-semibold text-text-primary mb-4">Payout Preferences</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">Default Payout Method</label>
+                    <select class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                        <option selected>Chase Bank (****4567)</option>
+                        <option>Bank of America (****8921)</option>
+                        <option>USDC Solana Address</option>
+                        <option>Ethereum Address</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-text-primary mb-2">Payout Frequency</label>
+                    <select class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                        <option selected>Monthly</option>
+                        <option>Quarterly</option>
+                        <option>Annually</option>
+                        <option>On-Demand</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                    <div>
+                        <p class="font-medium text-text-primary">Auto-reinvest Returns</p>
+                        <p class="text-sm text-text-secondary">Automatically reinvest returns into new opportunities</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="flex justify-end mt-6">
+                <button class="btn btn-primary w-full lg:w-auto">Save Preferences</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-border lg:hidden z-40">
+        <div class="grid grid-cols-5 h-16">
+            <a href="investor_dashboard.html" class="flex flex-col items-center justify-center space-y-1 text-text-secondary hover:text-primary transition-colors duration-150">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                <span class="text-xs font-medium">Home</span>
+            </a>
+            <a href="internal_investment_marketplace.html" class="flex flex-col items-center justify-center space-y-1 text-text-secondary hover:text-primary transition-colors duration-150">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <span class="text-xs font-medium">Explore</span>
+            </a>
+            <a href="secondary_market_page.html" class="flex flex-col items-center justify-center -mt-4">
+                <div class="w-14 h-14 bg-surface rounded-full flex items-center justify-center shadow-lg border-2 border-border">
+                    <svg class="w-7 h-7 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                </div>
+                <span class="text-xs font-medium text-text-secondary mt-1">Trade</span>
+            </a>
+            <a href="wallet_management.html" class="flex flex-col items-center justify-center space-y-1 text-text-secondary hover:text-primary transition-colors duration-150">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                </svg>
+                <span class="text-xs font-medium">Wallet</span>
+            </a>
+            <a href="investor_settings_page.html" class="flex flex-col items-center justify-center space-y-1 text-primary">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-xs font-medium">Settings</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutModal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6 animate-slide-up">
+            <div class="flex items-center space-x-4 mb-4">
+                <div class="w-12 h-12 bg-error-100 rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-text-primary">Sign Out</h3>
+                    <p class="text-sm text-text-secondary">Are you sure you want to sign out?</p>
+                </div>
+            </div>
+            <div class="flex space-x-3 mt-6">
+                <button onclick="closeLogoutModal()" class="flex-1 btn btn-secondary">Cancel</button>
+                <a href="landing_page.html" class="flex-1 btn btn-error">Sign Out</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Sidebar Toggle
+        const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+
+        mobileSidebarToggle.addEventListener('click', () => {
+            mobileSidebar.classList.toggle('-translate-x-full');
+            mobileSidebarOverlay.classList.toggle('hidden');
+        });
+
+        function closeMobileSidebar() {
+            mobileSidebar.classList.add('-translate-x-full');
+            mobileSidebarOverlay.classList.add('hidden');
+        }
+
+        // Profile Dropdown
+        const profileBtn = document.getElementById('profileBtn');
+        const profileDropdown = document.getElementById('profileDropdown');
+
+        profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            profileDropdown.classList.add('hidden');
+        });
+
+        // Logout Modal
+        const logoutBtn = document.getElementById('logoutBtn');
+        const logoutModal = document.getElementById('logoutModal');
+
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            logoutModal.classList.remove('hidden');
+        });
+
+        function closeLogoutModal() {
+            logoutModal.classList.add('hidden');
+        }
+
+        // Desktop Tab Switching
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('tab-content-active');
+            });
+
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('tab-active');
+            });
+
+            // Show selected tab content
+            const selectedTab = document.getElementById(tabName + '-tab');
+            if (selectedTab) {
+                selectedTab.classList.remove('hidden');
+                selectedTab.classList.add('tab-content-active');
+            }
+
+            // Add active class to selected tab button
+            const selectedButton = document.querySelector(`.tab-button[data-tab="${tabName}"]`);
+            if (selectedButton) {
+                selectedButton.classList.add('tab-active');
+            }
+        }
+
+        // Mobile Tab Toggle (Accordion)
+        function toggleMobileTab(tabName) {
+            const tabContent = document.getElementById(tabName + '-tab');
+            const icon = document.querySelector(`.mobile-tab-icon[data-mobile-tab="${tabName}"]`);
+            
+            // Close all other tabs
+            document.querySelectorAll('.tab-content').forEach(content => {
+                if (content.id !== tabName + '-tab') {
+                    content.classList.add('hidden');
+                }
+            });
+
+            // Reset all icons
+            document.querySelectorAll('.mobile-tab-icon').forEach(i => {
+                if (i.dataset.mobileTab !== tabName) {
+                    i.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Toggle selected tab
+            if (tabContent) {
+                tabContent.classList.toggle('hidden');
+                
+                // Rotate icon
+                if (tabContent.classList.contains('hidden')) {
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            }
+        }
+
+        // Initialize first tab as active on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            switchTab('profile');
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

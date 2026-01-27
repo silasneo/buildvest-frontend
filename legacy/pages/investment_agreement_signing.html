@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign your investment documents to enable token issuance. Complete required legal documentation for your BuildVest investment.">
+    <title>Sign Investment Documents - BuildVest</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+    <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-surface">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center space-x-3">
+                        <img src="https://buildvest.net/buildvest-logo.png" alt="BuildVest" class="h-8 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 min-h-screen">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Payment Success Banner (Non-dismissible) -->
+            <div class="bg-success-50 border-l-4 border-success rounded-lg p-5 mb-8 animate-fade-in">
+                <div class="flex items-start space-x-3">
+                    <svg class="w-6 h-6 text-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-success mb-2 text-lg">✅ Payment Successful</h3>
+                        <p class="text-sm text-success">Your investment payment has been received successfully. To issue your tokens, we now need your signature on the required investment documents.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-2xl sm:text-3xl font-bold text-text-primary">Sign Investment Documents</h1>
+                    <span class="text-sm font-medium text-text-secondary">Step 4 of 5</span>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="relative">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-medium text-secondary">Amount</span>
+                        <span class="text-xs font-medium text-secondary">Payment</span>
+                        <span class="text-xs font-medium text-secondary">Review</span>
+                        <span class="text-xs font-medium text-primary">Sign Documents</span>
+                        <span class="text-xs font-medium text-text-tertiary">Tokens Issued</span>
+                    </div>
+                    <div class="w-full bg-surface-200 rounded-full h-2">
+                        <div class="bg-primary h-2 rounded-full transition-all duration-500" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explanation Text -->
+            <div class="mb-6">
+                <p class="text-text-secondary text-base leading-relaxed">Before your tokens can be issued, you're required to review and sign the legal documents related to this investment. You may complete this step now or return later from your portfolio.</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Investment Summary Card -->
+                <div class="card p-6 animate-fade-in">
+                    <h2 class="text-xl font-bold text-text-primary mb-6">Investment Summary</h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Asset Information -->
+                        <div class="flex items-start space-x-4 pb-6 border-b border-border">
+                            <div class="relative h-24 w-24 flex-shrink-0 rounded-lg overflow-hidden">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c1976c8f-1764642434838.png" alt="Downtown Office Complex" class="w-full h-full object-cover" onerror="this.src='https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=400'; this.onerror=null;">
+                            </div>
+                            <div class="flex-1">
+                                <h3 id="assetName" class="text-lg font-bold text-text-primary mb-1">Downtown Office Complex</h3>
+                                <p class="text-sm text-text-secondary mb-3">Real Estate • Commercial Property</p>
+                                <p class="text-sm text-text-secondary mb-1">Issuer: <span class="font-semibold text-text-primary">BuildVest Properties LLC</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Investment Details with Status Badges -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-sm text-text-secondary mb-1">Investment Amount</p>
+                                    <p id="investmentAmount" class="font-mono text-2xl font-bold text-text-primary">$500.00</p>
+                                    <span class="badge badge-success text-xs mt-2 inline-block">Paid</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-text-secondary mb-1">Tokens to be Issued</p>
+                                    <p id="tokenQuantity" class="font-mono text-2xl font-bold text-warning">10</p>
+                                    <span class="badge badge-warning text-xs mt-2 inline-block">Pending Signature</span>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-sm text-text-secondary mb-1">Payment Status</p>
+                                    <div class="flex items-center space-x-2 mt-2">
+                                        <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span class="font-semibold text-success">Completed</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-text-secondary mb-1">Documents Status</p>
+                                    <div class="flex items-center space-x-2 mt-2">
+                                        <svg class="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span class="font-semibold text-warning">Pending</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-text-secondary mb-1">Token Issuance</p>
+                                    <div class="flex items-center space-x-2 mt-2">
+                                        <svg class="w-5 h-5 text-text-tertiary" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span class="font-semibold text-text-tertiary">On Hold</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documents Section -->
+                <div class="card p-6 animate-slide-up" style="animation-delay: 0.2s;">
+                    <h2 class="text-xl font-bold text-text-primary mb-6">Documents Pending Signature</h2>
+                    
+                    <div class="space-y-4 mb-6">
+                        <!-- Document 1 -->
+                        <div class="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-surface transition-colors duration-150" id="document1">
+                            <div class="flex items-start space-x-4 flex-1">
+                                <svg class="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path>
+                                </svg>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-text-primary mb-1">Subscription Agreement</h3>
+                                    <p class="text-sm text-text-secondary">Investment subscription and terms agreement</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 ml-4">
+                                <span class="badge badge-warning text-xs doc-status" data-doc="1">Pending</span>
+                                <button class="btn btn-sm btn-outline sign-btn" data-doc="1" onclick="reviewAndSign(1)">Review & Sign</button>
+                            </div>
+                        </div>
+
+                        <!-- Document 2 -->
+                        <div class="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-surface transition-colors duration-150" id="document2">
+                            <div class="flex items-start space-x-4 flex-1">
+                                <svg class="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path>
+                                </svg>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-text-primary mb-1">Token Purchase Agreement</h3>
+                                    <p class="text-sm text-text-secondary">Digital security token purchase terms</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 ml-4">
+                                <span class="badge badge-warning text-xs doc-status" data-doc="2">Pending</span>
+                                <button class="btn btn-sm btn-outline sign-btn" data-doc="2" onclick="reviewAndSign(2)">Review & Sign</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DocuSeal Embed Container -->
+                    <div id="docusealContainer" class="hidden">
+                        <div class="border-2 border-primary-200 rounded-xl p-6 bg-primary-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold text-text-primary">Document Signing</h3>
+                                <button onclick="closeDocuSeal()" class="text-text-secondary hover:text-text-primary">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <!-- Loading State -->
+                            <div id="docusealLoading" class="flex flex-col items-center justify-center py-12">
+                                <svg class="animate-spin h-12 w-12 text-primary mb-4" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                <p class="text-text-secondary">Loading document...</p>
+                            </div>
+
+                            <!-- DocuSeal Iframe Placeholder -->
+                            <div id="docusealFrame" class="hidden bg-white rounded-lg overflow-hidden" style="min-height: 600px;">
+                                <!-- Simulated DocuSeal Interface -->
+                                <div class="p-8">
+                                    <div class="border-b border-border pb-4 mb-6">
+                                        <h4 class="text-xl font-bold text-text-primary mb-2" id="currentDocTitle">Subscription Agreement</h4>
+                                        <p class="text-sm text-text-secondary">Please review the document and sign at the marked locations</p>
+                                    </div>
+                                    
+                                    <div class="space-y-6 text-text-secondary leading-relaxed">
+                                        <p class="text-sm">This is a simulated document signing interface. In production, this would be an embedded DocuSeal iframe showing the actual legal document.</p>
+                                        
+                                        <div class="bg-surface p-6 rounded-lg">
+                                            <h5 class="font-semibold text-text-primary mb-3">Document Preview</h5>
+                                            <p class="text-sm mb-4">The investor agrees to purchase [X] tokens at $[Y] per token...</p>
+                                            <div class="border-2 border-dashed border-border rounded p-4 text-center">
+                                                <p class="text-sm text-text-tertiary mb-2">Sign Here</p>
+                                                <div class="inline-block border-b-2 border-text-tertiary w-48 mb-2"></div>
+                                                <p class="text-xs text-text-tertiary">Signature Required</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex justify-end space-x-4">
+                                            <button onclick="closeDocuSeal()" class="btn btn-ghost">Cancel</button>
+                                            <button onclick="completeSignature()" class="btn btn-primary">
+                                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                </svg>
+                                                Complete Signature
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Error State -->
+                            <div id="docusealError" class="hidden bg-error-50 border-l-4 border-error rounded p-4">
+                                <div class="flex items-start space-x-3">
+                                    <svg class="w-6 h-6 text-error flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <div>
+                                        <h4 class="font-semibold text-error mb-1">Error Loading Document</h4>
+                                        <p class="text-sm text-error">Unable to load the signing interface. Please try again or contact support.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completion Notice (Hidden until all docs signed) -->
+                <div id="completionNotice" class="hidden bg-success-50 border-l-4 border-success rounded-lg p-5 animate-fade-in">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-success mb-2">✔ All Documents Signed</h3>
+                            <p class="text-sm text-success">Your tokens will now be issued to your BuildVest custodial wallet.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safe Exit Reminder -->
+                <div class="bg-primary-50 border border-primary-200 rounded-lg p-5">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-primary mb-2">Your investment is safe</h4>
+                            <p class="text-sm text-primary">You can complete document signing anytime from your Portfolio to enable token issuance. Your funds have been securely received.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="window.location.href='portfolio_page.html'" class="btn btn-ghost flex-1 sm:flex-none">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Sign Later from Portfolio
+                    </button>
+                    <button id="proceedBtn" class="btn btn-primary flex-1" disabled>
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                        Proceed to Token Issuance
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-3">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_17cdaab5e-1764101894473.png" alt="BuildVest footer logo" class="h-8 w-auto" onerror="this.src='https://buildvest.net/img/BuildvestLogo_icon_white.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    <span class="text-lg font-bold">BuildVest</span>
+                </div>
+                <p class="text-slate-400 text-sm text-center md:text-left">© 2026 BuildVest. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        /* Custom Animations */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+        }
+
+        .animate-slide-up {
+            opacity: 0;
+            animation: slide-up 0.6s ease-out forwards;
+        }
+
+        /* Disabled button styling */
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+
+    <script>
+        // Load investment data from previous step
+        let investmentData = {
+            assetName: 'Downtown Office Complex',
+            amount: 500,
+            shares: 10
+        };
+
+        try {
+            const storedData = sessionStorage.getItem('confirmationData') || sessionStorage.getItem('investmentData');
+            if (storedData) {
+                investmentData = JSON.parse(storedData);
+            }
+        } catch (e) {
+            console.error('Error loading investment data:', e);
+        }
+
+        // Update display with stored data
+        if (document.getElementById('assetName')) {
+            document.getElementById('assetName').textContent = investmentData.assetName || 'Downtown Office Complex';
+        }
+        if (document.getElementById('investmentAmount')) {
+            document.getElementById('investmentAmount').textContent = formatCurrency(investmentData.amount || 500);
+        }
+        if (document.getElementById('tokenQuantity')) {
+            document.getElementById('tokenQuantity').textContent = (investmentData.shares || 10).toString();
+        }
+
+        // Format currency helper
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+        }
+
+        // Track document signing status
+        let documentStatus = {
+            1: false, // Subscription Agreement
+            2: false  // Token Purchase Agreement
+        };
+
+        let currentSigningDoc = null;
+
+        // Review and Sign function
+        function reviewAndSign(docNumber) {
+            currentSigningDoc = docNumber;
+            
+            // Show DocuSeal container
+            const container = document.getElementById('docusealContainer');
+            const loading = document.getElementById('docusealLoading');
+            const frame = document.getElementById('docusealFrame');
+            const error = document.getElementById('docusealError');
+            
+            container.classList.remove('hidden');
+            loading.classList.remove('hidden');
+            frame.classList.add('hidden');
+            error.classList.add('hidden');
+
+            // Update document title
+            const titles = {
+                1: 'Subscription Agreement',
+                2: 'Token Purchase Agreement'
+            };
+            document.getElementById('currentDocTitle').textContent = titles[docNumber];
+
+            // Disable sign buttons while viewing document
+            document.querySelectorAll('.sign-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+
+            // Simulate loading DocuSeal (in production, this would load actual DocuSeal embed)
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                frame.classList.remove('hidden');
+            }, 1500);
+
+            // Scroll to signing area
+            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Close DocuSeal function
+        function closeDocuSeal() {
+            const container = document.getElementById('docusealContainer');
+            container.classList.add('hidden');
+            
+            // Re-enable sign buttons
+            document.querySelectorAll('.sign-btn').forEach(btn => {
+                btn.disabled = false;
+            });
+            
+            currentSigningDoc = null;
+        }
+
+        // Complete Signature function
+        function completeSignature() {
+            if (currentSigningDoc === null) return;
+
+            // Mark document as signed
+            documentStatus[currentSigningDoc] = true;
+
+            // Update UI for signed document
+            const docElement = document.getElementById(`document${currentSigningDoc}`);
+            const statusBadge = docElement.querySelector('.doc-status');
+            const signButton = docElement.querySelector('.sign-btn');
+
+            statusBadge.textContent = 'Signed';
+            statusBadge.classList.remove('badge-warning');
+            statusBadge.classList.add('badge-success');
+
+            signButton.textContent = '✓ Signed';
+            signButton.classList.add('btn-success');
+            signButton.disabled = true;
+
+            // Close DocuSeal
+            closeDocuSeal();
+
+            // Check if all documents are signed
+            checkAllDocumentsSigned();
+
+            // Show success feedback
+            showSignatureSuccess();
+        }
+
+        // Check if all documents are signed
+        function checkAllDocumentsSigned() {
+            const allSigned = Object.values(documentStatus).every(status => status === true);
+            
+            if (allSigned) {
+                // Show completion notice
+                document.getElementById('completionNotice').classList.remove('hidden');
+                
+                // Enable proceed button
+                const proceedBtn = document.getElementById('proceedBtn');
+                proceedBtn.disabled = false;
+                
+                // Scroll to completion notice
+                document.getElementById('completionNotice').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }
+        }
+
+        // Show signature success feedback
+        function showSignatureSuccess() {
+            // Create temporary success notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-success text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in';
+            notification.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Document signed successfully!</span>
+                </div>
+            `;
+            document.body.appendChild(notification);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Proceed button handler
+        document.getElementById('proceedBtn').addEventListener('click', () => {
+            // Store signing completion status
+            const signingData = {
+                ...investmentData,
+                documentsSigned: true,
+                signedAt: new Date().toISOString()
+            };
+            sessionStorage.setItem('confirmationData', JSON.stringify(signingData));
+            
+            // Navigate to success page
+            window.location.href = 'investment_success_confirmation.html';
+        });
+
+        // Handle page exit - show reminder if documents not signed
+        window.addEventListener('beforeunload', (e) => {
+            const allSigned = Object.values(documentStatus).every(status => status === true);
+            if (!allSigned) {
+                e.preventDefault();
+                e.returnValue = 'You have unsigned documents. You can complete signing from your Portfolio later.';
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Treasury Management - Capital inflows/outflows, redemption prefunding, escrow status, and settlement controls.">
+    <title>Treasury Management - BuildVest Originator</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        .treasury-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .treasury-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+        .treasury-card.inflow::before { background-color: #15B79E; }
+        .treasury-card.outflow::before { background-color: #DC2626; }
+        .treasury-card.pending::before { background-color: #F59E0B; }
+    </style>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-background">
+     <!-- Top Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white border-b border-border">
+        <div class="px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo & Mobile Menu -->
+                <div class="flex items-center space-x-4">
+                    <button id="sidebarToggle" class="lg:hidden p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                        <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <a href="originator_dashboard.html" class="flex items-center space-x-3">
+                        <img src="https://buildvest.net/buildvest-logo.png" alt="Buildvest" class="h-8 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    </a>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Notifications -->
+                    <button onclick="window.location.href='originator_all_notifications_page.html'" class="relative p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                        <svg class="w-6 h-6 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-warning rounded-full"></span>
+                    </button>
+
+                    <!-- User Menu -->
+                    <div class="relative">
+                        <button id="userMenuBtn" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1a5bb1a45-1764657839507.png" alt="User profile" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                            <span class="hidden sm:block text-sm font-medium text-text-primary">Urban Developments</span>
+                            <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <!-- User Dropdown -->
+                        <div id="userMenu" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-border py-2">
+                            <a href="originator_settings_page.html" class="block px-4 py-2 text-sm text-text-secondary hover:bg-surface transition-colors duration-150">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Organization Settings
+                            </a>
+                            <div class="border-t border-border my-2"></div>
+                            <a href="landing_page.html" class="block px-4 py-2 text-sm text-error hover:bg-surface transition-colors duration-150">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed left-0 top-16 bottom-0 w-64 bg-white border-r border-border z-30 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto">
+        <nav class="p-4 space-y-2">
+            <a href="originator_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="originator_assets_management.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+                <span>Assets</span>
+            </a>
+
+            <a href="originator_investors_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                <span>Investors</span>
+            </a>
+
+            <a href="originator_messages_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                </svg>
+                <span>Messages</span>
+                <span class="ml-auto badge badge-warning">3</span>
+            </a>
+
+            <a href="originator_treasury_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-primary-50 text-primary font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                </svg>
+                <span>Treasury</span>
+            </a>
+
+            <a href="originator_analytics_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                <span>Analytics</span>
+            </a>
+
+            <div class="border-t border-border my-4"></div>
+
+            <a href="originator_settings_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>Settings</span>
+            </a>
+
+            <a href="originator_help_support_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <span>Help & Support</span>
+            </a>
+        </nav>
+    </aside>
+
+    <div id="sidebarOverlay" class="hidden fixed inset-0 bg-slate-900/50 z-20 lg:hidden" onclick="closeSidebar()"></div>
+
+    <!-- Main Content -->
+    <main class="lg:ml-64 pt-16 min-h-screen">
+        <div class="p-4 sm:p-6 lg:p-8">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-2xl sm:text-3xl font-bold text-text-primary mb-2">Treasury Management</h1>
+                <p class="text-text-secondary">Capital management, settlement controls, and redemption prefunding</p>
+            </div>
+
+            <!-- Treasury Overview Cards -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Available Balance -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="badge badge-success">Healthy</span>
+                    </div>
+                    <p class="text-3xl font-bold text-text-primary mb-1">$2.4M</p>
+                    <p class="text-sm text-text-secondary">Available Balance</p>
+                </div>
+
+                <!-- Pending Inflows -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
+                            </svg>
+                        </div>
+                        <span class="badge bg-primary-100 text-primary">Incoming</span>
+                    </div>
+                    <p class="text-3xl font-bold text-text-primary mb-1">$850K</p>
+                    <p class="text-sm text-text-secondary">Pending Inflows</p>
+                </div>
+
+                <!-- Upcoming Outflows -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-error-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"></path>
+                            </svg>
+                        </div>
+                        <span class="badge badge-error">10 days</span>
+                    </div>
+                    <p class="text-3xl font-bold text-text-primary mb-1">$1.2M</p>
+                    <p class="text-sm text-text-secondary">Upcoming Redemptions</p>
+                </div>
+
+                <!-- Escrow Reserves -->
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <span class="badge badge-warning">Reserved</span>
+                    </div>
+                    <p class="text-3xl font-bold text-text-primary mb-1">$680K</p>
+                    <p class="text-sm text-text-secondary">Escrow Reserves</p>
+                </div>
+            </div>
+
+            <!-- Cash Flow Chart -->
+            <div class="card p-6 mb-8">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-text-primary mb-1">Cash Flow Analysis</h2>
+                        <p class="text-sm text-text-secondary">Inflows vs outflows over time</p>
+                    </div>
+                    <div class="flex items-center space-x-2 mt-4 sm:mt-0">
+                        <button class="btn btn-outline btn-sm">3M</button>
+                        <button class="btn btn-outline btn-sm">6M</button>
+                        <button class="btn btn-primary btn-sm">1Y</button>
+                    </div>
+                </div>
+                <canvas id="cashFlowChart" class="w-full" style="max-height: 300px;"></canvas>
+            </div>
+
+            <!-- Treasury Actions & Alerts -->
+            <div class="grid lg:grid-cols-2 gap-6 mb-8">
+                <!-- Redemption Prefunding Alert -->
+                <div class="card treasury-card outflow p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-error-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-text-primary">Redemption Prefunding Required</h3>
+                                <p class="text-sm text-text-secondary">Downtown Office Complex</p>
+                            </div>
+                        </div>
+                        <span class="badge badge-error">Urgent</span>
+                    </div>
+                    <div class="space-y-3 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-text-secondary">Maturity Date</span>
+                            <span class="font-semibold text-text-primary">Dec 25, 2025</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-text-secondary">Redemption Amount</span>
+                            <span class="font-bold text-error">$1,200,000</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-text-secondary">Current Funding</span>
+                            <span class="font-semibold text-warning">$0</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-text-secondary">Days Remaining</span>
+                            <span class="font-bold text-error">10 days</span>
+                        </div>
+                    </div>
+                    <button onclick="initiateRedemptionFunding('downtown-office')" class="w-full btn btn-error">Initiate Funding Transfer</button>
+                </div>
+
+                <!-- Escrow Management -->
+                <div class="card treasury-card pending p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-warning-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-text-primary">Escrow Status</h3>
+                                <p class="text-sm text-text-secondary">Solar Energy Project</p>
+                            </div>
+                        </div>
+                        <span class="badge badge-warning">In Escrow</span>
+                    </div>
+                    <div class="space-y-3 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-text-secondary">Funding Close Date</span>
+                            <span class="font-semibold text-text-primary">Dec 30, 2025</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-text-secondary">Total Raised</span>
+                            <span class="font-bold text-success">$850,000</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-text-secondary">Escrow Balance</span>
+                            <span class="font-semibold text-warning">$850,000</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-text-secondary">Release Eligible</span>
+                            <span class="font-semibold text-success">Yes (15 days)</span>
+                        </div>
+                    </div>
+                    <button onclick="releaseEscrow('solar-energy')" class="w-full btn btn-warning">Release Escrow Funds</button>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="card p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-text-primary mb-1">Recent Transactions</h2>
+                        <p class="text-sm text-text-secondary">Latest treasury movements and settlements</p>
+                    </div>
+                    <button onclick="window.location.href='#'" class="btn btn-outline btn-sm">View All</button>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Inflow Transaction -->
+                    <div class="treasury-card inflow p-4 bg-success-50 rounded-lg">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-success-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-text-primary">Investment Received</p>
+                                    <p class="text-sm text-text-secondary">Sarah Johnson - Luxury Apartments</p>
+                                    <p class="text-xs text-text-tertiary mt-1">2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-success">+$50,000</p>
+                                <span class="badge badge-success text-xs">Completed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inflow Transaction -->
+                    <div class="treasury-card inflow p-4 bg-success-50 rounded-lg">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-success-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-text-primary">Investment Received</p>
+                                    <p class="text-sm text-text-secondary">Michael Rodriguez - Solar Energy Project</p>
+                                    <p class="text-xs text-text-tertiary mt-1">5 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-success">+$25,000</p>
+                                <span class="badge badge-success text-xs">Completed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outflow Transaction -->
+                    <div class="treasury-card outflow p-4 bg-error-50 rounded-lg">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-error-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-text-primary">Distribution Payment</p>
+                                    <p class="text-sm text-text-secondary">Medical Office Portfolio - Q4 Distribution</p>
+                                    <p class="text-xs text-text-tertiary mt-1">Yesterday</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-error">-$42,500</p>
+                                <span class="badge badge-success text-xs">Completed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Transaction -->
+                    <div class="treasury-card pending p-4 bg-warning-50 rounded-lg">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-warning-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-text-primary">Escrow Hold</p>
+                                    <p class="text-sm text-text-secondary">Coastal Development - Investor Funds</p>
+                                    <p class="text-xs text-text-tertiary mt-1">2 days ago</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-warning">$120,000</p>
+                                <span class="badge badge-warning text-xs">In Escrow</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inflow Transaction -->
+                    <div class="treasury-card inflow p-4 bg-success-50 rounded-lg">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-success-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-text-primary">Secondary Market Sale</p>
+                                    <p class="text-sm text-text-secondary">Transaction Fee - Solar Energy Project</p>
+                                    <p class="text-xs text-text-tertiary mt-1">3 days ago</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-success">+$850</p>
+                                <span class="badge badge-success text-xs">Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sidebar toggle
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        });
+
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        }
+
+        // User menu toggle
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userMenu = document.getElementById('userMenu');
+
+        userMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userMenuBtn.contains(e.target) && !userMenu.contains(e.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+        // Treasury actions
+        function initiateRedemptionFunding(assetId) {
+            alert(`Initiating redemption funding for ${assetId}.\n\nThis would open a funding transfer workflow to prefund the redemption escrow account.`);
+        }
+
+        function releaseEscrow(assetId) {
+            alert(`Releasing escrow funds for ${assetId}.\n\nThis would process the escrow release and transfer funds to the originator's primary account.`);
+        }
+
+        // Cash Flow Chart
+        const ctx = document.getElementById('cashFlowChart').getContext('2d');
+        const cashFlowChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Inflows',
+                    data: [450, 620, 580, 720, 890, 950, 1100, 980, 1050, 1200, 1150, 1300],
+                    backgroundColor: 'rgba(21, 183, 158, 0.8)',
+                    borderColor: '#15B79E',
+                    borderWidth: 1
+                }, {
+                    label: 'Outflows',
+                    data: [320, 280, 450, 380, 420, 550, 480, 620, 580, 690, 720, 850],
+                    backgroundColor: 'rgba(220, 38, 38, 0.8)',
+                    borderColor: '#DC2626',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value) + 'K';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

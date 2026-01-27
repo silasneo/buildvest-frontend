@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Originator Asset Detail Hub - Comprehensive single-asset management with investor relations, blockchain records, and market activity.">
+    <title>Asset Detail Hub - BuildVest Originator</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+    
+    <style>
+        /* Tab Navigation */
+        .tab-nav {
+            border-bottom: 2px solid #E5E7EB;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .tab-button {
+            padding: 1rem 1.5rem;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            color: #6B7280;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.15s;
+            cursor: pointer;
+        }
+        
+        .tab-button:hover {
+            color: #017EFE;
+        }
+        
+        .tab-button.active {
+            color: #017EFE;
+            border-bottom-color: #017EFE;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Copy button */
+        .copy-btn {
+            padding: 0.25rem 0.5rem;
+            background: #F3F4F6;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        
+        .copy-btn:hover {
+            background: #E5E7EB;
+        }
+        
+        /* Blockchain explorer badge */
+        .explorer-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: #EFF6FF;
+            color: #2563EB;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.15s;
+            cursor: pointer;
+        }
+        
+        .explorer-badge:hover {
+            background: #DBEAFE;
+        }
+        
+        /* Status indicators */
+        .status-active { color: #059669; }
+        .status-pending { color: #D97706; }
+        .status-revoked { color: #DC2626; }
+        
+        /* Liquidity indicators */
+        .liquidity-low { background: #FEE2E2; color: #DC2626; }
+        .liquidity-medium { background: #FEF3C7; color: #D97706; }
+        .liquidity-high { background: #D1FAE5; color: #059669; }
+    </style>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-background">
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white border-b border-border">
+        <div class="px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo & Mobile Menu -->
+                <div class="flex items-center space-x-4">
+                    <button id="sidebarToggle" class="lg:hidden p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                        <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <a href="originator_dashboard.html" class="flex items-center space-x-3">
+                        <img src="https://buildvest.net/buildvest-logo.png" alt="Buildvest" class="h-8 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    </a>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Notifications -->
+                    <button onclick="window.location.href='originator_all_notifications_page.html'" class="relative p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                        <svg class="w-6 h-6 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-warning rounded-full"></span>
+                    </button>
+
+                    <!-- User Menu -->
+                    <div class="relative">
+                        <button id="userMenuBtn" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c23820a0-1765705658681.png" alt="User profile" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                            <span class="hidden sm:block text-sm font-medium text-text-primary">Urban Developments</span>
+                            <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <!-- User Dropdown -->
+                        <div id="userMenu" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-border py-2">
+                            <a href="originator_settings_page.html" class="block px-4 py-2 text-sm text-text-secondary hover:bg-surface transition-colors duration-150">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Organization Settings
+                            </a>
+                            <div class="border-t border-border my-2"></div>
+                            <a href="landing_page.html" class="block px-4 py-2 text-sm text-error hover:bg-surface transition-colors duration-150">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed left-0 top-16 bottom-0 w-64 bg-white border-r border-border z-30 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto">
+        <nav class="p-4 space-y-2">
+            <a href="originator_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="originator_assets_management.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-primary-50 text-primary font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+                <span>Assets</span>
+            </a>
+
+            <a href="originator_investors_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                <span>Investors</span>
+            </a>
+
+            <a href="originator_messages_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                </svg>
+                <span>Messages</span>
+                <span class="ml-auto badge badge-warning">3</span>
+            </a>
+
+            <a href="originator_treasury_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                </svg>
+                <span>Treasury</span>
+            </a>
+
+            <a href="originator_analytics_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                <span>Analytics</span>
+            </a>
+
+            <div class="border-t border-border my-4"></div>
+
+            <a href="originator_settings_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>Settings</span>
+            </a>
+
+            <a href="originator_help_support_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <span>Help & Support</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Sidebar Overlay (Mobile) -->
+    <div id="sidebarOverlay" class="hidden fixed inset-0 bg-slate-900/50 z-20 lg:hidden"></div>
+
+    <!-- Main Content -->
+    <main class="lg:ml-64 pt-16 min-h-screen">
+        <div class="p-4 sm:p-6 lg:p-8">
+            <!-- Breadcrumb & Header -->
+            <div class="mb-6">
+                <nav class="flex items-center space-x-2 text-sm text-text-secondary mb-4">
+                    <a href="originator_assets_management.html" class="hover:text-primary">Assets</a>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span class="text-text-primary">Downtown Office Complex</span>
+                </nav>
+                
+                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                    <div class="flex items-start space-x-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1fce301ac-1764748264221.png" alt="Asset" class="w-20 h-20 rounded-lg object-cover" onerror="this.src='https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=200'; this.onerror=null;">
+                        <div>
+                            <h1 class="text-2xl font-bold text-text-primary mb-2">Downtown Office Complex</h1>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="badge bg-primary-100 text-primary">Commercial Real Estate</span>
+                                <span class="badge badge-success">Live (Raising)</span>
+                                <span class="text-sm text-text-tertiary">ID: AST-2024-001</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2">
+                        <button onclick="alert('Asset settings panel would open here')" class="btn btn-outline">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </button>
+                        <button onclick="alert('Actions menu would open here')" class="btn btn-primary">Actions</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tab-nav flex space-x-1 mb-6 bg-white rounded-lg">
+                <button onclick="switchTab('overview')" id="tab-overview" class="tab-button active">Overview</button>
+                <button onclick="switchTab('investors')" id="tab-investors" class="tab-button">Investors</button>
+                <button onclick="switchTab('blockchain')" id="tab-blockchain" class="tab-button">Blockchain Records</button>
+                <button onclick="switchTab('documents')" id="tab-documents" class="tab-button">Documents</button>
+                <button onclick="switchTab('messages')" id="tab-messages" class="tab-button">Messages</button>
+                <button onclick="switchTab('secondary')" id="tab-secondary" class="tab-button">Secondary Market</button>
+            </div>
+
+            <!-- Tab Content: Overview -->
+            <div id="content-overview" class="tab-content active">
+                <div class="grid lg:grid-cols-3 gap-6">
+                    <!-- Summary Cards -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="card p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-4">Asset Summary</h2>
+                            <div class="space-y-4">
+                                <div class="flex justify-between py-3 border-b border-border">
+                                    <span class="text-text-secondary">Asset Type</span>
+                                    <span class="font-medium text-text-primary">Commercial Real Estate</span>
+                                </div>
+                                <div class="flex justify-between py-3 border-b border-border">
+                                    <span class="text-text-secondary">Location</span>
+                                    <span class="font-medium text-text-primary">New York, NY</span>
+                                </div>
+                                <div class="flex justify-between py-3 border-b border-border">
+                                    <span class="text-text-secondary">Total Asset Value</span>
+                                    <span class="font-medium text-text-primary">$3,200,000</span>
+                                </div>
+                                <div class="flex justify-between py-3 border-b border-border">
+                                    <span class="text-text-secondary">Target Yield</span>
+                                    <span class="font-medium text-success">12.5% APY</span>
+                                </div>
+                                <div class="flex justify-between py-3">
+                                    <span class="text-text-secondary">Investment Term</span>
+                                    <span class="font-medium text-text-primary">36 months</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-4">Funding Metrics</h2>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-text-secondary">Funding Progress</span>
+                                        <span class="font-bold text-primary">68% Complete</span>
+                                    </div>
+                                    <div class="w-full bg-surface-200 rounded-full h-3 mb-2">
+                                        <div class="bg-primary h-3 rounded-full" style="width: 68%"></div>
+                                    </div>
+                                    <p class="text-sm text-text-tertiary">$2,176,000 raised of $3,200,000 goal</p>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4 pt-4">
+                                    <div class="p-4 bg-surface rounded-lg">
+                                        <p class="text-sm text-text-secondary mb-1">Total Investors</p>
+                                        <p class="text-2xl font-bold text-text-primary">245</p>
+                                    </div>
+                                    <div class="p-4 bg-surface rounded-lg">
+                                        <p class="text-sm text-text-secondary mb-1">Avg. Investment</p>
+                                        <p class="text-2xl font-bold text-text-primary">$8,881</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Dates & Status -->
+                    <div class="space-y-6">
+                        <div class="card p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-4">Key Dates</h2>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                                    <div>
+                                        <p class="text-sm font-medium text-text-primary">Listing Date</p>
+                                        <p class="text-sm text-text-tertiary">Nov 15, 2024</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-warning rounded-full mt-2"></div>
+                                    <div>
+                                        <p class="text-sm font-medium text-text-primary">Funding Close</p>
+                                        <p class="text-sm text-text-tertiary">Jan 15, 2025 (31 days)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-surface-300 rounded-full mt-2"></div>
+                                    <div>
+                                        <p class="text-sm font-medium text-text-primary">Token Mint Date</p>
+                                        <p class="text-sm text-text-tertiary">Jan 20, 2025</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-surface-300 rounded-full mt-2"></div>
+                                    <div>
+                                        <p class="text-sm font-medium text-text-primary">First Distribution</p>
+                                        <p class="text-sm text-text-tertiary">Apr 1, 2025</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-surface-300 rounded-full mt-2"></div>
+                                    <div>
+                                        <p class="text-sm font-medium text-text-primary">Maturity Date</p>
+                                        <p class="text-sm text-text-tertiary">Jan 15, 2028</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card p-6">
+                            <h2 class="text-xl font-bold text-text-primary mb-4">Status Overview</h2>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-text-secondary">Lifecycle Status</span>
+                                    <span class="badge badge-success">Live</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-text-secondary">Tokenization</span>
+                                    <span class="badge bg-surface text-text-secondary">Pending</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-text-secondary">Redemption Status</span>
+                                    <span class="badge bg-surface text-text-secondary">Not Due</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-text-secondary">Secondary Market</span>
+                                    <span class="badge bg-surface text-text-secondary">Disabled</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Investors -->
+            <div id="content-investors" class="tab-content">
+                <div class="card p-6 mb-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-text-primary mb-1">Investor Overview</h2>
+                            <p class="text-sm text-text-secondary">245 verified investors | 320,000 tokens allocated</p>
+                        </div>
+                        <button onclick="alert('Export investor list')" class="btn btn-outline">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Export List
+                        </button>
+                    </div>
+
+                    <!-- Investor Stats -->
+                    <div class="grid sm:grid-cols-3 gap-4 mb-6">
+                        <div class="p-4 bg-primary-50 rounded-lg">
+                            <p class="text-sm text-primary font-medium mb-1">Total Investors</p>
+                            <p class="text-2xl font-bold text-primary">245</p>
+                        </div>
+                        <div class="p-4 bg-secondary-50 rounded-lg">
+                            <p class="text-sm text-secondary font-medium mb-1">Tokens Allocated</p>
+                            <p class="text-2xl font-bold text-secondary">320,000</p>
+                        </div>
+                        <div class="p-4 bg-accent-50 rounded-lg">
+                            <p class="text-sm text-accent font-medium mb-1">Secondary Eligible</p>
+                            <p class="text-2xl font-bold text-accent">0 (0%)</p>
+                        </div>
+                    </div>
+
+                    <!-- Investor Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-surface">
+                                <tr>
+                                    <th class="text-left py-3 px-4 text-sm font-semibold text-text-primary">Investor</th>
+                                    <th class="text-left py-3 px-4 text-sm font-semibold text-text-primary">Jurisdiction</th>
+                                    <th class="text-center py-3 px-4 text-sm font-semibold text-text-primary">KYC Status</th>
+                                    <th class="text-right py-3 px-4 text-sm font-semibold text-text-primary">Tokens Allocated</th>
+                                    <th class="text-center py-3 px-4 text-sm font-semibold text-text-primary">Secondary Market</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-t border-border hover:bg-surface transition-colors">
+                                    <td class="py-3 px-4">
+                                        <p class="font-medium text-text-primary">Sarah Johnson</p>
+                                        <p class="text-xs text-text-tertiary">Individual Investor</p>
+                                    </td>
+                                    <td class="py-3 px-4 text-sm text-text-secondary">United States</td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="badge badge-success">✓ Verified</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right font-medium text-text-primary">5,200</td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="badge bg-surface text-text-secondary">Disabled</span>
+                                    </td>
+                                </tr>
+                                <tr class="border-t border-border hover:bg-surface transition-colors">
+                                    <td class="py-3 px-4">
+                                        <p class="font-medium text-text-primary">Michael Roberts</p>
+                                        <p class="text-xs text-text-tertiary">Individual Investor</p>
+                                    </td>
+                                    <td class="py-3 px-4 text-sm text-text-secondary">United Kingdom</td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="badge badge-success">✓ Verified</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right font-medium text-text-primary">3,800</td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="badge bg-surface text-text-secondary">Disabled</span>
+                                    </td>
+                                </tr>
+                                <tr class="border-t border-border hover:bg-surface transition-colors">
+                                    <td class="py-3 px-4">
+                                        <p class="font-medium text-text-primary">Nexus Capital LLC</p>
+                                        <p class="text-xs text-text-tertiary">Institutional Investor</p>
+                                    </td>
+                                    <td class="py-3 px-4 text-sm text-text-secondary">United States</td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="badge badge-success">✓ Verified</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right font-medium text-text-primary">25,000</td>
+                                    <td class="py-3 px-4 text-center">
+                                        <span class="badge bg-surface text-text-secondary">Disabled</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Blockchain Records -->
+            <div id="content-blockchain" class="tab-content">
+                <div class="space-y-6">
+                    <!-- Tokenization Overview -->
+                    <div class="card p-6">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_17eb1bbe6-1764679875123.png" alt="Solana" class="w-8 h-8">
+                            <div>
+                                <h2 class="text-xl font-bold text-text-primary">Tokenization Overview</h2>
+                                <p class="text-sm text-text-secondary">Solana Blockchain • Metaplex Standard</p>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div class="p-4 bg-surface rounded-lg">
+                                <p class="text-xs text-text-secondary mb-1">Blockchain</p>
+                                <p class="font-semibold text-text-primary">Solana</p>
+                            </div>
+                            <div class="p-4 bg-surface rounded-lg">
+                                <p class="text-xs text-text-secondary mb-1">Token Standard</p>
+                                <p class="font-semibold text-text-primary">Metaplex</p>
+                            </div>
+                            <div class="p-4 bg-surface rounded-lg">
+                                <p class="text-xs text-text-secondary mb-1">Tokenization Status</p>
+                                <span class="badge bg-warning-100 text-warning">Pending Mint</span>
+                            </div>
+                            <div class="p-4 bg-surface rounded-lg">
+                                <p class="text-xs text-text-secondary mb-1">Verification</p>
+                                <span class="badge badge-success">✓ Verified</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-primary-50 rounded-lg border border-primary-100">
+                            <p class="text-sm text-primary">
+                                <strong>Note:</strong> This asset has been prepared for tokenization on the Solana blockchain using Metaplex standards. 
+                                Ownership units will be represented by on-chain tokens that are transparently issued, tracked, and governed by smart contracts upon funding completion.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Asset Mint Details -->
+                    <div class="card p-6">
+                        <h2 class="text-xl font-bold text-text-primary mb-4">Asset Mint Details</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Token Mint Address</span>
+                                <div class="flex items-center space-x-2">
+                                    <code class="text-xs bg-surface px-3 py-1 rounded">Pending Mint</code>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Token Symbol</span>
+                                <span class="font-mono text-sm text-text-primary">DTOC</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Decimals</span>
+                                <span class="font-mono text-sm text-text-primary">0</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Total Supply Cap</span>
+                                <span class="font-mono text-sm text-text-primary">320,000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Tokens Minted</span>
+                                <span class="font-mono text-sm text-text-tertiary">0 (Pending)</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Mint Date</span>
+                                <span class="text-sm text-text-primary">Jan 20, 2025 (Scheduled)</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Freeze Authority</span>
+                                <span class="badge bg-warning-100 text-warning">Enabled</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3">
+                                <span class="text-sm text-text-secondary">Mint Authority Status</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="status-active">● Active</span>
+                                    <span class="text-xs text-text-tertiary">(Will be revoked after allocation)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metaplex Metadata -->
+                    <div class="card p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold text-text-primary">Metaplex Metadata</h2>
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19c382df1-1765300699872.png" alt="Metaplex" class="w-6 h-6">
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-start py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Metadata Account</span>
+                                <code class="text-xs bg-surface px-3 py-1 rounded">Pending Creation</code>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Asset Name</span>
+                                <span class="font-medium text-text-primary">Downtown Office Complex</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Asset Category</span>
+                                <span class="badge bg-primary-100 text-primary">Commercial Real Estate</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Legal Asset ID</span>
+                                <span class="font-mono text-sm text-text-primary">AST-2024-001</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Issuer / SPV</span>
+                                <span class="text-sm text-text-primary">Urban Developments LLC</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Jurisdiction</span>
+                                <span class="text-sm text-text-primary">New York, United States</span>
+                            </div>
+                            <div class="flex justify-between items-start py-3 border-b border-border">
+                                <span class="text-sm text-text-secondary">Metadata Hash</span>
+                                <code class="text-xs bg-surface px-3 py-1 rounded">Pending Generation</code>
+                            </div>
+                            <div class="flex justify-between items-center py-3">
+                                <span class="text-sm text-text-secondary">Update Authority</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="status-active">● Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Allocation Model -->
+                    <div class="card p-6">
+                        <h2 class="text-xl font-bold text-text-primary mb-4">Allocation & Ownership Model</h2>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-surface rounded-lg">
+                                <p class="text-sm font-medium text-text-primary mb-2">Total Investors Allocated</p>
+                                <p class="text-2xl font-bold text-primary">245 investors</p>
+                            </div>
+                            
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div class="p-4 border border-border rounded-lg">
+                                    <p class="text-sm text-text-secondary mb-1">Allocation Method</p>
+                                    <p class="font-medium text-text-primary">Pro-rata after funding close</p>
+                                </div>
+                                <div class="p-4 border border-border rounded-lg">
+                                    <p class="text-sm text-text-secondary mb-1">Distribution Model</p>
+                                    <p class="font-medium text-text-primary">Non-custodial</p>
+                                </div>
+                                <div class="p-4 border border-border rounded-lg">
+                                    <p class="text-sm text-text-secondary mb-1">Vesting / Lockups</p>
+                                    <p class="font-medium text-text-primary">None</p>
+                                </div>
+                                <div class="p-4 border border-border rounded-lg">
+                                    <p class="text-sm text-text-secondary mb-1">Transfer Restrictions</p>
+                                    <p class="font-medium text-text-primary">KYC-gated transfers</p>
+                                </div>
+                            </div>
+
+                            <div class="p-4 bg-primary-50 rounded-lg border border-primary-100">
+                                <p class="text-sm text-primary">
+                                    <strong>Privacy Note:</strong> Individual investor identities are never stored on-chain. 
+                                    Ownership is enforced via cryptographic wallet control and BuildVest's compliance layer.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blockchain Activity -->
+                    <div class="card p-6">
+                        <h2 class="text-xl font-bold text-text-primary mb-4">Blockchain Activity & Audit Trail</h2>
+                        <div class="space-y-3">
+                            <div class="p-4 border border-border rounded-lg">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <p class="font-medium text-text-primary mb-1">Preparation Phase</p>
+                                        <p class="text-sm text-text-secondary">Asset metadata prepared and validated</p>
+                                    </div>
+                                    <span class="badge badge-success">Completed</span>
+                                </div>
+                                <div class="flex items-center space-x-3 text-xs text-text-tertiary mt-2">
+                                    <span>Nov 15, 2024 14:23 UTC</span>
+                                    <span>•</span>
+                                    <span>Internal Review</span>
+                                </div>
+                            </div>
+
+                            <div class="p-4 border border-warning rounded-lg bg-warning-50">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <p class="font-medium text-text-primary mb-1">Funding Phase - In Progress</p>
+                                        <p class="text-sm text-text-secondary">Awaiting funding completion for token mint</p>
+                                    </div>
+                                    <span class="badge badge-warning">Active</span>
+                                </div>
+                                <div class="flex items-center space-x-3 text-xs text-text-tertiary mt-2">
+                                    <span>Target: Jan 15, 2025</span>
+                                </div>
+                            </div>
+
+                            <div class="p-4 border border-border rounded-lg bg-surface">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <p class="font-medium text-text-tertiary mb-1">Token Mint - Scheduled</p>
+                                        <p class="text-sm text-text-secondary">On-chain token creation and metadata initialization</p>
+                                    </div>
+                                    <span class="badge bg-surface text-text-secondary">Pending</span>
+                                </div>
+                                <div class="flex items-center space-x-3 text-xs text-text-tertiary mt-2">
+                                    <span>Scheduled: Jan 20, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex items-center justify-center space-x-4">
+                            <button class="explorer-badge" disabled>
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                                View on Solana Explorer
+                            </button>
+                            <button class="explorer-badge" disabled>
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                Download Blockchain Proof
+                            </button>
+                        </div>
+                        <p class="text-xs text-center text-text-tertiary mt-2">Available after tokenization completion</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Documents -->
+            <div id="content-documents" class="tab-content">
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-text-primary mb-1">Asset Documents</h2>
+                            <p class="text-sm text-text-secondary">All documentation organized by lifecycle phase</p>
+                        </div>
+                        <button onclick="alert('Upload new document')" class="btn btn-primary">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                            </svg>
+                            Upload Document
+                        </button>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Listing & Due Diligence -->
+                        <div>
+                            <h3 class="font-bold text-text-primary mb-3 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                Listing & Due Diligence
+                            </h3>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-surface transition-colors">
+                                    <div class="flex items-center space-x-3">
+                                        <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <div>
+                                            <p class="font-medium text-text-primary">Property Appraisal Report</p>
+                                            <div class="flex items-center space-x-3 text-xs text-text-tertiary mt-1">
+                                                <span class="badge badge-warning text-xs">Required</span>
+                                                <span class="badge bg-surface text-text-secondary text-xs">Investor Visible</span>
+                                                <span>Updated Nov 10, 2024</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline btn-sm">View</button>
+                                </div>
+
+                                <div class="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-surface transition-colors">
+                                    <div class="flex items-center space-x-3">
+                                        <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <div>
+                                            <p class="font-medium text-text-primary">Environmental Assessment</p>
+                                            <div class="flex items-center space-x-3 text-xs text-text-tertiary mt-1">
+                                                <span class="badge badge-warning text-xs">Required</span>
+                                                <span class="badge bg-surface text-text-secondary text-xs">Investor Visible</span>
+                                                <span>Updated Nov 8, 2024</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline btn-sm">View</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Legal & Offering Documents -->
+                        <div>
+                            <h3 class="font-bold text-text-primary mb-3 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                                </svg>
+                                Legal & Offering Documents
+                            </h3>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-surface transition-colors">
+                                    <div class="flex items-center space-x-3">
+                                        <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <div>
+                                            <p class="font-medium text-text-primary">Private Placement Memorandum (PPM)</p>
+                                            <div class="flex items-center space-x-3 text-xs text-text-tertiary mt-1">
+                                                <span class="badge badge-warning text-xs">Required</span>
+                                                <span class="badge bg-surface text-text-secondary text-xs">Investor Visible</span>
+                                                <span>Updated Nov 15, 2024</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline btn-sm">View</button>
+                                </div>
+
+                                <div class="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-surface transition-colors">
+                                    <div class="flex items-center space-x-3">
+                                        <svg class="w-5 h-5 text-error" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <div>
+                                            <p class="font-medium text-text-primary">Subscription Agreement</p>
+                                            <div class="flex items-center space-x-3 text-xs text-text-tertiary mt-1">
+                                                <span class="badge badge-warning text-xs">Required</span>
+                                                <span class="badge bg-surface text-text-secondary text-xs">Investor Visible</span>
+                                                <span>Updated Nov 15, 2024</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline btn-sm">View</button>
+                                </div>
+
+                                <div class="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-surface transition-colors">
+                                    <div class="flex items-center space-x-3">
+                                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <div>
+                                            <p class="font-medium text-text-primary">Operating Agreement - SPV</p>
+                                            <div class="flex items-center space-x-3 text-xs text-text-tertiary mt-1">
+                                                <span class="badge bg-primary-100 text-primary text-xs">Optional</span>
+                                                <span class="badge bg-warning-100 text-warning text-xs">Internal Only</span>
+                                                <span>Updated Nov 5, 2024</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline btn-sm">View</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tokenization Proof -->
+                        <div>
+                            <h3 class="font-bold text-text-primary mb-3 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                                Tokenization Proof
+                            </h3>
+                            <div class="p-4 bg-surface rounded-lg text-center">
+                                <svg class="w-12 h-12 mx-auto text-text-tertiary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <p class="text-sm text-text-secondary">Blockchain proof documents will be available after tokenization completion</p>
+                            </div>
+                        </div>
+
+                        <!-- Ongoing Reporting -->
+                        <div>
+                            <h3 class="font-bold text-text-primary mb-3 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                Ongoing Reporting
+                            </h3>
+                            <div class="p-4 bg-surface rounded-lg text-center">
+                                <p class="text-sm text-text-secondary">Quarterly reports will be added as they become available</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Messages -->
+            <div id="content-messages" class="tab-content">
+                <div class="grid lg:grid-cols-3 gap-6">
+                    <!-- Message List -->
+                    <div class="lg:col-span-1 card p-4">
+                        <div class="mb-4">
+                            <h2 class="text-lg font-bold text-text-primary mb-2">Conversations</h2>
+                            <input type="text" placeholder="Search messages..." class="input w-full">
+                        </div>
+
+                        <div class="space-y-2">
+                            <button class="w-full p-3 bg-primary-50 border-l-4 border-primary rounded text-left transition-colors">
+                                <div class="flex items-center justify-between mb-1">
+                                    <p class="font-medium text-text-primary text-sm">Michael Roberts</p>
+                                    <span class="text-xs text-text-tertiary">2h ago</span>
+                                </div>
+                                <p class="text-xs text-text-secondary line-clamp-1">Question about maturity timeline and...</p>
+                            </button>
+
+                            <button class="w-full p-3 hover:bg-surface rounded text-left transition-colors">
+                                <div class="flex items-center justify-between mb-1">
+                                    <p class="font-medium text-text-primary text-sm">Sarah Johnson</p>
+                                    <span class="text-xs text-text-tertiary">1d ago</span>
+                                </div>
+                                <p class="text-xs text-text-secondary line-clamp-1">Thank you for the detailed information!</p>
+                            </button>
+
+                            <button class="w-full p-3 hover:bg-surface rounded text-left transition-colors">
+                                <div class="flex items-center justify-between mb-1">
+                                    <p class="font-medium text-text-primary text-sm">Nexus Capital LLC</p>
+                                    <span class="text-xs text-text-tertiary">2d ago</span>
+                                </div>
+                                <p class="text-xs text-text-secondary line-clamp-1">Received the updated documentation</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Message Thread -->
+                    <div class="lg:col-span-2 card flex flex-col" style="height: 600px;">
+                        <div class="p-4 border-b border-border">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_103a1cd3a-1765030656955.png" alt="Investor" class="w-10 h-10 rounded-full" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                                    <div>
+                                        <p class="font-medium text-text-primary">Michael Roberts</p>
+                                        <p class="text-xs text-text-secondary">Individual Investor</p>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline btn-sm">Use Template</button>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 p-4 overflow-y-auto space-y-4">
+                            <!-- Investor Message -->
+                            <div class="flex items-start space-x-3">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ced23f73-1763299663719.png" alt="Investor" class="w-8 h-8 rounded-full" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                                <div class="flex-1">
+                                    <div class="bg-surface p-3 rounded-lg">
+                                        <p class="text-sm text-text-primary">Hi, I have a question about the maturity timeline. Can you clarify when the first distribution is expected?</p>
+                                    </div>
+                                    <p class="text-xs text-text-tertiary mt-1">Today at 2:15 PM</p>
+                                </div>
+                            </div>
+
+                            <!-- Originator Response -->
+                            <div class="flex items-start space-x-3 flex-row-reverse">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ced23f73-1763299663719.png" alt="You" class="w-8 h-8 rounded-full" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                                <div class="flex-1">
+                                    <div class="bg-primary text-white p-3 rounded-lg">
+                                        <p class="text-sm">Hello Michael, thank you for your question. The first distribution is scheduled for April 1, 2025, approximately 75 days after the token mint date. All distribution schedules are detailed in the PPM available in the Documents tab.</p>
+                                    </div>
+                                    <p class="text-xs text-text-tertiary mt-1 text-right">Today at 2:18 PM</p>
+                                </div>
+                            </div>
+
+                            <!-- Investor Message -->
+                            <div class="flex items-start space-x-3">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ced23f73-1763299663719.png" alt="Investor" class="w-8 h-8 rounded-full" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                                <div class="flex-1">
+                                    <div class="bg-surface p-3 rounded-lg">
+                                        <p class="text-sm text-text-primary">Perfect, thank you for the clarification!</p>
+                                    </div>
+                                    <p class="text-xs text-text-tertiary mt-1">Today at 2:20 PM</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message Input -->
+                        <div class="p-4 border-t border-border">
+                            <div class="flex items-end space-x-2">
+                                <textarea rows="2" placeholder="Type your message..." class="input flex-1 resize-none"></textarea>
+                                <button class="btn btn-primary">Send</button>
+                            </div>
+                            <p class="text-xs text-text-tertiary mt-2">All communications are logged for compliance purposes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Secondary Market -->
+            <div id="content-secondary" class="tab-content">
+                <div class="card p-6 mb-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-text-primary mb-1">Secondary Market Activity (Read-Only)</h2>
+                            <p class="text-sm text-text-secondary">Transparent view of secondary trading without issuer participation</p>
+                        </div>
+                        <span class="badge bg-surface text-text-secondary">Trading: Disabled</span>
+                    </div>
+
+                    <div class="p-6 bg-surface rounded-lg border-2 border-dashed border-border text-center">
+                        <svg class="w-16 h-16 mx-auto text-text-tertiary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                        <h3 class="text-lg font-bold text-text-primary mb-2">Secondary Trading Not Yet Enabled</h3>
+                        <p class="text-sm text-text-secondary mb-4 max-w-md mx-auto">
+                            Secondary market trading will be enabled after tokenization is complete and sufficient liquidity is established. 
+                            This view will provide read-only visibility into peer-to-peer trading activity.
+                        </p>
+                        <div class="inline-block p-4 bg-white rounded-lg text-left">
+                            <p class="text-sm font-medium text-text-primary mb-2">When enabled, you'll see:</p>
+                            <ul class="text-sm text-text-secondary space-y-1">
+                                <li>• Active listing counts and pricing</li>
+                                <li>• Trading volume and liquidity metrics</li>
+                                <li>• Market health indicators</li>
+                                <li>• Historical trading activity</li>
+                            </ul>
+                            <p class="text-xs text-warning mt-3">
+                                ⚠️ Originators cannot trade, cancel listings, or influence pricing
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sidebar toggle
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        });
+
+        // User menu toggle
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userMenu = document.getElementById('userMenu');
+
+        userMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userMenuBtn.contains(e.target) && !userMenu.contains(e.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active state from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById('content-' + tabName).classList.add('active');
+            
+            // Add active state to selected tab button
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+
+        // Copy to clipboard functionality
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard: ' + text);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

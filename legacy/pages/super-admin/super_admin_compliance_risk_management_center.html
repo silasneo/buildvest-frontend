@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Compliance & Risk Management Center - Comprehensive regulatory oversight and risk assessment">
+    <title>Compliance & Risk Center | BuildVest SuperAdmin</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    
+    <!-- Standalone Super Admin Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+    
+    <!-- Sidebar Collapse Script -->
+    <script src="sidebar-toggle.js" defer></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#017EFE',
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#017EFE',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A'
+                        },
+                        secondary: {
+                            DEFAULT: '#03A504',
+                            50: '#F0FDF4',
+                            100: '#DCFCE7',
+                            200: '#BBF7D0',
+                            300: '#86EFAC',
+                            400: '#4ADE80',
+                            500: '#22C55E',
+                            600: '#03A504',
+                            700: '#15803D',
+                            800: '#166534',
+                            900: '#14532D'
+                        },
+                        accent: '#7C3AED',
+                        warning: '#F59E0B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate-900 text-white overflow-x-hidden">
+    <!-- Fixed Sidebar -->
+    <aside id="sidebar" class="fixed left-0 top-0 h-full w-72 bg-gradient-to-b from-slate-950 to-slate-900 border-r border-slate-800 z-40 transition-width duration-300 flex flex-col">
+        <!-- Logo Section -->
+        <div class="p-6 border-b border-slate-800 relative">
+            <div class="flex items-center space-x-3 mb-1">
+                <!-- Official BuildVest Logo -->
+                <img src="https://buildvest.net/img/BuildvestLogo_icon.png" 
+                     alt="BuildVest" 
+                     class="h-10 w-10 rounded-lg">
+                <span class="text-xl font-black text-white">BuildVest</span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold">Market Operator Console</p>
+            
+            <!-- Sidebar Toggle Button -->
+            <button id="sidebar-toggle" 
+                    aria-label="Toggle sidebar" 
+                    aria-expanded="true"
+                    class="absolute top-6 right-4 p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary">
+                <svg class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Chevron Left (default = expanded) -->
+                    <path id="toggle-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+            <!-- Dashboard Section -->
+            <div class="space-y-1">
+                <a href="super_admin_market_operator_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="global_asset_oversight_center.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>Assets</span>
+                </a>
+            </div>
+
+            <!-- User Management -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">User Management</p>
+                <div class="space-y-1">
+                    <a href="super_admin_user_entity_management_hub.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <span>Users</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Market Operations -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Market Operations</p>
+                <div class="space-y-1">
+                    <a href="treasury_settlement_control_plane.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span>Treasury & Settlement</span>
+                    </a>
+                    <a href="secondary_market_supervision.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                        <span>Secondary Market</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Governance & Risk -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Governance & Risk</p>
+                <div class="space-y-1">
+                    <a href="super_admin_compliance_risk_management_center.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-primary text-white font-semibold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span>Compliance & Risk</span>
+                    </a>
+                    <a href="audit_logs.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        <span>Audit Logs</span>
+                    </a>
+                    <a href="super_admin_analytics_reporting_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        <span>Analytics & Reporting</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- System -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">System</p>
+                <div class="space-y-1">
+                    <a href="super_admin_system_configuration_settings.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="p-4 border-t border-slate-800">
+            <div class="bg-slate-900 rounded-lg p-3">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-slate-400">System Status</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-green-500/20 text-green-400">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5 animate-pulse"></span>
+                        Operational
+                    </span>
+                </div>
+                <div class="flex items-center justify-between text-xs text-slate-500">
+                    <span>Uptime: 99.98%</span>
+                    <span>v2.4.1</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div id="main-content" class="ml-72 min-h-screen transition-margin duration-300">
+        <!-- Top Navigation Bar -->
+        <header class="sticky top-0 z-30 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+            <div class="px-8 py-4">
+                <div class="flex items-center justify-between">
+                    <!-- Left: Environment Badge -->
+                    <div class="flex items-center space-x-4">
+                        <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                            PRODUCTION
+                        </span>
+                    </div>
+
+                    <!-- Center: Global Search -->
+                    <div class="flex-1 max-w-2xl mx-8">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                            <input type="text" 
+                                   placeholder="Search compliance cases, users, transactions..." 
+                                   class="w-full pl-10 pr-4 py-2.5 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Right: Notifications & Profile -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Notifications -->
+                        <button class="relative p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                            <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+
+                        <!-- Admin Avatar Dropdown -->
+                        <div class="relative group">
+                            <button class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-800 transition-colors">
+                                <div class="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center font-bold text-sm">
+                                    SA
+                                </div>
+                                <div class="text-left hidden lg:block">
+                                    <p class="text-sm font-semibold text-white">Super Admin</p>
+                                    <p class="text-xs text-slate-500">Compliance Officer</p>
+                                </div>
+                                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div class="absolute right-0 mt-2 w-56 bg-slate-800 rounded-xl shadow-2xl border border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
+                                <a href="#" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                    </svg>
+                                    <span class="text-sm">Audit Logs</span>
+                                </a>
+                                <div class="border-t border-slate-700 my-2"></div>
+                                <a href="super_admin_login.html" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-red-500/10 text-red-400 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                    </svg>
+                                    <span class="text-sm font-semibold">Sign Out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Breadcrumbs -->
+            <div class="px-8 pb-4">
+                <div class="flex items-center space-x-2 text-sm">
+                    <a href="super_admin_market_operator_dashboard.html" class="text-slate-500 hover:text-white transition-colors">Home</a>
+                    <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <span class="text-white font-semibold">Compliance & Risk Management Center</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="p-8">
+            <!-- Page Title -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-black text-white mb-2">Compliance & Risk Management Center</h1>
+                <p class="text-slate-400">Comprehensive regulatory oversight, risk assessment, and audit trail management</p>
+            </div>
+
+            <!-- Compliance Dashboard - KPIs -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6 mb-8">
+                <!-- KYC/KYB Queue Status -->
+                <div class="bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 rounded-2xl p-6 relative overflow-hidden hover:shadow-lg hover:shadow-primary/20 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full -mr-12 -mt-12"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold px-2 py-0.5 bg-warning/20 text-warning rounded-full">Pending</span>
+                        </div>
+                        <p class="text-2xl font-black text-white mb-1">38</p>
+                        <p class="text-xs text-slate-400 font-semibold">KYC/KYB Queue</p>
+                        <div class="mt-2 pt-2 border-t border-slate-700">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-500">KYC: 22</span>
+                                <span class="text-slate-500">KYB: 16</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pending Document Reviews -->
+                <div class="bg-gradient-to-br from-warning/20 to-warning/5 border border-warning/30 rounded-2xl p-6 relative overflow-hidden hover:shadow-lg hover:shadow-warning/20 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-warning/10 rounded-full -mr-12 -mt-12"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 bg-warning/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold px-2 py-0.5 bg-warning/20 text-warning rounded-full">Review</span>
+                        </div>
+                        <p class="text-2xl font-black text-white mb-1">54</p>
+                        <p class="text-xs text-slate-400 font-semibold">Document Reviews</p>
+                        <div class="mt-2 pt-2 border-t border-slate-700">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-500">Overdue: 12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flagged Transactions -->
+                <div class="bg-gradient-to-br from-red-500/20 to-red-500/5 border border-red-500/30 rounded-2xl p-6 relative overflow-hidden hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-red-500/10 rounded-full -mr-12 -mt-12"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold px-2 py-0.5 bg-red-500/20 text-red-400 rounded-full">Urgent</span>
+                        </div>
+                        <p class="text-2xl font-black text-white mb-1">9</p>
+                        <p class="text-xs text-slate-400 font-semibold">Flagged Transactions</p>
+                        <div class="mt-2 pt-2 border-t border-slate-700">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-500">AML: 5 | Sanctions: 4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jurisdiction Compliance Alerts -->
+                <div class="bg-gradient-to-br from-orange-500/20 to-orange-500/5 border border-orange-500/30 rounded-2xl p-6 relative overflow-hidden hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-orange-500/10 rounded-full -mr-12 -mt-12"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold px-2 py-0.5 bg-orange-500/20 text-orange-400 rounded-full">Alert</span>
+                        </div>
+                        <p class="text-2xl font-black text-white mb-1">4</p>
+                        <p class="text-xs text-slate-400 font-semibold">Jurisdiction Alerts</p>
+                        <div class="mt-2 pt-2 border-t border-slate-700">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-500">Restricted Regions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regulatory Filing Status -->
+                <div class="bg-gradient-to-br from-secondary/20 to-secondary/5 border border-secondary/30 rounded-2xl p-6 relative overflow-hidden hover:shadow-lg hover:shadow-secondary/20 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-secondary/10 rounded-full -mr-12 -mt-12"></div>
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 bg-secondary/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold px-2 py-0.5 bg-green-500/20 text-green-400 rounded-full">Current</span>
+                        </div>
+                        <p class="text-2xl font-black text-white mb-1">14</p>
+                        <p class="text-xs text-slate-400 font-semibold">Regulatory Filings</p>
+                        <div class="mt-2 pt-2 border-t border-slate-700">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-500">Next Due: 7 days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Grid: Risk Assessment & AML Monitoring -->
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
+                <!-- Risk Assessment Panels -->
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold text-white">Risk Assessment</h2>
+                        <button class="px-3 py-1.5 text-xs font-semibold bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors">
+                            Generate Report
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Asset Risk Scoring -->
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-warning/20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold text-white">Asset Risk Scoring</p>
+                                        <p class="text-xs text-slate-500">Portfolio-wide analysis</p>
+                                    </div>
+                                </div>
+                                <span class="text-lg font-black text-white">6.2</span>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex items-center justify-between text-xs mb-2">
+                                    <span class="text-slate-500">Average Risk Score</span>
+                                    <span class="text-warning font-semibold">Medium</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-2">
+                                    <div class="bg-warning h-2 rounded-full" style="width: 62%"></div>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-slate-700 grid grid-cols-3 gap-2 text-xs">
+                                <div>
+                                    <p class="text-slate-500">Low (1-3)</p>
+                                    <p class="text-green-400 font-bold">42</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">Med (4-7)</p>
+                                    <p class="text-warning font-bold">74</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">High (8-10)</p>
+                                    <p class="text-red-400 font-bold">12</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Investor Risk Profiles -->
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold text-white">Investor Risk Profiles</p>
+                                        <p class="text-xs text-slate-500">User-level assessment</p>
+                                    </div>
+                                </div>
+                                <button class="text-primary hover:text-primary/80 text-xs font-semibold">View All</button>
+                            </div>
+                            <div class="grid grid-cols-3 gap-3 mt-3">
+                                <div class="text-center">
+                                    <p class="text-2xl font-black text-green-400">9.8K</p>
+                                    <p class="text-xs text-slate-500">Low Risk</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-black text-warning">412</p>
+                                    <p class="text-xs text-slate-500">Medium</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-2xl font-black text-red-400">38</p>
+                                    <p class="text-xs text-slate-500">High Risk</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transaction Pattern Analysis -->
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold text-white">Transaction Patterns</p>
+                                        <p class="text-xs text-slate-500">Anomaly detection</p>
+                                    </div>
+                                </div>
+                                <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded">Normal</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 mt-3 text-xs">
+                                <div>
+                                    <p class="text-slate-500">24h Volume</p>
+                                    <p class="text-white font-bold">$8.4M</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">Avg Transaction</p>
+                                    <p class="text-white font-bold">$12.8K</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">Flagged</p>
+                                    <p class="text-warning font-bold">9 (0.02%)</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">Blocked</p>
+                                    <p class="text-red-400 font-bold">2</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Geographic Risk Mapping -->
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-secondary/20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold text-white">Geographic Risk Map</p>
+                                        <p class="text-xs text-slate-500">Jurisdiction exposure</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-2 mt-3">
+                                <div class="flex items-center justify-between text-xs">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+                                        <span class="text-slate-400">Low-Risk Jurisdictions</span>
+                                    </div>
+                                    <span class="text-white font-semibold">86%</span>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="w-2 h-2 bg-warning rounded-full"></span>
+                                        <span class="text-slate-400">Medium-Risk</span>
+                                    </div>
+                                    <span class="text-white font-semibold">11%</span>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="w-2 h-2 bg-red-400 rounded-full"></span>
+                                        <span class="text-slate-400">High-Risk/Restricted</span>
+                                    </div>
+                                    <span class="text-white font-semibold">3%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AML Monitoring Section -->
+                <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold text-white">AML Monitoring</h2>
+                        <button class="px-3 py-1.5 text-xs font-semibold bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors">
+                            File SAR
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Suspicious Activity Reports -->
+                        <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-4">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold text-white">Suspicious Activity Reports</p>
+                                        <p class="text-xs text-slate-400">Lagos Office Tower - Unusual Pattern</p>
+                                    </div>
+                                </div>
+                                <span class="px-2 py-1 bg-red-500/20 text-red-400 text-xs font-bold rounded">URGENT</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 mt-3 text-xs">
+                                <div>
+                                    <p class="text-slate-500">Amount</p>
+                                    <p class="text-white font-bold">$450K</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">Risk Score</p>
+                                    <p class="text-red-400 font-bold">9.2/10</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">Pattern</p>
+                                    <p class="text-slate-400">Structuring</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">Flagged</p>
+                                    <p class="text-slate-400">2h ago</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-red-500/30">
+                                <button class="w-full px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold rounded-lg transition-colors">
+                                    Investigate & Escalate
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Transaction Monitoring Alerts -->
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-warning/20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold text-white">Transaction Monitoring</p>
+                                        <p class="text-xs text-slate-500">Real-time alerts</p>
+                                    </div>
+                                </div>
+                                <span class="text-lg font-black text-white">127</span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-2 text-xs mt-3">
+                                <div>
+                                    <p class="text-slate-500">Threshold</p>
+                                    <p class="text-warning font-bold">42</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">Velocity</p>
+                                    <p class="text-warning font-bold">58</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">Pattern</p>
+                                    <p class="text-warning font-bold">27</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Watchlist Screening Results -->
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold text-white">Watchlist Screening</p>
+                                        <p class="text-xs text-slate-500">OFAC, UN, EU sanctions</p>
+                                    </div>
+                                </div>
+                                <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded">CLEAN</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 mt-3 text-xs">
+                                <div>
+                                    <p class="text-slate-500">Daily Scans</p>
+                                    <p class="text-white font-bold">10,248</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">Matches (30d)</p>
+                                    <p class="text-green-400 font-bold">0</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">False Positives</p>
+                                    <p class="text-slate-400 font-bold">3 (resolved)</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500">Last Update</p>
+                                    <p class="text-slate-400">2h ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cross-Border Transaction Analysis -->
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-xl p-4">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-secondary/20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold text-white">Cross-Border Analysis</p>
+                                        <p class="text-xs text-slate-500">International flows</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-2 mt-3 text-xs">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-500">Total Volume (30d)</span>
+                                    <span class="text-white font-semibold">$142.8M</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-500">Avg Transaction Size</span>
+                                    <span class="text-white font-semibold">$28.4K</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-500">High-Value Txns (>$100K)</span>
+                                    <span class="text-warning font-semibold">284</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-500">Restricted Countries</span>
+                                    <span class="text-red-400 font-semibold">4 Blocked</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audit Trail Management -->
+            <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-white">Audit Trail Management</h2>
+                    <div class="flex items-center space-x-2">
+                        <button class="px-3 py-1.5 text-xs font-semibold bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors">
+                            Export Logs
+                        </button>
+                        <button class="px-3 py-1.5 text-xs font-semibold bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors">
+                            Advanced Filters
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Bar -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div>
+                        <label class="text-xs font-semibold text-slate-400 mb-2 block">Event Type</label>
+                        <select class="w-full px-3 py-2 bg-slate-900 border border-slate-700 text-white text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>All Events</option>
+                            <option>User Actions</option>
+                            <option>System Changes</option>
+                            <option>Admin Decisions</option>
+                            <option>Compliance Events</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-slate-400 mb-2 block">Time Range</label>
+                        <select class="w-full px-3 py-2 bg-slate-900 border border-slate-700 text-white text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>Last 24 Hours</option>
+                            <option>Last 7 Days</option>
+                            <option>Last 30 Days</option>
+                            <option>Custom Range</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-slate-400 mb-2 block">Severity</label>
+                        <select class="w-full px-3 py-2 bg-slate-900 border border-slate-700 text-white text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>All Levels</option>
+                            <option>Critical</option>
+                            <option>High</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-slate-400 mb-2 block">Search</label>
+                        <input type="text" 
+                               placeholder="User, action, entity..." 
+                               class="w-full px-3 py-2 bg-slate-900 border border-slate-700 text-white text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary placeholder-slate-500">
+                    </div>
+                </div>
+
+                <!-- Audit Trail Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-slate-700">
+                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Timestamp</th>
+                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Event</th>
+                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Admin</th>
+                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Entity</th>
+                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Severity</th>
+                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-400 uppercase">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800">
+                            <tr class="hover:bg-slate-800/50 transition-colors">
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white font-mono">2025-12-16 11:42:18</p>
+                                    <p class="text-xs text-slate-500">2 minutes ago</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm font-semibold text-white">KYC Document Approved</p>
+                                    <p class="text-xs text-slate-400">Individual verification completed</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white">Sarah Chen</p>
+                                    <p class="text-xs text-slate-500 font-mono">SA-0042</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white">INV-10429</p>
+                                    <p class="text-xs text-slate-400">John Okafor</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">LOW</span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <button class="text-primary hover:text-primary/80 text-xs font-semibold">View</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 transition-colors">
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white font-mono">2025-12-16 11:38:45</p>
+                                    <p class="text-xs text-slate-500">6 minutes ago</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm font-semibold text-white">Transaction Flagged</p>
+                                    <p class="text-xs text-slate-400">AML threshold exceeded</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white">System</p>
+                                    <p class="text-xs text-slate-500 font-mono">AUTO</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white">TX-89234</p>
+                                    <p class="text-xs text-slate-400 font-mono">0x7a2e...5c9b</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-red-500/20 text-red-400 text-xs font-semibold rounded">CRITICAL</span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <button class="text-primary hover:text-primary/80 text-xs font-semibold">Investigate</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 transition-colors">
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white font-mono">2025-12-16 11:22:12</p>
+                                    <p class="text-xs text-slate-500">22 minutes ago</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm font-semibold text-white">User Restriction Applied</p>
+                                    <p class="text-xs text-slate-400">Account suspended pending review</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white">Michael Wang</p>
+                                    <p class="text-xs text-slate-500 font-mono">SA-0019</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white">INV-10381</p>
+                                    <p class="text-xs text-slate-400">Ahmed Hassan</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-warning/20 text-warning text-xs font-semibold rounded">HIGH</span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <button class="text-primary hover:text-primary/80 text-xs font-semibold">View</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 transition-colors">
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white font-mono">2025-12-16 11:15:33</p>
+                                    <p class="text-xs text-slate-500">29 minutes ago</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm font-semibold text-white">Regulatory Report Filed</p>
+                                    <p class="text-xs text-slate-400">Monthly AML compliance report</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white">Sarah Chen</p>
+                                    <p class="text-xs text-slate-500 font-mono">SA-0042</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white">REP-2025-12</p>
+                                    <p class="text-xs text-slate-400">December Filing</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded">MEDIUM</span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <button class="text-primary hover:text-primary/80 text-xs font-semibold">Download</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50 transition-colors">
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white font-mono">2025-12-16 10:58:47</p>
+                                    <p class="text-xs text-slate-500">46 minutes ago</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm font-semibold text-white">Asset Freeze Initiated</p>
+                                    <p class="text-xs text-slate-400">Compliance escalation</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white">David Martinez</p>
+                                    <p class="text-xs text-slate-500 font-mono">SA-0007</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p class="text-sm text-white">AST-00142</p>
+                                    <p class="text-xs text-slate-400">Lagos Office Tower</p>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-red-500/20 text-red-400 text-xs font-semibold rounded">CRITICAL</span>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <button class="text-primary hover:text-primary/80 text-xs font-semibold">Details</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex items-center justify-between mt-6 pt-4 border-t border-slate-700">
+                    <p class="text-sm text-slate-400">Showing 1 to 5 of 2,847 entries</p>
+                    <div class="flex items-center space-x-2">
+                        <button class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Previous
+                        </button>
+                        <button class="px-3 py-1.5 bg-primary text-white text-sm rounded-lg font-semibold">1</button>
+                        <button class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors">2</button>
+                        <button class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors">3</button>
+                        <span class="px-2 text-slate-500">...</span>
+                        <button class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors">570</button>
+                        <button class="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // ⌘+K for global search
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                const searchInput = document.querySelector('input[placeholder*="Search"]');
+                if (searchInput) searchInput.focus();
+            }
+        });
+
+        // Mobile sidebar toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.createElement('button');
+        toggleButton.className = 'lg:hidden fixed top-4 left-4 z-50 p-2 bg-slate-800 rounded-lg text-white';
+        toggleButton.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+        document.body.appendChild(toggleButton);
+    </script>
+<script id="dhws-dataInjector" src="../../public/dhws-data-injector.js"></script>
+</body>
+</html>

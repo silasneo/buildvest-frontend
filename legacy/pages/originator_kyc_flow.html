@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Business KYC Verification - Complete your business verification for secure platform access and compliance with regulatory requirements.">
+    <title>Business KYC Verification Flow - BuildVest | Secure Business Verification</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+
+<body class="bg-gradient-to-br from-surface via-white to-primary-50">
+    <!-- Simple Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center space-x-3">
+                    <img src="https://buildvest.net/buildvest-logo.png" alt="BuildVest" class="h-8 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    <!-- span class="text-xl font-bold text-primary">BuildVest</span -->
+                </a>
+                <a href="authentication_hub.html" class="text-text-secondary hover:text-primary transition-colors text-sm font-semibold">
+                    <svg class="w-5 h-5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto">
+            <!-- Progress Bar -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-2">
+                        <div id="step1Indicator" class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">1</div>
+                        <span class="text-sm font-semibold text-text-primary hidden sm:inline">OTP</span>
+                    </div>
+                    <div class="flex-1 h-1 mx-2 bg-border relative">
+                        <div id="progressBar1" class="absolute inset-y-0 left-0 bg-primary transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="step2Indicator" class="w-8 h-8 rounded-full bg-border text-text-tertiary flex items-center justify-center text-sm font-bold">2</div>
+                        <span class="text-sm font-semibold text-text-tertiary hidden sm:inline">Business Info</span>
+                    </div>
+                    <div class="flex-1 h-1 mx-2 bg-border relative">
+                        <div id="progressBar2" class="absolute inset-y-0 left-0 bg-primary transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="step3Indicator" class="w-8 h-8 rounded-full bg-border text-text-tertiary flex items-center justify-center text-sm font-bold">3</div>
+                        <span class="text-sm font-semibold text-text-tertiary hidden sm:inline">Representatives</span>
+                    </div>
+                    <div class="flex-1 h-1 mx-2 bg-border relative">
+                        <div id="progressBar3" class="absolute inset-y-0 left-0 bg-primary transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="step4Indicator" class="w-8 h-8 rounded-full bg-border text-text-tertiary flex items-center justify-center text-sm font-bold">4</div>
+                        <span class="text-sm font-semibold text-text-tertiary hidden sm:inline">Business Docs</span>
+                    </div>
+                    <div class="flex-1 h-1 mx-2 bg-border relative">
+                        <div id="progressBar4" class="absolute inset-y-0 left-0 bg-primary transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="step5Indicator" class="w-8 h-8 rounded-full bg-border text-text-tertiary flex items-center justify-center text-sm font-bold">5</div>
+                        <span class="text-sm font-semibold text-text-tertiary hidden sm:inline">Authorization</span>
+                    </div>
+                    <div class="flex-1 h-1 mx-2 bg-border relative">
+                        <div id="progressBar5" class="absolute inset-y-0 left-0 bg-primary transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="step6Indicator" class="w-8 h-8 rounded-full bg-border text-text-tertiary flex items-center justify-center text-sm font-bold">6</div>
+                        <span class="text-sm font-semibold text-text-tertiary hidden sm:inline">Review</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1: OTP Verification -->
+            <div id="otpVerification" class="card p-8">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">Verify Your Email</h2>
+                    <p class="text-text-secondary">We've sent a 6-digit code to <span class="font-semibold">your@email.com</span></p>
+                </div>
+
+                <form onsubmit="verifyOTP(event)">
+                    <!-- OTP Input -->
+                    <div class="mb-8">
+                        <div class="flex justify-center space-x-3">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 0)">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 1)">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 2)">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 3)">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 4)">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 5)">
+                        </div>
+                    </div>
+
+                    <!-- Verify Button -->
+                    <button type="submit" class="w-full btn btn-primary py-3 text-lg font-bold mb-6">
+                        Verify Code
+                    </button>
+
+                    <!-- Resend Options -->
+                    <div class="text-center space-y-2">
+                        <p class="text-text-secondary text-sm">Didn't receive the code?</p>
+                        <div class="flex justify-center space-x-4">
+                            <button type="button" onclick="resendOTP()" class="text-sm text-primary hover:text-primary-dark font-semibold">
+                                Resend code
+                            </button>
+                            <span class="text-border">|</span>
+                            <button type="button" onclick="changeContact()" class="text-sm text-primary hover:text-primary-dark font-semibold">
+                                Change email
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Prototype Skip -->
+                <div class="mt-8 pt-8 border-t border-border">
+                    <a href="originator_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                        Skip → Continue to Dashboard (for prototyping)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 2: Business Type Selection & Business Biodata -->
+            <div id="personalInfoInvestor" class="hidden card p-8">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">Business Information</h2>
+                    <p class="text-text-secondary">Please provide your business details for verification</p>
+                </div>
+
+                <form onsubmit="submitBusinessInfo(event)">
+                    <div class="space-y-5">
+                        <!-- Business Type Selection -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-3">Business Type</label>
+                            <div class="space-y-3">
+                                <label class="card p-4 cursor-pointer hover:border-primary transition-all border-2 border-transparent flex items-center">
+                                    <input type="radio" name="businessType" value="limited_company" class="hidden peer" required>
+                                    <div class="flex items-center justify-between w-full peer-checked:text-primary">
+                                        <div class="flex items-center space-x-3">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                            </svg>
+                                            <div>
+                                                <span class="text-sm font-semibold block">Limited Company / Corporation</span>
+                                                <span class="text-xs text-text-tertiary">Most common for established businesses</span>
+                                            </div>
+                                        </div>
+                                        <span class="px-3 py-1 bg-secondary-100 text-secondary text-xs font-bold rounded-full">Recommended</span>
+                                    </div>
+                                </label>
+                                <label class="card p-4 cursor-pointer hover:border-primary transition-all border-2 border-transparent flex items-center">
+                                    <input type="radio" name="businessType" value="sole_proprietorship" class="hidden peer">
+                                    <div class="flex items-center space-x-3 w-full peer-checked:text-primary">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                        </svg>
+                                        <span class="text-sm font-semibold">Sole Proprietorship</span>
+                                    </div>
+                                </label>
+                                <label class="card p-4 cursor-pointer hover:border-primary transition-all border-2 border-transparent flex items-center">
+                                    <input type="radio" name="businessType" value="partnership" class="hidden peer">
+                                    <div class="flex items-center space-x-3 w-full peer-checked:text-primary">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                        </svg>
+                                        <span class="text-sm font-semibold">Partnership</span>
+                                    </div>
+                                </label>
+                                <label class="card p-4 cursor-pointer hover:border-primary transition-all border-2 border-transparent flex items-center">
+                                    <input type="radio" name="businessType" value="spv" class="hidden peer">
+                                    <div class="flex items-center space-x-3 w-full peer-checked:text-primary">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span class="text-sm font-semibold">SPV (Special Purpose Vehicle)</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <p class="text-xs text-text-tertiary mt-2">Limited Companies offer better legal protection and are typically preferred by investors</p>
+                        </div>
+
+                        <!-- Legal Business Name -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Legal Business Name</label>
+                            <input id="businessLegalName" type="text" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="As registered with authorities">
+                        </div>
+
+                        <!-- Registration Number -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Registration Number</label>
+                            <input id="businessRegNumber" type="text" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Company registration number">
+                        </div>
+
+                        <!-- Country of Incorporation -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Country of Incorporation</label>
+                            <select id="businessCountry" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all">
+                                <option value="">Select country</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="NG">Nigeria</option>
+                                <option value="KE">Kenya</option>
+                                <option value="IN">India</option>
+                            </select>
+                        </div>
+
+                        <!-- Date of Incorporation -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Date of Incorporation</label>
+                            <input id="businessIncorpDate" type="date" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all">
+                        </div>
+
+                        <!-- Registered Address -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Registered Address</label>
+                            <input type="text" id="businessRegAddress" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all mb-3" placeholder="Registered street address">
+                            <div class="grid grid-cols-2 gap-3">
+                                <input type="text" id="businessRegCity" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="City">
+                                <input type="text" id="businessRegState" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="State/Province">
+                            </div>
+                            <input type="text" id="businessRegPostal" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all mt-3" placeholder="Postal code">
+                        </div>
+
+                        <!-- Current Business Address -->
+                        <div>
+                            <label class="flex items-center space-x-2 mb-2">
+                                <input type="checkbox" id="sameAsRegistered" onchange="copyRegisteredAddress()" class="w-4 h-4 text-primary border-border rounded focus:ring-primary">
+                                <span class="text-sm font-semibold text-text-primary">Current business address is same as registered</span>
+                            </label>
+                            <input type="text" id="businessCurrentAddress" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all mb-3" placeholder="Current street address">
+                            <div class="grid grid-cols-2 gap-3">
+                                <input type="text" id="businessCurrentCity" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="City">
+                                <input type="text" id="businessCurrentState" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="State/Province">
+                            </div>
+                            <input type="text" id="businessCurrentPostal" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all mt-3" placeholder="Postal code">
+                        </div>
+
+                        <!-- Official Business Email -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Official Business Email</label>
+                            <input id="businessEmail" type="email" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="contact@yourcompany.com">
+                        </div>
+
+                        <!-- Official Business Phone -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Official Business Phone</label>
+                            <input id="businessPhone" type="tel" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="+1 (555) 123-4567">
+                        </div>
+
+                        <!-- Business Sector -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Business Sector</label>
+                            <select id="businessSector" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all">
+                                <option value="">Select business sector</option>
+                                <option value="real_estate">Real Estate</option>
+                                <option value="infrastructure">Infrastructure</option>
+                                <option value="technology">Technology</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="agriculture">Agriculture</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="energy">Energy</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Nature of Business/Description -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Nature of Business / Description</label>
+                            <textarea id="businessDescription" required rows="4" class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Describe your business activities, products, or services"></textarea>
+                        </div>
+
+                        <!-- Business Logo Upload (Optional) -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Business Logo (Optional)</label>
+                            <div class="border-2 border-dashed border-border rounded-xl p-6 text-center hover:border-primary transition-all cursor-pointer">
+                                <input type="file" id="businessLogo" accept="image/*" class="hidden" onchange="handleFileUpload(this, 'logoPreview')">
+                                <label for="businessLogo" class="cursor-pointer">
+                                    <svg class="w-10 h-10 mx-auto text-text-tertiary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                    <p class="text-sm text-text-primary font-semibold">Upload business logo</p>
+                                    <p class="text-xs text-text-tertiary">PNG, JPG up to 5MB</p>
+                                </label>
+                                <div id="logoPreview" class="hidden mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex gap-4 mt-8">
+                        <button type="button" onclick="previousStep()" class="flex-1 btn btn-outline py-3">
+                            Back
+                        </button>
+                        <button type="submit" class="flex-1 btn btn-primary py-3">
+                            Continue
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Prototype Skip -->
+                <div class="mt-6 pt-6 border-t border-border">
+                    <a href="originator_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                        Skip → Continue to Dashboard (for prototyping)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 3: Authorized Representatives -->
+            <div id="automatedIdentityVerification" class="hidden card p-8">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">Authorized Representatives</h2>
+                    <p class="text-text-secondary">Add authorized representatives who can act on behalf of the business</p>
+                </div>
+
+                <form onsubmit="submitRepresentatives(event)">
+                    <!-- Helper Text -->
+                    <div class="bg-primary-50 border border-primary-100 rounded-xl p-4 mb-6">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                            <div>
+                                <p class="text-sm text-primary font-semibold mb-1">About Representatives</p>
+                                <p class="text-xs text-text-secondary">The <strong>Primary Representative</strong> will receive OTP verification codes and has primary authority. Additional representatives can be added as secondary contacts who will confirm acknowledgment.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Representatives List -->
+                    <div id="representativesList" class="space-y-4 mb-6">
+                        <!-- Representative 1 (Always shown) -->
+                        <div class="card p-6 border-2 border-border representative-entry">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold text-text-primary">Representative 1</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-semibold text-text-primary mb-2">Full Legal Name</label>
+                                    <input type="text" class="rep-name w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Representative's full name" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-text-primary mb-2">Role / Title</label>
+                                    <input type="text" class="rep-role w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="e.g., CEO, Director, CFO" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-text-primary mb-2">Official Email</label>
+                                    <input type="email" class="rep-email w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="representative@company.com" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-text-primary mb-2">Phone Number</label>
+                                    <input type="tel" class="rep-phone w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="+1 (555) 123-4567" required>
+                                </div>
+                                <div>
+                                    <label class="flex items-center space-x-2">
+                                        <input type="radio" name="primaryRep" value="rep1" class="w-4 h-4 text-primary border-border focus:ring-primary" checked required>
+                                        <span class="text-sm font-semibold text-text-primary">Primary Representative</span>
+                                    </label>
+                                    <p class="text-xs text-text-tertiary ml-6 mt-1">Will receive OTP and has primary authority</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Representative Button -->
+                    <button type="button" onclick="addRepresentative()" class="w-full btn btn-outline py-3 mb-6 flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        <span>Add Another Representative</span>
+                    </button>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex gap-4">
+                        <button type="button" onclick="previousStep()" class="flex-1 btn btn-outline py-3">
+                            Back
+                        </button>
+                        <button type="submit" class="flex-1 btn btn-primary py-3">
+                            Continue
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Prototype Skip -->
+                <div class="mt-6 pt-6 border-t border-border">
+                    <a href="originator_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                        Skip → Continue to Dashboard (for prototyping)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 4: Business Document Upload -->
+            <div id="documentUpload" class="hidden card p-8">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">Business Document Upload</h2>
+                    <p class="text-text-secondary">Upload required business documents for verification</p>
+                </div>
+
+                <form onsubmit="submitDocuments(event)">
+                    <!-- Document Upload Areas -->
+                    <div class="space-y-4 mb-6">
+                        <!-- Certificate of Incorporation -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Certificate of Incorporation <span class="text-red-500">*</span></label>
+                            <div class="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary transition-all cursor-pointer">
+                                <input type="file" id="certIncorporation" accept=".pdf,image/*" class="hidden" required onchange="handleFileUpload(this, 'certIncorporationPreview')">
+                                <label for="certIncorporation" class="cursor-pointer">
+                                    <svg class="w-12 h-12 mx-auto text-text-tertiary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                    <p class="text-text-primary font-semibold mb-1">Click to upload or drag and drop</p>
+                                    <p class="text-sm text-text-tertiary">PDF, PNG, JPG up to 10MB</p>
+                                </label>
+                                <div id="certIncorporationPreview" class="hidden mt-4"></div>
+                            </div>
+                        </div>
+
+                        <!-- Business Registry Extract -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Business Registry Extract <span class="text-red-500">*</span></label>
+                            <div class="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary transition-all cursor-pointer">
+                                <input type="file" id="registryExtract" accept=".pdf,image/*" class="hidden" required onchange="handleFileUpload(this, 'registryExtractPreview')">
+                                <label for="registryExtract" class="cursor-pointer">
+                                    <svg class="w-12 h-12 mx-auto text-text-tertiary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                    <p class="text-text-primary font-semibold mb-1">Click to upload or drag and drop</p>
+                                    <p class="text-sm text-text-tertiary">PDF, PNG, JPG up to 10MB</p>
+                                </label>
+                                <div id="registryExtractPreview" class="hidden mt-4"></div>
+                            </div>
+                        </div>
+
+                        <!-- Proof of Business Address -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Proof of Business Address <span class="text-red-500">*</span></label>
+                            <p class="text-xs text-text-tertiary mb-2">Utility bill, lease agreement, or official document showing business address</p>
+                            <div class="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary transition-all cursor-pointer">
+                                <input type="file" id="proofAddress" accept=".pdf,image/*" class="hidden" required onchange="handleFileUpload(this, 'proofAddressPreview')">
+                                <label for="proofAddress" class="cursor-pointer">
+                                    <svg class="w-12 h-12 mx-auto text-text-tertiary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                    <p class="text-text-primary font-semibold mb-1">Click to upload or drag and drop</p>
+                                    <p class="text-sm text-text-tertiary">PDF, PNG, JPG up to 10MB</p>
+                                </label>
+                                <div id="proofAddressPreview" class="hidden mt-4"></div>
+                            </div>
+                        </div>
+
+                        <!-- Authorization Document (Board Resolution) -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Authorization Document (Board Resolution) <span class="text-red-500">*</span></label>
+                            <p class="text-xs text-text-tertiary mb-2">Document authorizing representatives to act on behalf of the business</p>
+                            <div class="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary transition-all cursor-pointer">
+                                <input type="file" id="boardResolution" accept=".pdf,image/*" class="hidden" required onchange="handleFileUpload(this, 'boardResolutionPreview')">
+                                <label for="boardResolution" class="cursor-pointer">
+                                    <svg class="w-12 h-12 mx-auto text-text-tertiary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                    <p class="text-text-primary font-semibold mb-1">Click to upload or drag and drop</p>
+                                    <p class="text-sm text-text-tertiary">PDF, PNG, JPG up to 10MB</p>
+                                </label>
+                                <div id="boardResolutionPreview" class="hidden mt-4"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Note -->
+                    <div class="bg-primary-50 border border-primary-100 rounded-xl p-4 mb-6">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <div>
+                                <p class="text-sm text-primary font-semibold mb-1">Your documents are secure</p>
+                                <p class="text-xs text-text-secondary">All uploads are encrypted and stored securely. We comply with data protection regulations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex gap-4">
+                        <button type="button" onclick="previousStep()" class="flex-1 btn btn-outline py-3">
+                            Back
+                        </button>
+                        <button type="submit" class="flex-1 btn btn-primary py-3">
+                            Continue
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Prototype Skip -->
+                <div class="mt-6 pt-6 border-t border-border">
+                    <a href="originator_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                        Skip → Continue to Dashboard (for prototyping)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 5: Representative Email Authorization (UI Only) -->
+            <div id="representativeAuthorization" class="hidden card p-8">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">Representative Authorization</h2>
+                    <p class="text-text-secondary">Confirm authorization from your business representatives</p>
+                </div>
+
+                <!-- Authorization Process Explanation -->
+                <div class="space-y-4 mb-8">
+                    <!-- Primary Representative -->
+                    <div class="bg-primary-50 border border-primary-100 rounded-xl p-5">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-primary mb-2">Primary Representative</h3>
+                                <p class="text-sm text-text-secondary mb-3">The primary representative will receive an OTP (One-Time Password) via email to verify their authorization.</p>
+                                <div class="bg-white rounded-lg p-3">
+                                    <p id="primaryRepInfo" class="text-sm font-semibold text-text-primary">John Doe - CEO</p>
+                                    <p id="primaryRepEmail" class="text-xs text-text-tertiary">john.doe@company.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Representatives -->
+                    <div id="secondaryRepsSection" class="bg-surface border border-border rounded-xl p-5 hidden">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-10 h-10 bg-text-tertiary rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-text-primary mb-2">Secondary Representatives</h3>
+                                <p class="text-sm text-text-secondary mb-3">Secondary representatives will receive an acknowledgment notification and must confirm their role.</p>
+                                <div id="secondaryRepsList" class="space-y-2">
+                                    <!-- Secondary reps will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Information Box -->
+                    <div class="bg-secondary-50 border border-secondary-100 rounded-xl p-4">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                            <div>
+                                <p class="text-sm text-secondary font-semibold mb-1">What happens next?</p>
+                                <ul class="text-xs text-text-secondary space-y-1">
+                                    <li>• Email notifications will be sent to all representatives</li>
+                                    <li>• The primary representative must verify via OTP</li>
+                                    <li>• Secondary representatives will confirm acknowledgment</li>
+                                    <li>• Once all confirmations are received, your application proceeds to review</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continue Button -->
+                <div class="flex gap-4">
+                    <button type="button" onclick="previousStep()" class="flex-1 btn btn-outline py-3">
+                        Back
+                    </button>
+                    <button type="button" onclick="proceedToReview()" class="flex-1 btn btn-primary py-3">
+                        Continue to Review
+                    </button>
+                </div>
+
+                <!-- Prototype Skip -->
+                <div class="mt-6 pt-6 border-t border-border">
+                    <a href="originator_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                        Skip → Continue to Dashboard (for prototyping)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 6: Review & Submit -->
+            <div id="reviewSubmit" class="hidden card p-8">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">Review & Submit</h2>
+                    <p class="text-text-secondary">Please review your business information before submitting</p>
+                </div>
+
+                <form onsubmit="submitKYC(event)">
+                    <!-- Summary Sections -->
+                    <div class="space-y-6 mb-8">
+                        <!-- Business Information Summary -->
+                        <div class="bg-surface rounded-xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold text-text-primary">Business Details</h3>
+                                <button type="button" onclick="goToStep(1)" class="text-sm text-primary hover:text-primary-dark font-semibold">Edit</button>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p class="text-text-tertiary mb-1">Business Name</p>
+                                    <p class="text-text-primary font-semibold">Acme Corporation Ltd</p>
+                                </div>
+                                <div>
+                                    <p class="text-text-tertiary mb-1">Business Type</p>
+                                    <p class="text-text-primary font-semibold">Limited Company</p>
+                                </div>
+                                <div>
+                                    <p class="text-text-tertiary mb-1">Registration Number</p>
+                                    <p class="text-text-primary font-semibold">RC123456</p>
+                                </div>
+                                <div>
+                                    <p class="text-text-tertiary mb-1">Country</p>
+                                    <p class="text-text-primary font-semibold">United States</p>
+                                </div>
+                                <div class="col-span-2">
+                                    <p class="text-text-tertiary mb-1">Business Sector</p>
+                                    <p class="text-text-primary font-semibold">Technology</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Authorized Representatives Summary -->
+                        <div class="bg-surface rounded-xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold text-text-primary">Authorized Representatives</h3>
+                                <button type="button" onclick="goToStep(2)" class="text-sm text-primary hover:text-primary-dark font-semibold">Edit</button>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="p-3 bg-white rounded-lg border border-primary-100">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <p class="text-sm font-semibold text-text-primary">John Doe</p>
+                                        <span class="px-2 py-1 bg-primary-100 text-primary text-xs font-bold rounded">Primary</span>
+                                    </div>
+                                    <p class="text-xs text-text-tertiary">CEO - john.doe@company.com</p>
+                                </div>
+                                <div class="p-3 bg-white rounded-lg">
+                                    <p class="text-sm font-semibold text-text-primary">Jane Smith</p>
+                                    <p class="text-xs text-text-tertiary">CFO - jane.smith@company.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Business Documents Summary -->
+                        <div class="bg-surface rounded-xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold text-text-primary">Business Documents</h3>
+                                <button type="button" onclick="goToStep(3)" class="text-sm text-primary hover:text-primary-dark font-semibold">Edit</button>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-semibold text-text-primary">Certificate of Incorporation</p>
+                                            <p class="text-xs text-text-tertiary">certificate.pdf - 1.2 MB</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-semibold text-text-primary">Business Registry Extract</p>
+                                            <p class="text-xs text-text-tertiary">registry.pdf - 0.8 MB</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-semibold text-text-primary">Proof of Business Address</p>
+                                            <p class="text-xs text-text-tertiary">address_proof.pdf - 1.5 MB</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-semibold text-text-primary">Board Resolution</p>
+                                            <p class="text-xs text-text-tertiary">resolution.pdf - 0.5 MB</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirmation Checkboxes -->
+                    <div class="space-y-4 mb-8">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="checkbox" required class="mt-1 w-5 h-5 text-primary border-border rounded focus:ring-primary">
+                            <span class="text-sm text-text-secondary">I confirm that all business information and documentation provided is accurate and complete to the best of my knowledge.</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="checkbox" required class="mt-1 w-5 h-5 text-primary border-border rounded focus:ring-primary">
+                            <span class="text-sm text-text-secondary">I confirm that I am authorized to submit this information on behalf of the business and agree to BuildVest's <a href="#" class="text-primary hover:text-primary-dark font-semibold">Terms of Service</a> and <a href="#" class="text-primary hover:text-primary-dark font-semibold">Privacy Policy</a>.</span>
+                        </label>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex gap-4">
+                        <button type="button" onclick="previousStep()" class="flex-1 btn btn-outline py-3">
+                            Back
+                        </button>
+                        <button type="submit" class="flex-1 btn btn-primary py-3">
+                            Submit for Review
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Prototype Skip -->
+                <div class="mt-6 pt-6 border-t border-border">
+                    <a href="originator_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                        Skip → Continue to Dashboard (for prototyping)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 7: Pending Verification -->
+            <div id="pendingVerification" class="hidden card p-8 text-center">
+                <div class="w-24 h-24 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-12 h-12 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+
+                <h2 class="text-3xl font-bold text-text-primary mb-4">Business Verification Under Review</h2>
+                <p class="text-lg text-text-secondary mb-8 max-w-md mx-auto">Thank you for submitting your business information. Our compliance team will review your documents and typically complete verification within 24-48 hours.</p>
+
+                <!-- What Happens Next -->
+                <div class="bg-surface rounded-xl p-6 text-left mb-8 max-w-md mx-auto">
+                    <h3 class="text-lg font-bold text-text-primary mb-4">What happens next?</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-xs font-bold text-primary">1</span>
+                            </div>
+                            <p class="text-sm text-text-secondary">Our compliance team will review your business documents and information</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-xs font-bold text-primary">2</span>
+                            </div>
+                            <p class="text-sm text-text-secondary">Authorized representatives will receive email notifications for verification</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-xs font-bold text-primary">3</span>
+                            </div>
+                            <p class="text-sm text-text-secondary">You'll receive an email notification once approved</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-xs font-bold text-primary">4</span>
+                            </div>
+                            <p class="text-sm text-text-secondary">Your business will gain full access to all platform features</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="originator_dashboard.html" class="btn btn-primary text-lg px-10 py-4">
+                    Continue to Dashboard
+                </a>
+            </div>
+
+            <!-- Security Indicators -->
+            <div class="mt-12 flex flex-wrap items-center justify-center gap-8 text-text-tertiary">
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm font-semibold">Bank-Level Encryption</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm font-semibold">GDPR Compliant</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm font-semibold">Secure Storage</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const steps = ['otpVerification', 'personalInfoInvestor', 'automatedIdentityVerification', 'documentUpload', 'representativeAuthorization', 'reviewSubmit', 'pendingVerification'];
+        
+        // Scoped namespace for KYC form data
+        const KYCData = {
+            formData: {},
+            representatives: []
+        };
+
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role') || 'originator';
+        const verificationType = urlParams.get('type') || 'signup';
+
+        let repCount = 1;
+
+        function updateProgressBar() {
+            // Update step indicators (6 steps in progress bar)
+            for (let i = 1; i <= 6; i++) {
+                const indicator = document.getElementById(`step${i}Indicator`);
+                if (i <= currentStep) {
+                    indicator.classList.remove('bg-border', 'text-text-tertiary');
+                    indicator.classList.add('bg-primary', 'text-white');
+                } else {
+                    indicator.classList.remove('bg-primary', 'text-white');
+                    indicator.classList.add('bg-border', 'text-text-tertiary');
+                }
+            }
+
+            // Update progress bars (5 bars between 6 steps)
+            for (let i = 1; i <= 5; i++) {
+                const progressBar = document.getElementById(`progressBar${i}`);
+                if (i < currentStep) {
+                    progressBar.style.width = '100%';
+                } else if (i === currentStep) {
+                    progressBar.style.width = '50%';
+                } else {
+                    progressBar.style.width = '0%';
+                }
+            }
+        }
+
+        function showStep(stepIndex) {
+            steps.forEach((step, index) => {
+                const element = document.getElementById(step);
+                if (index === stepIndex) {
+                    element.classList.remove('hidden');
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
+            currentStep = stepIndex;
+            updateProgressBar();
+        }
+
+        function nextStep() {
+            if (currentStep < steps.length - 1) {
+                showStep(currentStep + 1);
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 0) {
+                showStep(currentStep - 1);
+            }
+        }
+
+        function goToStep(stepIndex) {
+            showStep(stepIndex);
+        }
+
+        // OTP Input handling
+        function moveToNext(input, index) {
+            if (input.value.length === 1 && index < 5) {
+                const nextInput = document.querySelectorAll('.otp-input')[index + 1];
+                if (nextInput) nextInput.focus();
+            }
+        }
+
+        function verifyOTP(event) {
+            event.preventDefault();
+            nextStep();
+        }
+
+        function resendOTP() {
+            alert('A new code has been sent to your email.');
+        }
+
+        function changeContact() {
+            window.location.href = 'authentication_hub.html';
+        }
+
+        function copyRegisteredAddress() {
+            const checkbox = document.getElementById('sameAsRegistered');
+            if (checkbox.checked) {
+                document.getElementById('businessCurrentAddress').value = document.getElementById('businessRegAddress').value;
+                document.getElementById('businessCurrentCity').value = document.getElementById('businessRegCity').value;
+                document.getElementById('businessCurrentState').value = document.getElementById('businessRegState').value;
+                document.getElementById('businessCurrentPostal').value = document.getElementById('businessRegPostal').value;
+            }
+        }
+
+        function submitBusinessInfo(event) {
+            event.preventDefault();
+            
+            // Store business info in scoped namespace
+            KYCData.formData = {
+                businessType: document.querySelector('input[name="businessType"]:checked').value,
+                legalName: document.getElementById('businessLegalName').value,
+                regNumber: document.getElementById('businessRegNumber').value,
+                country: document.getElementById('businessCountry').value,
+                incorpDate: document.getElementById('businessIncorpDate').value,
+                sector: document.getElementById('businessSector').value
+            };
+            
+            nextStep();
+        }
+
+        function addRepresentative() {
+            repCount++;
+            const repsList = document.getElementById('representativesList');
+            const newRep = document.createElement('div');
+            newRep.className = 'card p-6 border-2 border-border representative-entry';
+            newRep.innerHTML = `
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-text-primary">Representative ${repCount}</h3>
+                    <button type="button" onclick="removeRepresentative(this)" class="text-sm text-red-500 hover:text-red-700 font-semibold">Remove</button>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-text-primary mb-2">Full Legal Name</label>
+                        <input type="text" class="rep-name w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Representative's full name" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-text-primary mb-2">Role / Title</label>
+                        <input type="text" class="rep-role w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="e.g., CEO, Director, CFO" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-text-primary mb-2">Official Email</label>
+                        <input type="email" class="rep-email w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="representative@company.com" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-text-primary mb-2">Phone Number</label>
+                        <input type="tel" class="rep-phone w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="+1 (555) 123-4567" required>
+                    </div>
+                    <div>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="primaryRep" value="rep${repCount}" class="w-4 h-4 text-primary border-border focus:ring-primary" required>
+                            <span class="text-sm font-semibold text-text-primary">Primary Representative</span>
+                        </label>
+                        <p class="text-xs text-text-tertiary ml-6 mt-1">Will receive OTP and has primary authority</p>
+                    </div>
+                </div>
+            `;
+            repsList.appendChild(newRep);
+        }
+
+        function removeRepresentative(button) {
+            const repEntry = button.closest('.representative-entry');
+            repEntry.remove();
+        }
+
+        function submitRepresentatives(event) {
+            event.preventDefault();
+            
+            // Collect representatives data
+            const repEntries = document.querySelectorAll('.representative-entry');
+            KYCData.representatives = [];
+            const primaryValue = document.querySelector('input[name="primaryRep"]:checked').value;
+            
+            repEntries.forEach((entry, index) => {
+                const radioButton = entry.querySelector('input[name="primaryRep"]');
+                const rep = {
+                    name: entry.querySelector('.rep-name').value,
+                    role: entry.querySelector('.rep-role').value,
+                    email: entry.querySelector('.rep-email').value,
+                    phone: entry.querySelector('.rep-phone').value,
+                    isPrimary: radioButton && radioButton.value === primaryValue
+                };
+                KYCData.representatives.push(rep);
+            });
+            
+            // Populate authorization step
+            const primaryRep = KYCData.representatives.find(r => r.isPrimary);
+            if (primaryRep) {
+                document.getElementById('primaryRepInfo').textContent = `${primaryRep.name} - ${primaryRep.role}`;
+                document.getElementById('primaryRepEmail').textContent = primaryRep.email;
+            }
+            
+            const secondaryReps = KYCData.representatives.filter(r => !r.isPrimary);
+            if (secondaryReps.length > 0) {
+                document.getElementById('secondaryRepsSection').classList.remove('hidden');
+                const secondaryList = document.getElementById('secondaryRepsList');
+                secondaryList.innerHTML = '';
+                secondaryReps.forEach(rep => {
+                    const repDiv = document.createElement('div');
+                    repDiv.className = 'bg-white rounded-lg p-3';
+                    repDiv.innerHTML = `
+                        <p class="text-sm font-semibold text-text-primary">${rep.name}</p>
+                        <p class="text-xs text-text-tertiary">${rep.role} - ${rep.email}</p>
+                    `;
+                    secondaryList.appendChild(repDiv);
+                });
+            }
+            
+            nextStep();
+        }
+
+        function handleFileUpload(input, previewId) {
+            const preview = document.getElementById(previewId);
+            const file = input.files[0];
+            if (file) {
+                preview.classList.remove('hidden');
+                preview.innerHTML = `
+                    <div class="flex items-center justify-between p-3 bg-secondary-50 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-sm font-semibold text-text-primary">${file.name}</span>
+                        </div>
+                        <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                `;
+            }
+        }
+
+        function submitDocuments(event) {
+            event.preventDefault();
+            nextStep();
+        }
+
+        function proceedToReview() {
+            nextStep();
+        }
+
+        function submitKYC(event) {
+            event.preventDefault();
+            showStep(6); // Show pending verification (step 7, index 6)
+        }
+
+        // Initialize
+        showStep(0);
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

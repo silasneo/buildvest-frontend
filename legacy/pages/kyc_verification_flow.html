@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest KYC Verification - Complete your identity verification for secure platform access and compliance with regulatory requirements.">
+    <title>KYC Verification Flow - BuildVest | Secure Identity Verification</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+
+<body class="bg-gradient-to-br from-surface via-white to-primary-50">
+    <!-- Simple Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center space-x-3">
+                    <img src="https://buildvest.net/buildvest-logo.png" alt="BuildVest" class="h-8 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    <!-- span class="text-xl font-bold text-primary">BuildVest</span -->
+                </a>
+                <a href="authentication_hub.html" class="text-text-secondary hover:text-primary transition-colors text-sm font-semibold">
+                    <svg class="w-5 h-5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto">
+            <!-- Progress Bar -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-2">
+                        <div id="step1Indicator" class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">1</div>
+                        <span class="text-sm font-semibold text-text-primary hidden sm:inline">OTP</span>
+                    </div>
+                    <div class="flex-1 h-1 mx-2 bg-border relative">
+                        <div id="progressBar1" class="absolute inset-y-0 left-0 bg-primary transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="step2Indicator" class="w-8 h-8 rounded-full bg-border text-text-tertiary flex items-center justify-center text-sm font-bold">2</div>
+                        <span class="text-sm font-semibold text-text-tertiary hidden sm:inline">Personal Info</span>
+                    </div>
+                    <div class="flex-1 h-1 mx-2 bg-border relative">
+                        <div id="progressBar2" class="absolute inset-y-0 left-0 bg-primary transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="step3Indicator" class="w-8 h-8 rounded-full bg-border text-text-tertiary flex items-center justify-center text-sm font-bold">3</div>
+                        <span class="text-sm font-semibold text-text-tertiary hidden sm:inline">Identity</span>
+                    </div>
+                    <div class="flex-1 h-1 mx-2 bg-border relative">
+                        <div id="progressBar3" class="absolute inset-y-0 left-0 bg-primary transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="step4Indicator" class="w-8 h-8 rounded-full bg-border text-text-tertiary flex items-center justify-center text-sm font-bold">4</div>
+                        <span class="text-sm font-semibold text-text-tertiary hidden sm:inline">Documents</span>
+                    </div>
+                    <div class="flex-1 h-1 mx-2 bg-border relative">
+                        <div id="progressBar4" class="absolute inset-y-0 left-0 bg-primary transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="step5Indicator" class="w-8 h-8 rounded-full bg-border text-text-tertiary flex items-center justify-center text-sm font-bold">5</div>
+                        <span class="text-sm font-semibold text-text-tertiary hidden sm:inline">Review</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1: OTP Verification -->
+            <div id="otpVerification" class="card p-8">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">Verify Your Email</h2>
+                    <p class="text-text-secondary">We've sent a 6-digit code to <span class="font-semibold">your@email.com</span></p>
+                </div>
+
+                <form onsubmit="verifyOTP(event)">
+                    <!-- OTP Input -->
+                    <div class="mb-8">
+                        <div class="flex justify-center space-x-3">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 0)">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 1)">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 2)">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 3)">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 4)">
+                            <input type="text" maxlength="1" class="w-12 h-12 sm:w-14 sm:h-14 text-center text-2xl font-bold rounded-xl border-2 border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all otp-input" oninput="moveToNext(this, 5)">
+                        </div>
+                    </div>
+
+                    <!-- Verify Button -->
+                    <button type="submit" class="w-full btn btn-primary py-3 text-lg font-bold mb-6">
+                        Verify Code
+                    </button>
+
+                    <!-- Resend Options -->
+                    <div class="text-center space-y-2">
+                        <p class="text-text-secondary text-sm">Didn't receive the code?</p>
+                        <div class="flex justify-center space-x-4">
+                            <button type="button" onclick="resendOTP()" class="text-sm text-primary hover:text-primary-dark font-semibold">
+                                Resend code
+                            </button>
+                            <span class="text-border">|</span>
+                            <button type="button" onclick="changeContact()" class="text-sm text-primary hover:text-primary-dark font-semibold">
+                                Change email
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Prototype Skip -->
+                <div class="mt-8 pt-8 border-t border-border">
+                    <a href="investor_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                        Skip → Continue to Dashboard (for prototyping)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 2: Personal Information (Investor) -->
+            <div id="personalInfoInvestor" class="hidden card p-8">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">Personal Information</h2>
+                    <p class="text-text-secondary">Please provide your personal details for verification</p>
+                </div>
+
+                <form onsubmit="submitPersonalInfo(event)">
+                    <div class="space-y-5">
+                        <!-- Full Legal Name -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Full Legal Name</label>
+                            <input id="personalInfoFullName" type="text" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="As it appears on your ID">
+                        </div>
+
+                        <!-- Date of Birth -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Date of Birth</label>
+                            <input id="personalInfoDOB" type="date" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all">
+                        </div>
+
+                        <!-- Nationality -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Nationality</label>
+                            <select id="personalInfoNationality" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all">
+                                <option value="">Select your nationality</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="NG">Nigeria</option>
+                                <option value="KE">Kenya</option>
+                                <option value="IN">India</option>
+                            </select>
+                        </div>
+
+                        <!-- Residential Address -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Residential Address</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all mb-3" placeholder="Street address">
+                            <div class="grid grid-cols-2 gap-3">
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="City">
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="State/Province">
+                            </div>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all mt-3" placeholder="Postal code">
+                        </div>
+
+                        <!-- Occupation -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Occupation</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Your current occupation">
+                        </div>
+
+                        <!-- Investment Purpose -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Investment Purpose</label>
+                            <select required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all">
+                                <option value="">Select your investment purpose</option>
+                                <option value="wealth">Wealth Building</option>
+                                <option value="retirement">Retirement Planning</option>
+                                <option value="passive">Passive Income</option>
+                                <option value="diversification">Portfolio Diversification</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex gap-4 mt-8">
+                        <button type="button" onclick="previousStep()" class="flex-1 btn btn-outline py-3">
+                            Back
+                        </button>
+                        <button type="submit" class="flex-1 btn btn-primary py-3">
+                            Continue
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Prototype Skip -->
+                <div class="mt-6 pt-6 border-t border-border">
+                    <a href="investor_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                        Skip → Continue to Dashboard (for prototyping)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 3: Automated Identity Verification -->
+            <div id="automatedIdentityVerification" class="hidden card p-8">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">Automated Identity Verification</h2>
+                    <p class="text-text-secondary">Verify your identity quickly and securely</p>
+                </div>
+
+                <div id="nigeriaVerificationSection" class="hidden">
+                    <form onsubmit="verifyNigerianIdentity(event)">
+                        <div class="space-y-5">
+                            <!-- Prepopulated Full Name (readonly) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-text-primary mb-2">Full Legal Name</label>
+                                <input id="verifyFullName" type="text" readonly class="w-full px-4 py-3 rounded-xl border border-border bg-surface text-text-secondary outline-none" placeholder="Will be populated from Step 2">
+                            </div>
+
+                            <!-- Prepopulated Date of Birth (readonly) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-text-primary mb-2">Date of Birth</label>
+                                <input id="verifyDOB" type="text" readonly class="w-full px-4 py-3 rounded-xl border border-border bg-surface text-text-secondary outline-none" placeholder="Will be populated from Step 2">
+                            </div>
+
+                            <!-- ID Type Selection (BVN or NIN) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-text-primary mb-3">Select ID Type</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="card p-4 cursor-pointer hover:border-primary transition-all border-2 border-transparent">
+                                        <input type="radio" name="nigeriaIdType" value="bvn" class="hidden peer" required onchange="toggleNigeriaIdInput('bvn')">
+                                        <div class="text-center peer-checked:text-primary">
+                                            <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path>
+                                            </svg>
+                                            <span class="text-sm font-semibold">BVN</span>
+                                        </div>
+                                    </label>
+                                    <label class="card p-4 cursor-pointer hover:border-primary transition-all border-2 border-transparent">
+                                        <input type="radio" name="nigeriaIdType" value="nin" class="hidden peer" required onchange="toggleNigeriaIdInput('nin')">
+                                        <div class="text-center peer-checked:text-primary">
+                                            <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path>
+                                            </svg>
+                                            <span class="text-sm font-semibold">NIN</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- BVN Input -->
+                            <div id="bvnInputSection" class="hidden">
+                                <label class="block text-sm font-semibold text-text-primary mb-2">Bank Verification Number (BVN)</label>
+                                <input id="bvnInput" type="text" pattern="[0-9]{11}" maxlength="11" class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Enter your 11-digit BVN">
+                            </div>
+
+                            <!-- NIN Input -->
+                            <div id="ninInputSection" class="hidden">
+                                <label class="block text-sm font-semibold text-text-primary mb-2">National Identification Number (NIN)</label>
+                                <input id="ninInput" type="text" pattern="[0-9]{11}" maxlength="11" class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Enter your 11-digit NIN">
+                            </div>
+
+                            <!-- Provider Disclosure -->
+                            <div class="bg-primary-50 border border-primary-100 rounded-xl p-4">
+                                <div class="flex items-start space-x-3">
+                                    <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-xs text-text-secondary">Identity verification is securely handled by a trusted verification partner</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Verification Result (initially hidden) -->
+                            <div id="verificationResult" class="hidden"></div>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="flex gap-4 mt-8">
+                            <button type="button" onclick="previousStep()" class="flex-1 btn btn-outline py-3">
+                                Back
+                            </button>
+                            <button type="submit" class="flex-1 btn btn-primary py-3">
+                                Verify Identity
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Prototype Skip -->
+                    <div class="mt-6 pt-6 border-t border-border">
+                        <a href="investor_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                            Skip → Continue to Dashboard (for prototyping)
+                        </a>
+                    </div>
+                </div>
+
+                <div id="otherCountrySection" class="hidden">
+                    <div class="bg-surface rounded-xl p-6 text-center mb-8">
+                        <svg class="w-16 h-16 mx-auto text-text-tertiary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <p class="text-text-primary font-semibold mb-2">Automated identity verification for your country will be supported soon.</p>
+                        <p class="text-text-secondary text-sm">Please proceed with Document Upload.</p>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex gap-4">
+                        <button type="button" onclick="previousStep()" class="flex-1 btn btn-outline py-3">
+                            Back
+                        </button>
+                        <button type="button" onclick="skipToDocumentUpload()" class="flex-1 btn btn-primary py-3">
+                            Continue to Document Upload
+                        </button>
+                    </div>
+
+                    <!-- Prototype Skip -->
+                    <div class="mt-6 pt-6 border-t border-border">
+                        <a href="investor_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                            Skip → Continue to Dashboard (for prototyping)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Identity Document Upload -->
+            <div id="documentUpload" class="hidden card p-8">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">Identity Document Upload</h2>
+                    <p class="text-text-secondary">Upload a valid government-issued ID for verification</p>
+                </div>
+
+                <form onsubmit="submitDocuments(event)">
+                    <!-- ID Type Selection -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-text-primary mb-3">Select ID Type</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="card p-4 cursor-pointer hover:border-primary transition-all border-2 border-transparent">
+                                <input type="radio" name="idType" value="passport" class="hidden peer" required>
+                                <div class="text-center peer-checked:text-primary">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                    </svg>
+                                    <span class="text-sm font-semibold">Passport</span>
+                                </div>
+                            </label>
+                            <label class="card p-4 cursor-pointer hover:border-primary transition-all border-2 border-transparent">
+                                <input type="radio" name="idType" value="national_id" class="hidden peer">
+                                <div class="text-center peer-checked:text-primary">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path>
+                                    </svg>
+                                    <span class="text-sm font-semibold">National ID</span>
+                                </div>
+                            </label>
+                            <label class="card p-4 cursor-pointer hover:border-primary transition-all border-2 border-transparent">
+                                <input type="radio" name="idType" value="drivers_license" class="hidden peer">
+                                <div class="text-center peer-checked:text-primary">
+                                    <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                                    </svg>
+                                    <span class="text-sm font-semibold">Driver's License</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Document Upload Areas -->
+                    <div class="space-y-4 mb-6">
+                        <!-- Front of ID -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Front of ID</label>
+                            <div class="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary transition-all cursor-pointer">
+                                <input type="file" id="frontID" accept="image/*" class="hidden" required onchange="handleFileUpload(this, 'frontIDPreview')">
+                                <label for="frontID" class="cursor-pointer">
+                                    <svg class="w-12 h-12 mx-auto text-text-tertiary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                    <p class="text-text-primary font-semibold mb-1">Click to upload or drag and drop</p>
+                                    <p class="text-sm text-text-tertiary">PNG, JPG up to 10MB</p>
+                                </label>
+                                <div id="frontIDPreview" class="hidden mt-4"></div>
+                            </div>
+                        </div>
+
+                        <!-- Back of ID -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Back of ID (if applicable)</label>
+                            <div class="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary transition-all cursor-pointer">
+                                <input type="file" id="backID" accept="image/*" class="hidden" onchange="handleFileUpload(this, 'backIDPreview')">
+                                <label for="backID" class="cursor-pointer">
+                                    <svg class="w-12 h-12 mx-auto text-text-tertiary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                    <p class="text-text-primary font-semibold mb-1">Click to upload or drag and drop</p>
+                                    <p class="text-sm text-text-tertiary">PNG, JPG up to 10MB</p>
+                                </label>
+                                <div id="backIDPreview" class="hidden mt-4"></div>
+                            </div>
+                        </div>
+
+                        <!-- Selfie -->
+                        <div>
+                            <label class="block text-sm font-semibold text-text-primary mb-2">Selfie Photo</label>
+                            <div class="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary transition-all cursor-pointer">
+                                <input type="file" id="selfie" accept="image/*" class="hidden" required onchange="handleFileUpload(this, 'selfiePreview')">
+                                <label for="selfie" class="cursor-pointer">
+                                    <svg class="w-12 h-12 mx-auto text-text-tertiary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    <p class="text-text-primary font-semibold mb-1">Take or upload a selfie</p>
+                                    <p class="text-sm text-text-tertiary">Clear photo of your face</p>
+                                </label>
+                                <div id="selfiePreview" class="hidden mt-4"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Note -->
+                    <div class="bg-primary-50 border border-primary-100 rounded-xl p-4 mb-6">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <div>
+                                <p class="text-sm text-primary font-semibold mb-1">Your documents are secure</p>
+                                <p class="text-xs text-text-secondary">All uploads are encrypted and stored securely. We comply with data protection regulations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex gap-4">
+                        <button type="button" onclick="previousStep()" class="flex-1 btn btn-outline py-3">
+                            Back
+                        </button>
+                        <button type="submit" class="flex-1 btn btn-primary py-3">
+                            Continue
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Prototype Skip -->
+                <div class="mt-6 pt-6 border-t border-border">
+                    <a href="investor_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                        Skip → Continue to Dashboard (for prototyping)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 5: Review & Submit -->
+            <div id="reviewSubmit" class="hidden card p-8">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">Review & Submit</h2>
+                    <p class="text-text-secondary">Please review your information before submitting</p>
+                </div>
+
+                <form onsubmit="submitKYC(event)">
+                    <!-- Summary Sections -->
+                    <div class="space-y-6 mb-8">
+                        <!-- Personal Information Summary -->
+                        <div class="bg-surface rounded-xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold text-text-primary">Personal Information</h3>
+                                <button type="button" onclick="goToStep(1)" class="text-sm text-primary hover:text-primary-dark font-semibold">Edit</button>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p class="text-text-tertiary mb-1">Full Name</p>
+                                    <p class="text-text-primary font-semibold">John Michael Doe</p>
+                                </div>
+                                <div>
+                                    <p class="text-text-tertiary mb-1">Date of Birth</p>
+                                    <p class="text-text-primary font-semibold">January 15, 1990</p>
+                                </div>
+                                <div>
+                                    <p class="text-text-tertiary mb-1">Nationality</p>
+                                    <p class="text-text-primary font-semibold">United States</p>
+                                </div>
+                                <div>
+                                    <p class="text-text-tertiary mb-1">Occupation</p>
+                                    <p class="text-text-primary font-semibold">Software Engineer</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Documents Summary -->
+                        <div class="bg-surface rounded-xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold text-text-primary">Uploaded Documents</h3>
+                                <button type="button" onclick="goToStep(3)" class="text-sm text-primary hover:text-primary-dark font-semibold">Edit</button>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-semibold text-text-primary">Passport - Front</p>
+                                            <p class="text-xs text-text-tertiary">2.4 MB</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-semibold text-text-primary">Selfie Photo</p>
+                                            <p class="text-xs text-text-tertiary">1.8 MB</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirmation Checkboxes -->
+                    <div class="space-y-4 mb-8">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="checkbox" required class="mt-1 w-5 h-5 text-primary border-border rounded focus:ring-primary">
+                            <span class="text-sm text-text-secondary">I confirm that all information provided is accurate and complete to the best of my knowledge.</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="checkbox" required class="mt-1 w-5 h-5 text-primary border-border rounded focus:ring-primary">
+                            <span class="text-sm text-text-secondary">I agree to BuildVest's <a href="#" class="text-primary hover:text-primary-dark font-semibold">Terms of Service</a> and <a href="#" class="text-primary hover:text-primary-dark font-semibold">Privacy Policy</a>.</span>
+                        </label>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex gap-4">
+                        <button type="button" onclick="previousStep()" class="flex-1 btn btn-outline py-3">
+                            Back
+                        </button>
+                        <button type="submit" class="flex-1 btn btn-primary py-3">
+                            Submit for Review
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Prototype Skip -->
+                <div class="mt-6 pt-6 border-t border-border">
+                    <a href="investor_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                        Skip → Continue to Dashboard (for prototyping)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Step 6: Pending Verification -->
+            <div id="pendingVerification" class="hidden card p-8 text-center">
+                <div class="w-24 h-24 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-12 h-12 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+
+                <h2 class="text-3xl font-bold text-text-primary mb-4">Verification Under Review</h2>
+                <p class="text-lg text-text-secondary mb-8 max-w-md mx-auto">Thank you for submitting your information. Our team will review your documents and typically complete verification within 24-48 hours.</p>
+
+                <!-- What Happens Next -->
+                <div class="bg-surface rounded-xl p-6 text-left mb-8 max-w-md mx-auto">
+                    <h3 class="text-lg font-bold text-text-primary mb-4">What happens next?</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-xs font-bold text-primary">1</span>
+                            </div>
+                            <p class="text-sm text-text-secondary">Our compliance team will review your documents</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-xs font-bold text-primary">2</span>
+                            </div>
+                            <p class="text-sm text-text-secondary">You'll receive an email notification once approved</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="text-xs font-bold text-primary">3</span>
+                            </div>
+                            <p class="text-sm text-text-secondary">You'll gain full access to all platform features</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="investor_dashboard.html" class="btn btn-primary text-lg px-10 py-4">
+                    Continue to Dashboard
+                </a>
+            </div>
+
+            <!-- Security Indicators -->
+            <div class="mt-12 flex flex-wrap items-center justify-center gap-8 text-text-tertiary">
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm font-semibold">Bank-Level Encryption</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm font-semibold">GDPR Compliant</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm font-semibold">Secure Storage</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const steps = ['otpVerification', 'personalInfoInvestor', 'automatedIdentityVerification', 'documentUpload', 'reviewSubmit', 'pendingVerification'];
+        
+        // Configuration constants
+        const DEMO_VERIFICATION_SUCCESS_RATE = 0.5; // 50% success rate for demo purposes
+        
+        // Scoped namespace for KYC form data
+        const KYCData = {
+            formData: {}
+        };
+
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role') || 'investor';
+        const verificationType = urlParams.get('type') || 'signup';
+
+        function updateProgressBar() {
+            // Update step indicators
+            for (let i = 1; i <= 5; i++) {
+                const indicator = document.getElementById(`step${i}Indicator`);
+                if (i <= currentStep) {
+                    indicator.classList.remove('bg-border', 'text-text-tertiary');
+                    indicator.classList.add('bg-primary', 'text-white');
+                } else {
+                    indicator.classList.remove('bg-primary', 'text-white');
+                    indicator.classList.add('bg-border', 'text-text-tertiary');
+                }
+            }
+
+            // Update progress bars
+            for (let i = 1; i <= 4; i++) {
+                const progressBar = document.getElementById(`progressBar${i}`);
+                if (i < currentStep) {
+                    progressBar.style.width = '100%';
+                } else if (i === currentStep) {
+                    progressBar.style.width = '50%';
+                } else {
+                    progressBar.style.width = '0%';
+                }
+            }
+        }
+
+        function showStep(stepIndex) {
+            steps.forEach((step, index) => {
+                const element = document.getElementById(step);
+                if (index === stepIndex) {
+                    element.classList.remove('hidden');
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
+            currentStep = stepIndex;
+            updateProgressBar();
+        }
+
+        function nextStep() {
+            if (currentStep < steps.length - 1) {
+                showStep(currentStep + 1);
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 0) {
+                showStep(currentStep - 1);
+            }
+        }
+
+        function goToStep(stepIndex) {
+            showStep(stepIndex);
+        }
+
+        // OTP Input handling
+        function moveToNext(input, index) {
+            if (input.value.length === 1 && index < 5) {
+                const nextInput = document.querySelectorAll('.otp-input')[index + 1];
+                if (nextInput) nextInput.focus();
+            }
+        }
+
+        function verifyOTP(event) {
+            event.preventDefault();
+            nextStep();
+        }
+
+        function resendOTP() {
+            alert('A new code has been sent to your email.');
+        }
+
+        function changeContact() {
+            window.location.href = 'authentication_hub.html';
+        }
+
+        function submitPersonalInfo(event) {
+            event.preventDefault();
+            
+            // Get form values using specific IDs
+            const fullName = document.getElementById('personalInfoFullName').value;
+            const dob = document.getElementById('personalInfoDOB').value;
+            const nationality = document.getElementById('personalInfoNationality').value;
+            
+            // Store in scoped namespace
+            KYCData.formData = { fullName, dob, nationality };
+            
+            // Populate automated verification fields
+            document.getElementById('verifyFullName').value = fullName;
+            document.getElementById('verifyDOB').value = dob;
+            
+            // Show appropriate section based on nationality
+            const nigeriaSection = document.getElementById('nigeriaVerificationSection');
+            const otherCountrySection = document.getElementById('otherCountrySection');
+            
+            if (nationality === 'NG') {
+                nigeriaSection.classList.remove('hidden');
+                otherCountrySection.classList.add('hidden');
+            } else {
+                nigeriaSection.classList.add('hidden');
+                otherCountrySection.classList.remove('hidden');
+            }
+            
+            nextStep();
+        }
+
+        function toggleNigeriaIdInput(type) {
+            const bvnSection = document.getElementById('bvnInputSection');
+            const ninSection = document.getElementById('ninInputSection');
+            const bvnInput = document.getElementById('bvnInput');
+            const ninInput = document.getElementById('ninInput');
+            
+            if (type === 'bvn') {
+                bvnSection.classList.remove('hidden');
+                ninSection.classList.add('hidden');
+                bvnInput.required = true;
+                ninInput.required = false;
+                ninInput.value = '';
+            } else if (type === 'nin') {
+                ninSection.classList.remove('hidden');
+                bvnSection.classList.add('hidden');
+                ninInput.required = true;
+                bvnInput.required = false;
+                bvnInput.value = '';
+            }
+        }
+
+        function verifyNigerianIdentity(event) {
+            event.preventDefault();
+            
+            // Get selected ID type and value
+            const idType = document.querySelector('input[name="nigeriaIdType"]:checked').value;
+            const idValue = idType === 'bvn' 
+                ? document.getElementById('bvnInput').value 
+                : document.getElementById('ninInput').value;
+            
+            // Basic validation: ensure ID value is 11 digits
+            if (!/^\d{11}$/.test(idValue)) {
+                alert('Please enter a valid 11-digit ' + idType.toUpperCase());
+                return;
+            }
+            
+            // Simulate verification using configured success rate
+            const isSuccess = Math.random() < DEMO_VERIFICATION_SUCCESS_RATE;
+            
+            const resultDiv = document.getElementById('verificationResult');
+            
+            if (isSuccess) {
+                // Success - show success message and proceed
+                resultDiv.className = 'bg-secondary-50 border border-secondary-100 rounded-xl p-4';
+                resultDiv.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                            <p class="text-sm text-secondary font-semibold mb-1">Verification Successful</p>
+                            <p class="text-xs text-text-secondary">Your identity has been verified. Proceeding to document upload...</p>
+                        </div>
+                    </div>
+                `;
+                resultDiv.classList.remove('hidden');
+                
+                // Proceed to next step after a short delay
+                setTimeout(() => {
+                    nextStep();
+                }, 2000);
+            } else {
+                // Failure - show error message with skip option
+                resultDiv.className = 'bg-red-50 border border-red-200 rounded-xl p-4';
+                resultDiv.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                            </svg>
+                            <div>
+                                <p class="text-sm text-red-600 font-semibold mb-1">Verification Failed</p>
+                                <p class="text-xs text-red-600">We couldn't verify your identity with the provided ${idType.toUpperCase()}. Please check your number and try again.</p>
+                            </div>
+                        </div>
+                        <button type="button" onclick="skipToDocumentUpload()" class="w-full btn btn-outline py-2 text-sm">
+                            Skip to Document Upload
+                        </button>
+                    </div>
+                `;
+                resultDiv.classList.remove('hidden');
+            }
+        }
+
+        function skipToDocumentUpload() {
+            nextStep();
+        }
+
+        function handleFileUpload(input, previewId) {
+            const preview = document.getElementById(previewId);
+            const file = input.files[0];
+            if (file) {
+                preview.classList.remove('hidden');
+                preview.innerHTML = `
+                    <div class="flex items-center justify-between p-3 bg-secondary-50 rounded-lg">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-sm font-semibold text-text-primary">${file.name}</span>
+                        </div>
+                        <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                `;
+            }
+        }
+
+        function submitDocuments(event) {
+            event.preventDefault();
+            nextStep();
+        }
+
+        function submitKYC(event) {
+            event.preventDefault();
+            showStep(5); // Show pending verification
+        }
+
+        // Initialize
+        showStep(0);
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

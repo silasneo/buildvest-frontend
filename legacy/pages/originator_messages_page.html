@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Originator Messages - Global communication inbox for regulated investor communications.">
+    <title>Messages - BuildVest Originator</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+    
+    <style>
+        .message-item:hover {
+            background-color: #F8FAFC;
+            cursor: pointer;
+        }
+        .message-item.unread {
+            background-color: #F0F9FF;
+            border-left: 4px solid #017EFE;
+        }
+        .message-preview {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="bg-background">
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white border-b border-border">
+        <div class="px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo & Mobile Menu -->
+                <div class="flex items-center space-x-4">
+                    <button id="sidebarToggle" class="lg:hidden p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                        <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <a href="originator_dashboard.html" class="flex items-center space-x-3">
+                        <img src="https://buildvest.net/buildvest-logo.png" alt="Buildvest" class="h-8 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    </a>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Notifications -->
+                    <button onclick="window.location.href='originator_all_notifications_page.html'" class="relative p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                        <svg class="w-6 h-6 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-warning rounded-full"></span>
+                    </button>
+
+                    <!-- User Menu -->
+                    <div class="relative">
+                        <button id="userMenuBtn" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1a5bb1a45-1764657839507.png" alt="User profile" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; this.onerror=null;">
+                            <span class="hidden sm:block text-sm font-medium text-text-primary">Urban Developments</span>
+                            <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <!-- User Dropdown -->
+                        <div id="userMenu" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-border py-2">
+                            <a href="originator_settings_page.html" class="block px-4 py-2 text-sm text-text-secondary hover:bg-surface transition-colors duration-150">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                Organization Settings
+                            </a>
+                            <div class="border-t border-border my-2"></div>
+                            <a href="landing_page.html" class="block px-4 py-2 text-sm text-error hover:bg-surface transition-colors duration-150">
+                                <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed left-0 top-16 bottom-0 w-64 bg-white border-r border-border z-30 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto">
+        <nav class="p-4 space-y-2">
+            <a href="originator_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="originator_assets_management.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+                <span>Assets</span>
+            </a>
+
+            <a href="originator_investors_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                <span>Investors</span>
+            </a>
+
+            <a href="originator_messages_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-primary-50 text-primary font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                </svg>
+                <span>Messages</span>
+                <span class="ml-auto badge badge-warning">3</span>
+            </a>
+
+            <a href="originator_treasury_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                </svg>
+                <span>Treasury</span>
+            </a>
+
+            <a href="originator_analytics_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                <span>Analytics</span>
+            </a>
+
+            <div class="border-t border-border my-4"></div>
+
+            <a href="originator_settings_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>Settings</span>
+            </a>
+
+            <a href="originator_help_support_page.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface transition-colors duration-150">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <span>Help & Support</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Sidebar Overlay (Mobile) -->
+    <div id="sidebarOverlay" class="hidden fixed inset-0 bg-slate-900/50 z-20 lg:hidden" onclick="closeSidebar()"></div>
+
+    <!-- Main Content -->
+    <main class="lg:ml-64 pt-16 min-h-screen">
+        <div class="p-4 sm:p-6 lg:p-8">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-2xl sm:text-3xl font-bold text-text-primary mb-2">Messages</h1>
+                <p class="text-text-secondary">Global communication inbox for regulated investor communications</p>
+            </div>
+
+            <!-- Filters & Actions -->
+            <div class="card p-6 mb-6">
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Search -->
+                    <div class="relative">
+                        <input type="text" id="searchMessages" placeholder="Search messages..." class="input pl-10">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+
+                    <!-- Asset Filter -->
+                    <select id="assetFilter" class="input">
+                        <option value="">All Assets</option>
+                        <option value="downtown-office">Downtown Office Complex</option>
+                        <option value="solar-energy">Solar Energy Project</option>
+                        <option value="coastal-dev">Coastal Development</option>
+                        <option value="luxury-apts">Luxury Apartments</option>
+                    </select>
+
+                    <!-- Investor Filter -->
+                    <select id="investorFilter" class="input">
+                        <option value="">All Investors</option>
+                        <option value="verified">Verified Only</option>
+                        <option value="accredited">Accredited Only</option>
+                        <option value="institutional">Institutional</option>
+                    </select>
+
+                    <!-- Status Filter -->
+                    <select id="statusFilter" class="input">
+                        <option value="">All Messages</option>
+                        <option value="unread">Unread</option>
+                        <option value="starred">Starred</option>
+                        <option value="archived">Archived</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center justify-between mt-4 pt-4 border-t border-border">
+                    <div class="flex items-center space-x-2">
+                        <span class="badge bg-primary-100 text-primary">3 Unread</span>
+                        <span class="badge bg-surface-200 text-text-secondary">12 Total</span>
+                    </div>
+                    <button onclick="alert('Composing new message...')" class="btn btn-primary btn-sm">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Compose Message
+                    </button>
+                </div>
+            </div>
+
+            <!-- Messages List -->
+            <div class="space-y-4">
+                <!-- Unread Message 1 -->
+                <div class="card message-item unread" onclick="openMessage('msg1')">
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_17a64ee4f-1763296399211.png" alt="Michael Rodriguez" class="w-12 h-12 rounded-full object-cover">
+                                <div>
+                                    <h3 class="font-semibold text-text-primary">Michael Rodriguez</h3>
+                                    <p class="text-sm text-text-tertiary">Accredited Investor</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-text-secondary">2 hours ago</p>
+                                <button class="mt-1">
+                                    <svg class="w-5 h-5 text-text-tertiary hover:text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h4 class="font-medium text-text-primary mb-1">RE: Solar Energy Project - Investment Inquiry</h4>
+                            <p class="text-sm text-text-secondary message-preview">
+                                Thank you for the detailed prospectus. I have a few questions regarding the quarterly distribution schedule and the secondary market liquidity provisions...
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="badge bg-warning-100 text-warning">Solar Energy Project</span>
+                            <span class="badge bg-primary-100 text-primary">Investment Inquiry</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unread Message 2 -->
+                <div class="card message-item unread" onclick="openMessage('msg2')">
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_11f9dcd0a-1765181753328.png" alt="Sarah Johnson" class="w-12 h-12 rounded-full object-cover">
+                                <div>
+                                    <h3 class="font-semibold text-text-primary">Sarah Johnson</h3>
+                                    <p class="text-sm text-text-tertiary">Institutional Investor</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-text-secondary">5 hours ago</p>
+                                <button class="mt-1">
+                                    <svg class="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h4 class="font-medium text-text-primary mb-1">Downtown Office Complex - Document Request</h4>
+                            <p class="text-sm text-text-secondary message-preview">
+                                I need access to the latest financial statements and updated appraisal report for our internal due diligence process. Could you please provide these at your earliest convenience?
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="badge bg-primary-100 text-primary">Downtown Office Complex</span>
+                            <span class="badge bg-secondary-100 text-secondary">Documents</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unread Message 3 -->
+                <div class="card message-item unread" onclick="openMessage('msg3')">
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1136de78b-1763296689293.png" alt="David Chen" class="w-12 h-12 rounded-full object-cover">
+                                <div>
+                                    <h3 class="font-semibold text-text-primary">David Chen</h3>
+                                    <p class="text-sm text-text-tertiary">Verified Investor</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-text-secondary">Yesterday</p>
+                                <button class="mt-1">
+                                    <svg class="w-5 h-5 text-text-tertiary hover:text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h4 class="font-medium text-text-primary mb-1">Secondary Market Listing Question</h4>
+                            <p class="text-sm text-text-secondary message-preview">
+                                I'm considering listing some of my tokens on the secondary market. What's the process for establishing a fair market price and are there any restrictions I should be aware of?
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="badge bg-accent-100 text-accent">Coastal Development</span>
+                            <span class="badge bg-info-100 text-info">Secondary Market</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Read Messages -->
+                <div class="card message-item" onclick="openMessage('msg4')">
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1e302a8d6-1764682088910.png" alt="Emily Watson" class="w-12 h-12 rounded-full object-cover">
+                                <div>
+                                    <h3 class="font-semibold text-text-primary">Emily Watson</h3>
+                                    <p class="text-sm text-text-tertiary">Accredited Investor</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-text-secondary">2 days ago</p>
+                                <button class="mt-1">
+                                    <svg class="w-5 h-5 text-text-tertiary hover:text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h4 class="font-medium text-text-primary mb-1">Thank You - Investment Confirmation</h4>
+                            <p class="text-sm text-text-secondary message-preview">
+                                Thank you for processing my investment in the Luxury Apartments project. I've received the confirmation and blockchain records. Looking forward to quarterly updates.
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="badge bg-success-100 text-success">Luxury Apartments</span>
+                            <span class="badge bg-surface-200 text-text-secondary">Confirmation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card message-item" onclick="openMessage('msg5')">
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_17b3d914b-1763292640558.png" alt="James Martinez" class="w-12 h-12 rounded-full object-cover">
+                                <div>
+                                    <h3 class="font-semibold text-text-primary">James Martinez</h3>
+                                    <p class="text-sm text-text-tertiary">Institutional Investor</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-text-secondary">3 days ago</p>
+                                <button class="mt-1">
+                                    <svg class="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h4 class="font-medium text-text-primary mb-1">Portfolio Diversification Inquiry</h4>
+                            <p class="text-sm text-text-secondary message-preview">
+                                I'm interested in diversifying my portfolio across multiple projects. Could you provide information about upcoming opportunities and allocation strategies?
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="badge bg-surface-200 text-text-secondary">General</span>
+                            <span class="badge bg-primary-100 text-primary">Portfolio</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div class="text-center mt-8">
+                <button class="btn btn-outline">
+                    Load More Messages
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sidebar toggle
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        });
+
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        }
+
+        // User menu toggle
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userMenu = document.getElementById('userMenu');
+
+        userMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userMenuBtn.contains(e.target) && !userMenu.contains(e.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+        // Open message
+        function openMessage(messageId) {
+            alert('Opening message: ' + messageId + '\n\nThis would navigate to the message detail view.');
+        }
+
+        // Filter functionality
+        const searchInput = document.getElementById('searchMessages');
+        const assetFilter = document.getElementById('assetFilter');
+        const investorFilter = document.getElementById('investorFilter');
+        const statusFilter = document.getElementById('statusFilter');
+
+        [searchInput, assetFilter, investorFilter, statusFilter].forEach(element => {
+            element.addEventListener('change', () => {
+                console.log('Filters applied:', {
+                    search: searchInput.value,
+                    asset: assetFilter.value,
+                    investor: investorFilter.value,
+                    status: statusFilter.value
+                });
+            });
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

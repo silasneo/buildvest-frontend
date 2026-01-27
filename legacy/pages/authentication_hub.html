@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Authentication Hub - Secure login and signup for investors and originators. Start your journey in real-world asset investing.">
+    <title>Authentication Hub - BuildVest | Secure Login & Signup</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fbuildvest4678back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+
+<body class="bg-gradient-to-br from-surface via-white to-primary-50">
+    <!-- Simple Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center space-x-3">
+                    <img src="https://buildvest.net/buildvest-logo.png" alt="BuildVest" class="h-8 w-auto" onerror="this.src='https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; this.onerror=null;">
+                    <!--span class="text-xl font-bold text-primary">BuildVest</span-->
+                </a>
+                <a href="../index.html" class="text-text-secondary hover:text-primary transition-colors text-sm font-semibold">
+                    <svg class="w-5 h-5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Return to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <!-- Page Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl sm:text-5xl font-bold text-text-primary mb-4">Welcome to BuildVest</h1>
+                <p class="text-xl text-text-secondary max-w-2xl mx-auto">Choose your account type to get started with secure authentication</p>
+            </div>
+
+            <!-- Role Selection Cards -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12" id="roleSelection">
+                <!-- Investor Card -->
+                <div class="card p-8 card-hover cursor-pointer border-2 border-transparent hover:border-primary transition-all duration-300" onclick="selectRole('investor')">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-text-primary mb-2">Join or Log in as Investor</h3>
+                            <p class="text-text-secondary mb-4">Browse opportunities, invest fractionally from $100, and build your wealth with verified real-world assets.</p>
+                            <div class="flex items-center text-sm text-primary font-semibold">
+                                <span>Continue as Investor</span>
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Originator Card -->
+                <div class="card p-8 card-hover cursor-pointer border-2 border-transparent hover:border-secondary transition-all duration-300" onclick="selectRole('originator')">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-16 h-16 bg-secondary-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-text-primary mb-2">Join or Log in as Originator</h3>
+                            <p class="text-text-secondary mb-4">Tokenize assets, raise capital globally from $1M-$100M+, and access thousands of investors instantly.</p>
+                            <div class="flex items-center text-sm text-secondary font-semibold">
+                                <span>Continue as Originator</span>
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Authentication Forms Container -->
+            <div id="authFormsContainer" class="hidden">
+                <!-- Login Form -->
+                <div id="loginForm" class="max-w-md mx-auto">
+                    <div class="card p-8">
+                        <div class="text-center mb-8">
+                            <h2 class="text-3xl font-bold text-text-primary mb-2" id="loginTitle">Log in as Investor</h2>
+                            <p class="text-text-secondary">Welcome back! Enter your credentials to continue</p>
+                        </div>
+
+                        <form onsubmit="handleLogin(event)">
+                            <!-- Email/Phone Input -->
+                            <div class="mb-5">
+                                <label class="block text-sm font-semibold text-text-primary mb-2">Email or Phone</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Enter your email or phone">
+                            </div>
+
+                            <!-- Password Input -->
+                            <div class="mb-5">
+                                <label class="block text-sm font-semibold text-text-primary mb-2">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="loginPassword" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Enter your password">
+                                    <button type="button" onclick="togglePasswordVisibility('loginPassword')" class="absolute right-3 top-1/2 -translate-y-1/2 text-text-tertiary hover:text-text-primary">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Remember Me & Forgot Password -->
+                            <div class="flex items-center justify-between mb-6">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 text-primary border-border rounded focus:ring-primary">
+                                    <span class="ml-2 text-sm text-text-secondary">Remember me</span>
+                                </label>
+                                <a href="#" onclick="showPasswordRecovery(); return false;" class="text-sm text-primary hover:text-primary-dark font-semibold">Forgot password?</a>
+                            </div>
+
+                            <!-- Login Button -->
+                            <button type="submit" class="w-full btn btn-primary py-3 text-lg font-bold mb-4">
+                                Log In
+                            </button>
+
+                            <!-- Social Login -->
+                            <div class="relative mb-4">
+                                <div class="absolute inset-0 flex items-center">
+                                    <div class="w-full border-t border-border"></div>
+                                </div>
+                                <div class="relative flex justify-center text-sm">
+                                    <span class="px-4 bg-white text-text-tertiary">Or continue with</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-3 mb-6">
+                                <button type="button" class="btn btn-outline py-3 flex items-center justify-center">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24">
+                                        <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                        <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                        <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                        <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                    </svg>
+                                </button>
+                                <button type="button" class="btn btn-outline py-3 flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                                    </svg>
+                                </button>
+                                <button type="button" class="btn btn-outline py-3 flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Switch to Signup -->
+                            <div class="text-center">
+                                <p class="text-text-secondary">Don't have an account? 
+                                    <a href="#" onclick="showSignup(); return false;" class="text-primary hover:text-primary-dark font-semibold">Create an account</a>
+                                </p>
+                            </div>
+                        </form>
+
+                        <!-- Prototype Skip Link -->
+                        <div class="mt-6 pt-6 border-t border-border">
+                            <a href="investor_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                                Skip → Continue to Dashboard (for prototyping)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Signup Form -->
+                <div id="signupForm" class="hidden max-w-md mx-auto">
+                    <div class="card p-8">
+                        <div class="text-center mb-8">
+                            <h2 class="text-3xl font-bold text-text-primary mb-2" id="signupTitle">Sign up as Investor</h2>
+                            <p class="text-text-secondary">Create your account to start investing</p>
+                        </div>
+
+                        <form onsubmit="handleSignup(event)">
+                            <!-- Full Name -->
+                            <div class="mb-5">
+                                <label class="block text-sm font-semibold text-text-primary mb-2">Full Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Enter your full name">
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mb-5">
+                                <label class="block text-sm font-semibold text-text-primary mb-2">Email</label>
+                                <input type="email" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Enter your email">
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="mb-5">
+                                <label class="block text-sm font-semibold text-text-primary mb-2">Phone</label>
+                                <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="+1 (555) 000-0000">
+                            </div>
+
+                            <!-- Create Password -->
+                            <div class="mb-5">
+                                <label class="block text-sm font-semibold text-text-primary mb-2">Create Password</label>
+                                <div class="relative">
+                                    <input type="password" id="signupPassword" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Create a strong password">
+                                    <button type="button" onclick="togglePasswordVisibility('signupPassword')" class="absolute right-3 top-1/2 -translate-y-1/2 text-text-tertiary hover:text-text-primary">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="mt-2 space-y-1">
+                                    <div class="flex items-center text-xs text-text-tertiary">
+                                        <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        At least 8 characters
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="mb-5">
+                                <label class="block text-sm font-semibold text-text-primary mb-2">Confirm Password</label>
+                                <input type="password" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Re-enter your password">
+                            </div>
+
+                            <!-- Create Account Button -->
+                            <button type="submit" class="w-full btn btn-primary py-3 text-lg font-bold mb-4">
+                                Create Account
+                            </button>
+
+                            <!-- Social Signup -->
+                            <div class="relative mb-4">
+                                <div class="absolute inset-0 flex items-center">
+                                    <div class="w-full border-t border-border"></div>
+                                </div>
+                                <div class="relative flex justify-center text-sm">
+                                    <span class="px-4 bg-white text-text-tertiary">Or sign up with</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-3 mb-6">
+                                <button type="button" class="btn btn-outline py-3 flex items-center justify-center">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24">
+                                        <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                        <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                        <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                        <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                    </svg>
+                                </button>
+                                <button type="button" class="btn btn-outline py-3 flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                                    </svg>
+                                </button>
+                                <button type="button" class="btn btn-outline py-3 flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Switch User Type -->
+                            <div class="text-center mb-4">
+                                <button type="button" onclick="switchUserType()" class="text-sm text-text-secondary hover:text-primary transition-colors">
+                                    <span id="switchUserTypeText">Are you an originator? Switch to Originator signup</span>
+                                </button>
+                            </div>
+
+                            <!-- Switch to Login -->
+                            <div class="text-center">
+                                <p class="text-text-secondary">Already have an account? 
+                                    <a href="#" onclick="showLogin(); return false;" class="text-primary hover:text-primary-dark font-semibold">Log in</a>
+                                </p>
+                            </div>
+                        </form>
+
+                        <!-- Prototype Skip Link -->
+                        <div class="mt-6 pt-6 border-t border-border">
+                            <a href="investor_dashboard.html" class="block text-center text-sm text-text-tertiary hover:text-primary transition-colors">
+                                Skip → Continue to Dashboard (for prototyping)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password Recovery -->
+                <div id="passwordRecovery" class="hidden max-w-md mx-auto">
+                    <div class="card p-8">
+                        <div class="text-center mb-8">
+                            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-text-primary mb-2">Reset Password</h2>
+                            <p class="text-text-secondary">Enter your email or phone to receive a verification code</p>
+                        </div>
+
+                        <form onsubmit="handlePasswordReset(event)">
+                            <!-- Email/Phone Input -->
+                            <div class="mb-6">
+                                <label class="block text-sm font-semibold text-text-primary mb-2">Email or Phone</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary-100 outline-none transition-all" placeholder="Enter your email or phone">
+                            </div>
+
+                            <!-- Send Code Button -->
+                            <button type="submit" class="w-full btn btn-primary py-3 text-lg font-bold mb-4">
+                                Send Verification Code
+                            </button>
+
+                            <!-- Back to Login -->
+                            <div class="text-center">
+                                <a href="#" onclick="showLogin(); return false;" class="text-sm text-text-secondary hover:text-primary transition-colors">
+                                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                                    </svg>
+                                    Back to login
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="mt-12 flex flex-wrap items-center justify-center gap-8 text-text-tertiary">
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm font-semibold">256-bit Encryption</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm font-semibold">SEC Compliant</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm font-semibold">Trusted by 10,000+</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentRole = 'investor';
+
+        function selectRole(role) {
+            currentRole = role;
+            document.getElementById('roleSelection').classList.add('hidden');
+            document.getElementById('authFormsContainer').classList.remove('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            
+            // Update titles
+            if (role === 'investor') {
+                document.getElementById('loginTitle').textContent = 'Log in as Investor';
+                document.getElementById('signupTitle').textContent = 'Sign up as Investor';
+                document.getElementById('switchUserTypeText').textContent = 'Are you an originator? Switch to Originator signup';
+            } else {
+                document.getElementById('loginTitle').textContent = 'Log in as Originator';
+                document.getElementById('signupTitle').textContent = 'Sign up as Originator';
+                document.getElementById('switchUserTypeText').textContent = 'Are you an investor? Switch to Investor signup';
+            }
+        }
+
+        function showLogin() {
+            document.getElementById('signupForm').classList.add('hidden');
+            document.getElementById('passwordRecovery').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+        }
+
+        function showSignup() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('passwordRecovery').classList.add('hidden');
+            document.getElementById('signupForm').classList.remove('hidden');
+        }
+
+        function showPasswordRecovery() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('signupForm').classList.add('hidden');
+            document.getElementById('passwordRecovery').classList.remove('hidden');
+        }
+
+        function switchUserType() {
+            currentRole = currentRole === 'investor' ? 'originator' : 'investor';
+            if (currentRole === 'investor') {
+                document.getElementById('signupTitle').textContent = 'Sign up as Investor';
+                document.getElementById('switchUserTypeText').textContent = 'Are you an originator? Switch to Originator signup';
+            } else {
+                document.getElementById('signupTitle').textContent = 'Sign up as Originator';
+                document.getElementById('switchUserTypeText').textContent = 'Are you an investor? Switch to Investor signup';
+            }
+        }
+
+        function togglePasswordVisibility(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            // Redirect to OTP verification with role context
+            window.location.href = `kyc_verification_flow.html?step=otp&role=${currentRole}`;
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            // Redirect to appropriate KYC flow based on role
+            if (currentRole === 'investor') {
+                window.location.href = `kyc_verification_flow.html?step=otp&role=${currentRole}`;
+            } else {
+                window.location.href = `originator_kyc_flow.html?step=otp&role=${currentRole}`;
+            }
+        }
+
+        function handlePasswordReset(event) {
+            event.preventDefault();
+            // Redirect to OTP verification for password reset
+            window.location.href = `kyc_verification_flow.html?step=otp&type=password_reset&role=${currentRole}`;
+        }
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

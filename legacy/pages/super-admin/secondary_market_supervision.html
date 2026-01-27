@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BuildVest Super Admin Secondary Market Supervision - Oversight and risk management for secondary trading activity">
+    <title>Secondary Market Supervision | BuildVest SuperAdmin</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    
+    <!-- Standalone Super Admin Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" type="image/png" href="https://buildvest.net/img/BuildvestLogo_icon.png">
+    
+    <!-- Sidebar Collapse Script -->
+    <script src="sidebar-toggle.js" defer></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#017EFE',
+                            50: '#EFF6FF',
+                            100: '#DBEAFE',
+                            200: '#BFDBFE',
+                            300: '#93C5FD',
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#017EFE',
+                            700: '#1D4ED8',
+                            800: '#1E40AF',
+                            900: '#1E3A8A'
+                        },
+                        secondary: {
+                            DEFAULT: '#03A504',
+                            50: '#F0FDF4',
+                            100: '#DCFCE7',
+                            200: '#BBF7D0',
+                            300: '#86EFAC',
+                            400: '#4ADE80',
+                            500: '#22C55E',
+                            600: '#03A504',
+                            700: '#15803D',
+                            800: '#166534',
+                            900: '#14532D'
+                        },
+                        accent: '#7C3AED',
+                        warning: '#F59E0B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Consolas', 'Monaco', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-white overflow-x-hidden">
+    <!-- Fixed Sidebar -->
+    <aside id="sidebar" class="fixed left-0 top-0 h-full w-72 bg-gradient-to-b from-slate-950 to-slate-900 border-r border-slate-800 z-40 transition-width duration-300 flex flex-col">
+        <!-- Logo Section -->
+        <div class="p-6 border-b border-slate-800 relative">
+            <div class="flex items-center space-x-3 mb-1">
+                <!-- Official BuildVest Logo -->
+                <img src="https://buildvest.net/img/BuildvestLogo_icon.png" 
+                     alt="BuildVest" 
+                     class="h-10 w-10 rounded-lg">
+                <span class="text-xl font-black text-white">BuildVest</span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold">Market Operator Console</p>
+            
+            <!-- Sidebar Toggle Button -->
+            <button id="sidebar-toggle" 
+                    aria-label="Toggle sidebar" 
+                    aria-expanded="true"
+                    class="absolute top-6 right-4 p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary">
+                <svg class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Chevron Left (default = expanded) -->
+                    <path id="toggle-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+            <!-- Dashboard Section -->
+            <div class="space-y-1">
+                <a href="super_admin_market_operator_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="global_asset_oversight_center.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>Assets</span>
+                </a>
+            </div>
+
+            <!-- User Management -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">User Management</p>
+                <div class="space-y-1">
+                    <a href="super_admin_user_entity_management_hub.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <span>Users</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Market Operations -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Market Operations</p>
+                <div class="space-y-1">
+                    <a href="treasury_settlement_control_plane.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span>Treasury & Settlement</span>
+                    </a>
+                    <a href="secondary_market_supervision.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-primary text-white font-semibold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                        <span>Secondary Market</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Governance & Risk -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Governance & Risk</p>
+                <div class="space-y-1">
+                    <a href="super_admin_compliance_risk_management_center.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span>Compliance & Risk</span>
+                    </a>
+                    <a href="audit_logs.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        <span>Audit Logs</span>
+                    </a>
+                    <a href="super_admin_analytics_reporting_dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        <span>Analytics & Reporting</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- System -->
+            <div class="pt-4">
+                <p class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">System</p>
+                <div class="space-y-1">
+                    <a href="super_admin_system_configuration_settings.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="p-4 border-t border-slate-800">
+            <div class="bg-slate-900 rounded-lg p-3">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-slate-400">System Status</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-green-500/20 text-green-400">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5 animate-pulse"></span>
+                        Operational
+                    </span>
+                </div>
+                <div class="flex items-center justify-between text-xs text-slate-500">
+                    <span>Uptime: 99.98%</span>
+                    <span>v2.4.1</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div id="main-content" class="ml-72 min-h-screen transition-margin duration-300">
+        <!-- Top Navigation Bar -->
+        <header class="sticky top-0 z-30 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+            <div class="px-8 py-4">
+                <div class="flex items-center justify-between">
+                    <!-- Left: Environment Badge -->
+                    <div class="flex items-center space-x-4">
+                        <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                            PRODUCTION
+                        </span>
+                    </div>
+
+                    <!-- Center: Global Search -->
+                    <div class="flex-1 max-w-2xl mx-8">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                            <input type="text" 
+                                   placeholder="Search secondary market data (⌘+K)" 
+                                   class="w-full pl-10 pr-4 py-2.5 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <kbd class="px-2 py-1 text-xs font-semibold text-slate-500 bg-slate-900 border border-slate-700 rounded">⌘K</kbd>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Notifications & Profile -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Notifications -->
+                        <button class="relative p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                            <span class="absolute top-1 right-1 w-2 h-2 bg-warning rounded-full"></span>
+                        </button>
+
+                        <!-- Admin Avatar Dropdown -->
+                        <div class="relative group">
+                            <button class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-800 transition-colors">
+                                <div class="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center font-bold text-sm">
+                                    JD
+                                </div>
+                                <div class="text-left hidden lg:block">
+                                    <p class="text-sm font-semibold text-white">John Doe</p>
+                                    <p class="text-xs text-slate-500">Super Admin</p>
+                                </div>
+                                <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div class="absolute right-0 mt-2 w-56 bg-slate-800 rounded-xl shadow-2xl border border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
+                                <a href="#" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                    </svg>
+                                    <span class="text-sm">Audit Logs</span>
+                                </a>
+                                <div class="border-t border-slate-700 my-2"></div>
+                                <a href="super_admin_login.html" class="flex items-center space-x-3 px-4 py-2.5 hover:bg-red-500/10 text-red-400 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                    </svg>
+                                    <span class="text-sm font-semibold">Sign Out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Page Content -->
+        <main class="p-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <div class="flex items-center space-x-3 mb-3">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white">Secondary Market Supervision</h1>
+                        <p class="text-slate-400 text-sm mt-1">Oversight without participation — Monitor trading activity, price signals, and concentration risk</p>
+                    </div>
+                </div>
+                
+                <div class="bg-primary/10 border border-primary/30 rounded-lg p-4 mt-4">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div class="flex-1">
+                            <p class="text-primary text-sm font-medium">Supervision Role</p>
+                            <p class="text-slate-400 text-sm mt-1">SuperAdmin provides market oversight and risk management without direct participation in trading. All control actions require DocuSeal approval and are fully audited.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Overview Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <!-- Assets with Secondary Trading Enabled -->
+                <div class="bg-slate-800 border border-slate-700 rounded-lg p-6 hover:border-primary/50 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">TRADING_ENABLED</span>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-1">42</div>
+                    <div class="text-sm text-slate-400 mb-2">Assets with Active Trading</div>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-secondary font-medium">68% enabled</span>
+                        <span class="text-slate-400">of 62 total</span>
+                    </div>
+                </div>
+
+                <!-- Active Listings Per Asset -->
+                <div class="bg-slate-800 border border-slate-700 rounded-lg p-6 hover:border-purple-500/50 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">ACTIVE_LISTINGS</span>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-1">247</div>
+                    <div class="text-sm text-slate-400 mb-2">Active Listings</div>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-white font-medium">5.9 avg/asset</span>
+                        <span class="text-slate-400">across market</span>
+                    </div>
+                </div>
+
+                <!-- Trade Volume -->
+                <div class="bg-slate-800 border border-slate-700 rounded-lg p-6 hover:border-secondary/50 transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">24H_VOLUME</span>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-1">$8.3M</div>
+                    <div class="text-sm text-slate-400 mb-2">24h Trading Volume</div>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center text-secondary font-medium">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                            <span>+12.4%</span>
+                        </div>
+                        <span class="text-slate-400">vs yesterday</span>
+                    </div>
+                </div>
+
+                <!-- Price Anomalies -->
+                <div class="bg-slate-800 border border-warning/50 rounded-lg p-6 hover:border-warning transition-colors">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-warning/10 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-mono text-warning">ANOMALIES</span>
+                    </div>
+                    <div class="text-3xl font-bold text-warning mb-1">3</div>
+                    <div class="text-sm text-slate-400 mb-2">Price Anomalies Detected</div>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-warning font-medium">Requires review</span>
+                        <span class="text-slate-400">urgent</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Critical Alerts Panel -->
+            <div class="bg-warning/10 border border-warning/30 rounded-lg p-6 mb-8">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 bg-warning/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-warning mb-3">Market Supervision Alerts — Immediate Attention Required</h3>
+                        <div class="space-y-3">
+                            <div class="bg-slate-800 border border-warning/30 rounded-lg p-4">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/20 text-warning font-mono">
+                                                VOLUME_ANOMALY
+                                            </span>
+                                            <span class="text-xs text-slate-400 font-mono">ASSET-2024-047</span>
+                                        </div>
+                                        <p class="text-white"><span class="font-semibold text-white">Downtown Office Tower A</span> — Unusual trading volume spike (+340% vs 7-day average)</p>
+                                        <p class="text-sm text-slate-400 mt-1">Detected: 2025-12-16 11:45:23 UTC | Threshold: 200% | Action: Review Required</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="px-4 py-2 bg-warning/20 text-warning text-sm font-medium rounded-lg hover:bg-warning/30 transition-colors">
+                                            Investigate →
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-slate-800 border border-warning/30 rounded-lg p-4">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/20 text-warning font-mono">
+                                                PRICE_ANOMALY
+                                            </span>
+                                            <span class="text-xs text-slate-400 font-mono">ASSET-2024-089</span>
+                                        </div>
+                                        <p class="text-white"><span class="font-semibold text-white">Waterfront Condominiums</span> — Price deviation >15% from 30-day moving average</p>
+                                        <p class="text-sm text-slate-400 mt-1">Detected: 2025-12-16 10:32:17 UTC | Deviation: +17.8% | Action: Monitor</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="px-4 py-2 bg-warning/20 text-warning text-sm font-medium rounded-lg hover:bg-warning/30 transition-colors">
+                                            Review →
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Trading Assets Table -->
+            <div class="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden mb-8">
+                <div class="px-6 py-4 border-b border-slate-700 bg-slate-900">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Active Trading Assets</h2>
+                            <p class="text-sm text-slate-400 mt-1">42 assets with secondary market activity</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors text-sm">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </button>
+                            <select class="px-3 py-2 bg-slate-700 border border-slate-600 text-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option>All Assets</option>
+                                <option>High Volume</option>
+                                <option>Price Anomalies</option>
+                                <option>Low Liquidity</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-slate-900/50">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Asset</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Listings</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">24h Volume</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Price</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Bid/Ask</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Health</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700">
+                            <!-- High Volume Row -->
+                            <tr class="hover:bg-slate-700/30 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span class="text-white font-bold text-sm">DO</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-white">Downtown Office Tower A</div>
+                                            <div class="text-xs text-slate-400 font-mono">ASSET-2024-047</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/30">
+                                        ● Active
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">18</div>
+                                    <div class="text-xs text-slate-400">listings</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">$1,247,800</div>
+                                    <div class="text-xs text-warning">+340%</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">$1,245.00</div>
+                                    <div class="text-xs text-slate-400">per token</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">$1,210.50 - $1,280.00</div>
+                                    <div class="text-xs text-warning">5.8% spread</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/10 text-warning border border-warning/30">
+                                        Review Required
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="text-slate-400 hover:text-white text-sm font-medium">
+                                        View Details →
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Normal Trading Row -->
+                            <tr class="hover:bg-slate-700/30 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span class="text-white font-bold text-sm">RH</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-white">Riverside Healthcare Facility</div>
+                                            <div class="text-xs text-slate-400 font-mono">ASSET-2024-065</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/30">
+                                        ● Active
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">22</div>
+                                    <div class="text-xs text-slate-400">listings</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">$678,400</div>
+                                    <div class="text-xs text-secondary">+8%</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">$87.65</div>
+                                    <div class="text-xs text-slate-400">per token</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">$84.20 - $91.10</div>
+                                    <div class="text-xs text-slate-400">8.2% spread</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/30">
+                                        Normal
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="text-slate-400 hover:text-white text-sm font-medium">
+                                        View Details →
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Paused Trading Row -->
+                            <tr class="hover:bg-slate-700/30 transition-colors opacity-60">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-slate-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span class="text-white font-bold text-sm">TE</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-white">Tech Equipment Leasing</div>
+                                            <div class="text-xs text-slate-400 font-mono">ASSET-2024-156</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/10 text-warning border border-warning/30">
+                                        ⏸ Paused
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-slate-400">0</div>
+                                    <div class="text-xs text-slate-400">suspended</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-slate-400">$0</div>
+                                    <div class="text-xs text-slate-400">—</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-slate-400">$45.30</div>
+                                    <div class="text-xs text-slate-400">last price</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-slate-400">—</div>
+                                    <div class="text-xs text-slate-400">trading paused</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-500/10 text-slate-400 border border-slate-500/30">
+                                        Supervision Hold
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="text-slate-400 hover:text-white text-sm font-medium">
+                                        Resume →
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- Another Normal Trading Row -->
+                            <tr class="hover:bg-slate-700/30 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span class="text-white font-bold text-sm">WF</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-white">Waterfront Condominiums</div>
+                                            <div class="text-xs text-slate-400 font-mono">ASSET-2024-089</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/30">
+                                        ● Active
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">15</div>
+                                    <div class="text-xs text-slate-400">listings</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">$892,300</div>
+                                    <div class="text-xs text-warning">+17.8%</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-white">$178.46</div>
+                                    <div class="text-xs text-slate-400">per token</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-white">$172.00 - $185.50</div>
+                                    <div class="text-xs text-warning">7.7% spread</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/10 text-warning border border-warning/30">
+                                        Monitor
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="text-slate-400 hover:text-white text-sm font-medium">
+                                        View Details →
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="px-6 py-4 border-t border-slate-700 bg-slate-900">
+                    <div class="flex items-center justify-between text-sm">
+                        <p class="text-slate-400">Showing <span class="font-medium text-white">4</span> of <span class="font-medium text-white">42</span> assets with active trading</p>
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 text-slate-400 rounded-lg hover:border-primary transition-colors">Previous</button>
+                            <button class="px-3 py-1.5 bg-primary text-white rounded-lg">1</button>
+                            <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 text-white rounded-lg hover:border-primary transition-colors">2</button>
+                            <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 text-white rounded-lg hover:border-primary transition-colors">3</button>
+                            <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 text-white rounded-lg hover:border-primary transition-colors">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supervision Controls Panel -->
+            <div class="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-700 bg-slate-900">
+                    <h2 class="text-xl font-bold text-white">Market Supervision Controls</h2>
+                    <p class="text-sm text-slate-400 mt-1">Asset-level trading controls with full audit trail</p>
+                </div>
+                <div class="p-6">
+                    <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold text-red-500 mb-2">Control Actions — Oversight Authority</h3>
+                                <p class="text-slate-400 text-sm mb-6">All market supervision controls must be initiated through the <strong class="text-white">Notifications system</strong> and require <strong class="text-white">DocuSeal signature confirmation</strong>. Every action is logged in the immutable audit trail with full regulatory compliance.</p>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <!-- Pause Trading Control -->
+                                    <button class="bg-slate-900 border border-slate-700 hover:border-warning/50 rounded-lg p-5 text-left transition-all group hover:shadow-lg hover:shadow-warning/10">
+                                        <div class="flex items-center space-x-3 mb-3">
+                                            <div class="w-10 h-10 bg-warning/10 rounded-lg flex items-center justify-center group-hover:bg-warning/20 transition-colors">
+                                                <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                            </div>
+                                            <span class="text-white font-semibold group-hover:text-warning transition-colors">Pause Trading</span>
+                                        </div>
+                                        <p class="text-sm text-slate-400 mb-3">Temporarily halt secondary market activity for a specific asset during investigation periods</p>
+                                        <div class="flex items-center justify-between text-xs">
+                                            <span class="text-slate-400 font-mono">REQUIRES_DOCUSEAL</span>
+                                            <span class="text-warning font-medium">Temporary →</span>
+                                        </div>
+                                    </button>
+                                    
+                                    <!-- Disable Trading Control -->
+                                    <button class="bg-slate-900 border border-slate-700 hover:border-red-500/50 rounded-lg p-5 text-left transition-all group hover:shadow-lg hover:shadow-red-500/10">
+                                        <div class="flex items-center space-x-3 mb-3">
+                                            <div class="w-10 h-10 bg-red-500/10 rounded-lg flex items-center justify-center group-hover:bg-red-500/20 transition-colors">
+                                                <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+                                                </svg>
+                                            </div>
+                                            <span class="text-white font-semibold group-hover:text-red-500 transition-colors">Disable Trading</span>
+                                        </div>
+                                        <p class="text-sm text-slate-400 mb-3">Permanently disable secondary market trading for an asset due to compliance violations or fraud</p>
+                                        <div class="flex items-center justify-between text-xs">
+                                            <span class="text-slate-400 font-mono">REQUIRES_DOCUSEAL</span>
+                                            <span class="text-red-500 font-medium">Permanent →</span>
+                                        </div>
+                                    </button>
+                                    
+                                    <!-- Require Issuer Disclosure Control -->
+                                    <button class="bg-slate-900 border border-slate-700 hover:border-primary/50 rounded-lg p-5 text-left transition-all group hover:shadow-lg hover:shadow-primary/10">
+                                        <div class="flex items-center space-x-3 mb-3">
+                                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                                </svg>
+                                            </div>
+                                            <span class="text-white font-semibold group-hover:text-primary transition-colors">Require Disclosure</span>
+                                        </div>
+                                        <p class="text-sm text-slate-400 mb-3">Mandate issuer disclosure for unusual market activity, material changes, or regulatory requirements</p>
+                                        <div class="flex items-center justify-between text-xs">
+                                            <span class="text-slate-400 font-mono">REQUIRES_DOCUSEAL</span>
+                                            <span class="text-primary font-medium">Mandatory →</span>
+                                        </div>
+                                    </button>
+                                </div>
+
+                                <!-- DocuSeal Integration Notice -->
+                                <div class="mt-6 bg-slate-900 border border-slate-700 rounded-lg p-4">
+                                    <div class="flex items-start space-x-3">
+                                        <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-white mb-1">DocuSeal Approval Workflow</p>
+                                            <p class="text-xs text-slate-400">All control actions trigger a <strong class="text-white">Notifications entry</strong> requiring SuperAdmin DocuSeal signature. The action executes only after signature verification and is recorded in the audit trail with timestamp, operator ID, and justification.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script id="dhws-dataInjector" src="../../public/dhws-data-injector.js"></script>
+</body>
+</html>
