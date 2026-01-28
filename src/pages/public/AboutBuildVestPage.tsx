@@ -150,7 +150,7 @@ export default function AboutBuildVestPage() {
                 <a href="originator_onboarding.html" className="block py-2 text-text-secondary hover:text-secondary">Tokenization Overview</a>
                 <a href="real_estate_developers.html" className="block py-2 text-text-secondary hover:text-secondary">For Real Estate Developers</a>
                 <a href="corporate_debt_private_placements.html" className="block py-2 text-text-secondary hover:text-secondary">For Corporate Equity & Debt</a>
-                <a href="infrastructure_projects.html" className="block py-2 text-text-secondary hover:text-secondary">For Infrastructure Projects</a>
+                <a href="infrastructure_projects_landing_page.html" className="block py-2 text-text-secondary hover:text-secondary">For Infrastructure Projects</a>
               </div>
             </div>
 
