@@ -1,0 +1,904 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+
+export default function InvestorLandingPage() {
+  /* ────────────────────────────────
+     STATE (collapsed)
+     ──────────────────────────────── */
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
+  const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [waitlistFormData, setWaitlistFormData] = useState({
+    name: '',
+    email: '',
+    interest: ''
+  });
+
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuBtnRef = useRef<HTMLButtonElement>(null);
+
+  /* ────────────────────────────────
+     EFFECTS (collapsed)
+     ──────────────────────────────── */
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.pageYOffset;
+      setIsScrolled(currentScroll > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        mobileMenuRef.current &&
+        mobileMenuBtnRef.current &&
+        !mobileMenuBtnRef.current.contains(e.target as Node) &&
+        !mobileMenuRef.current.contains(e.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const totalTestimonials = 3;
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev === totalTestimonials - 1 ? 0 : prev + 1));
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  /* ────────────────────────────────
+     HANDLERS (collapsed)
+     ──────────────────────────────── */
+
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href !== '#' && href !== 'javascript:void(0)' && href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        setIsMobileMenuOpen(false);
+      }
+    }
+  };
+
+  const openWaitlistModal = () => {
+    setIsWaitlistModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeWaitlistModal = () => {
+    setIsWaitlistModalOpen(false);
+    document.body.style.overflow = 'auto';
+  };
+
+  const updateCarousel = (index: number) => {
+    setCurrentTestimonial(index);
+  };
+
+  const handlePrevious = () => {
+    const totalTestimonials = 3;
+    updateCarousel(currentTestimonial === 0 ? totalTestimonials - 1 : currentTestimonial - 1);
+  };
+
+  const handleNext = () => {
+    const totalTestimonials = 3;
+    updateCarousel(currentTestimonial === totalTestimonials - 1 ? 0 : currentTestimonial + 1);
+  };
+
+  const handleToggleFAQ = (index: number) => {
+    setOpenFAQIndex(openFAQIndex === index ? null : index);
+  };
+
+  const handleWaitlistSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    setIsSubmitting(true);
+    const submitBtn = e.currentTarget.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<svg class="animate-spin h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
+    
+    setTimeout(() => {
+      submitBtn.innerHTML = originalText;
+      setIsSubmitting(false);
+      closeWaitlistModal();
+      
+      alert("Thank you for joining our waitlist! We'll notify you when new investment opportunities become available.");
+      
+      setWaitlistFormData({ name: '', email: '', interest: '' });
+    }, 1500);
+  };
+
+  const handleWaitlistInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setWaitlistFormData({
+      ...waitlistFormData,
+      [e.target.id.replace('waitlist', '').toLowerCase()]: e.target.value
+    });
+  };
+
+  return (
+    <>
+      {/* NAVIGATION */}
+      <nav id="mainNav" className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'bg-white shadow-md' : 'bg-white'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <a href="../index.html" className="flex items-center space-x-3">
+                <img src="https://buildvest.net/buildvest-logo.png" alt="Buildvest" className="h-10 w-auto" onError={(e) => { (e.target as HTMLImageElement).src = 'https://buildvest.net/buildvest-logo.png?q=80&w=200&auto=format&fit=crop'; (e.target as HTMLImageElement).onerror = null; }} />
+              </a>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#how-it-works" className="text-text-secondary hover:text-primary transition-colors duration-150 font-medium" onClick={(e) => handleAnchorClick(e, '#how-it-works')}>How It Works</a>
+              <a href="#testimonials" className="text-text-secondary hover:text-primary transition-colors duration-150 font-medium" onClick={(e) => handleAnchorClick(e, '#testimonials')}>Testimonials</a>
+              <a href="#faq" className="text-text-secondary hover:text-primary transition-colors duration-150 font-medium" onClick={(e) => handleAnchorClick(e, '#faq')}>FAQ</a>
+              <a href="investment_marketplace.html" className="text-text-secondary hover:text-primary transition-colors duration-150 font-medium">Marketplace</a>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="hidden md:flex items-center space-x-4">
+              <a href="authentication_hub.html" className="btn btn-primary">Join | Log in</a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              ref={mobileMenuBtnRef}
+              id="mobileMenuBtn" 
+              className="md:hidden p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target" 
+              aria-label="Toggle mobile menu"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <svg className="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div ref={mobileMenuRef} id="mobileMenu" className={`${isMobileMenuOpen ? '' : 'hidden'} md:hidden bg-white border-t border-border shadow-lg`}>
+          <div className="px-4 py-6 space-y-4">
+            <a href="#how-it-works" className="block text-text-secondary hover:text-primary transition-colors duration-150 font-medium py-2" onClick={(e) => handleAnchorClick(e, '#how-it-works')}>How It Works</a>
+            <a href="#testimonials" className="block text-text-secondary hover:text-primary transition-colors duration-150 font-medium py-2" onClick={(e) => handleAnchorClick(e, '#testimonials')}>Testimonials</a>
+            <a href="#faq" className="block text-text-secondary hover:text-primary transition-colors duration-150 font-medium py-2" onClick={(e) => handleAnchorClick(e, '#faq')}>FAQ</a>
+            <a href="investment_marketplace.html" className="block text-text-secondary hover:text-primary transition-colors duration-150 font-medium py-2">Marketplace</a>
+            <div className="pt-4 space-y-3">
+              <a href="authentication_hub.html" className="block w-full btn btn-primary text-center">Join | Log in</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-secondary-50 opacity-60"></div>
+        <div className="absolute inset-0" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23017EFE\\' fill-opacity=\\'0.05\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')", opacity: 0.4}}></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Hero Content */}
+            <div className="text-center lg:text-left animate-fade-in">
+              <div className="inline-flex items-center px-4 py-2 bg-primary-50 rounded-full mb-6">
+                <svg className="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                </svg>
+                <span className="text-sm font-semibold text-primary">Trusted by 10,000+ Investors</span>
+              </div>
+              
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary mb-6 leading-tight">
+                Invest in Real-World Assets Starting at <span className="text-primary">$100</span>
+              </h1>
+              
+              <p className="text-lg sm:text-xl text-text-secondary mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                Access fractional ownership in tokenized real estate, infrastructure, and emerging market opportunities. Transparent, secure, and built for the modern investor.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a href="investment_marketplace.html" className="btn btn-primary text-lg px-8 py-4">
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                  </svg>
+                  Browse Investments
+                </a>
+                <button onClick={openWaitlistModal} className="btn btn-outline text-lg px-8 py-4">
+                  Join Waitlist
+                </button>
+              </div>
+            </div>
+
+            {/* Hero Image/Visual */}
+            <div className="relative">
+              <div className="relative z-10">
+                <img 
+                  src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11" 
+                  alt="Modern investment platform dashboard showing real-world asset portfolio" 
+                  className="w-full rounded-2xl shadow-2xl" 
+                  onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; (e.target as HTMLImageElement).onerror = null; }}
+                />
+              </div>
+              
+              {/* Floating Stats Cards */}
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-lg p-4 animate-float z-20">
+                <p className="text-sm text-text-secondary mb-1">Total Invested</p>
+                <p className="text-2xl font-bold text-primary">$24.5M</p>
+              </div>
+              
+              <div className="absolute -top-6 -right-6 bg-white rounded-xl shadow-lg p-4 animate-float-delayed z-20">
+                <p className="text-sm text-text-secondary mb-1">Avg. Returns</p>
+                <p className="text-2xl font-bold text-secondary">12.8% APY</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURED INVESTMENTS */}
+      <section className="py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-4">Featured Investment Opportunities</h2>
+            <p className="text-lg text-text-secondary max-w-3xl mx-auto">Explore curated real-world assets with verified due diligence and transparent returns</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Investment Card 1 */}
+            <div className="card card-hover group cursor-pointer" onClick={() => window.location.href='asset_detail_page.html'}>
+              <div className="relative h-56 overflow-hidden rounded-t-lg">
+                <img src="https://images.unsplash.com/photo-1659384899570-49a0ad1f545a" alt="Modern commercial office building in downtown business district" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=800'; (e.target as HTMLImageElement).onerror = null; }} />
+                <div className="absolute top-4 left-4">
+                  <span className="badge badge-success">Verified</span>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <span className="badge bg-white text-text-primary">Real Estate</span>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">Downtown Office Complex</h3>
+                <p className="text-text-secondary mb-4 line-clamp-2">Prime commercial property in growing business district with long-term tenants</p>
+                
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <p className="text-sm text-text-secondary mb-1">Target Return</p>
+                    <p className="text-lg font-bold text-secondary">14.2% APY</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-text-secondary mb-1">Min. Investment</p>
+                    <p className="text-lg font-bold text-text-primary">$100</p>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-text-secondary">Funding Progress</span>
+                    <span className="font-semibold text-text-primary">68%</span>
+                  </div>
+                  <div className="w-full bg-surface-200 rounded-full h-2">
+                    <div className="bg-primary h-2 rounded-full transition-all duration-500" style={{width: '68%'}}></div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pt-4 border-t border-border">
+                  <div className="flex items-center space-x-2">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1d72e8d2f-1763293273692.png" alt="Professional real estate developer profile photo" className="w-8 h-8 rounded-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100'; (e.target as HTMLImageElement).onerror = null; }} />
+                    <span className="text-sm font-medium text-text-secondary">Urban Developments</span>
+                  </div>
+                  <span className="text-sm text-text-tertiary">245 investors</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Investment Card 2 */}
+            <div className="card card-hover group cursor-pointer" onClick={() => window.location.href='asset_detail_page.html'}>
+              <div className="relative h-56 overflow-hidden rounded-t-lg">
+                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10f82e5b0-1764101895376.png" alt="Solar panel farm renewable energy infrastructure project" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pixabay.com/photo/2017/09/12/13/21/photovoltaic-system-2742302_1280.jpg'; (e.target as HTMLImageElement).onerror = null; }} />
+                <div className="absolute top-4 left-4">
+                  <span className="badge badge-success">Verified</span>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <span className="badge bg-white text-text-primary">Infrastructure</span>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">Solar Energy Project</h3>
+                <p className="text-text-secondary mb-4 line-clamp-2">Large-scale renewable energy installation with government-backed contracts</p>
+                
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <p className="text-sm text-text-secondary mb-1">Target Return</p>
+                    <p className="text-lg font-bold text-secondary">11.8% APY</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-text-secondary mb-1">Min. Investment</p>
+                    <p className="text-lg font-bold text-text-primary">$100</p>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-text-secondary">Funding Progress</span>
+                    <span className="font-semibold text-text-primary">92%</span>
+                  </div>
+                  <div className="w-full bg-surface-200 rounded-full h-2">
+                    <div className="bg-primary h-2 rounded-full transition-all duration-500" style={{width: '92%'}}></div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pt-4 border-t border-border">
+                  <div className="flex items-center space-x-2">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b96807b8-1763296753718.png" alt="Green energy company representative profile photo" className="w-8 h-8 rounded-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg'; (e.target as HTMLImageElement).onerror = null; }} />
+                    <span className="text-sm font-medium text-text-secondary">GreenTech Energy</span>
+                  </div>
+                  <span className="text-sm text-text-tertiary">412 investors</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Investment Card 3 */}
+            <div className="card card-hover group cursor-pointer" onClick={() => window.location.href='asset_detail_page.html'}>
+              <div className="relative h-56 overflow-hidden rounded-t-lg">
+                <img src="https://images.unsplash.com/photo-1724919692221-ab499b1cbe78" alt="Luxury residential apartment complex with modern architecture" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800'; (e.target as HTMLImageElement).onerror = null; }} />
+                <div className="absolute top-4 left-4">
+                  <span className="badge badge-success">Verified</span>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <span className="badge bg-white text-text-primary">Real Estate</span>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">Luxury Apartments</h3>
+                <p className="text-text-secondary mb-4 line-clamp-2">Premium residential development in high-demand metropolitan area</p>
+                
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <p className="text-sm text-text-secondary mb-1">Target Return</p>
+                    <p className="text-lg font-bold text-secondary">13.5% APY</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-text-secondary mb-1">Min. Investment</p>
+                    <p className="text-lg font-bold text-text-primary">$100</p>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-text-secondary">Funding Progress</span>
+                    <span className="font-semibold text-text-primary">45%</span>
+                  </div>
+                  <div className="w-full bg-surface-200 rounded-full h-2">
+                    <div className="bg-primary h-2 rounded-full transition-all duration-500" style={{width: '45%'}}></div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pt-4 border-t border-border">
+                  <div className="flex items-center space-x-2">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1f683e81c-1763296551731.png" alt="Real estate investment firm founder profile photo" className="w-8 h-8 rounded-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100'; (e.target as HTMLImageElement).onerror = null; }} />
+                    <span className="text-sm font-medium text-text-secondary">Metro Properties</span>
+                  </div>
+                  <span className="text-sm text-text-tertiary">189 investors</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <a href="investment_marketplace.html" className="btn btn-primary text-lg px-8">
+              View All Opportunities
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="how-it-works" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-4">How BuildVest Works</h2>
+            <p className="text-lg text-text-secondary max-w-3xl mx-auto">Start investing in real-world assets in four simple steps</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Step 1 */}
+            <div className="text-center group">
+              <div className="relative mb-6">
+                <div className="w-24 h-24 mx-auto bg-primary-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">Browse Assets</h3>
+              <p className="text-text-secondary">Explore verified investment opportunities across real estate, infrastructure, and emerging markets</p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="text-center group">
+              <div className="relative mb-6">
+                <div className="w-24 h-24 mx-auto bg-secondary-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-12 h-12 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                  </svg>
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-secondary text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">Review Details</h3>
+              <p className="text-text-secondary">Access comprehensive due diligence, financial projections, and originator information</p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="text-center group">
+              <div className="relative mb-6">
+                <div className="w-24 h-24 mx-auto bg-accent-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">Invest Securely</h3>
+              <p className="text-text-secondary">Start with just $100 using USDC, card, or bank transfer with bank-level security</p>
+            </div>
+
+            {/* Step 4 */}
+            <div className="text-center group">
+              <div className="relative mb-6">
+                <div className="w-24 h-24 mx-auto bg-warning-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-12 h-12 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                  </svg>
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-warning text-white rounded-full flex items-center justify-center font-bold text-sm">4</div>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">Track Returns</h3>
+              <p className="text-text-secondary">Monitor your portfolio performance and receive returns directly to your wallet</p>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <a href="investment_marketplace.html" className="btn btn-primary text-lg px-8">Get Started Now</a>
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST & SECURITY */}
+      <section className="py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-4">Built on Trust & Security</h2>
+            <p className="text-lg text-text-secondary max-w-3xl mx-auto">Your investments are protected by industry-leading security measures</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="card text-center p-8">
+              <div className="w-16 h-16 mx-auto mb-4 bg-primary-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-text-primary mb-2">SEC Compliant</h3>
+              <p className="text-sm text-text-secondary">Fully registered and compliant with securities regulations</p>
+            </div>
+
+            <div className="card text-center p-8">
+              <div className="w-16 h-16 mx-auto mb-4 bg-secondary-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"></path>
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-text-primary mb-2">Bank-Level Security</h3>
+              <p className="text-sm text-text-secondary">256-bit encryption and multi-factor authentication</p>
+            </div>
+
+            <div className="card text-center p-8">
+              <div className="w-16 h-16 mx-auto mb-4 bg-accent-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-text-primary mb-2">Verified Assets</h3>
+              <p className="text-sm text-text-secondary">Rigorous due diligence on every investment opportunity</p>
+            </div>
+
+            <div className="card text-center p-8">
+              <div className="w-16 h-16 mx-auto mb-4 bg-warning-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-text-primary mb-2">Trusted Community</h3>
+              <p className="text-sm text-text-secondary">Join 10,000+ investors building wealth together</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section id="testimonials" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-4">What Our Investors Say</h2>
+            <p className="text-lg text-text-secondary max-w-3xl mx-auto">Real stories from real investors building wealth with BuildVest</p>
+          </div>
+
+          <div className="relative">
+            <div id="testimonialCarousel" className="overflow-hidden">
+              <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}>
+                {/* Testimonial 1 */}
+                <div className="w-full flex-shrink-0 px-4">
+                  <div className="card p-8 max-w-4xl mx-auto">
+                    <div className="flex items-start space-x-4 mb-6">
+                      <img src="https://img.rocket.new/generatedImages/rocket_gen_img_11476eff6-1763300910458.png" alt="Sarah Johnson, successful real estate investor testimonial" className="w-16 h-16 rounded-full object-cover flex-shrink-0" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100'; (e.target as HTMLImageElement).onerror = null; }} />
+                      <div className="flex-1">
+                        <div className="flex items-center mb-2">
+                          {[...Array(5)].map((_, i) => (
+                            <svg key={i} className="w-5 h-5 text-warning fill-current" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                          ))}
+                        </div>
+                        <h4 className="font-bold text-text-primary">Sarah Johnson</h4>
+                        <p className="text-sm text-text-secondary">Real Estate Investor</p>
+                      </div>
+                    </div>
+                    <p className="text-lg text-text-primary leading-relaxed italic">"BuildVest has completely transformed how I invest in real estate. The transparency and low minimum investment made it possible for me to diversify my portfolio across multiple properties. I've seen consistent returns and the platform is incredibly easy to use."</p>
+                  </div>
+                </div>
+
+                {/* Testimonial 2 */}
+                <div className="w-full flex-shrink-0 px-4">
+                  <div className="card p-8 max-w-4xl mx-auto">
+                    <div className="flex items-start space-x-4 mb-6">
+                      <img src="https://img.rocket.new/generatedImages/rocket_gen_img_121cfc606-1763301640036.png" alt="Michael Chen, technology professional investor testimonial" className="w-16 h-16 rounded-full object-cover flex-shrink-0" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg'; (e.target as HTMLImageElement).onerror = null; }} />
+                      <div className="flex-1">
+                        <div className="flex items-center mb-2">
+                          {[...Array(5)].map((_, i) => (
+                            <svg key={i} className="w-5 h-5 text-warning fill-current" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                          ))}
+                        </div>
+                        <h4 className="font-bold text-text-primary">Michael Chen</h4>
+                        <p className="text-sm text-text-secondary">Tech Professional</p>
+                      </div>
+                    </div>
+                    <p className="text-lg text-text-primary leading-relaxed italic">"As someone new to real estate investing, BuildVest made the entire process straightforward and accessible. The detailed due diligence reports gave me confidence in my investment decisions. I started with just $100 and now have a growing portfolio."</p>
+                  </div>
+                </div>
+
+                {/* Testimonial 3 */}
+                <div className="w-full flex-shrink-0 px-4">
+                  <div className="card p-8 max-w-4xl mx-auto">
+                    <div className="flex items-start space-x-4 mb-6">
+                      <img src="https://img.rocket.new/generatedImages/rocket_gen_img_11476eff6-1763300910458.png" alt="Emily Rodriguez, financial advisor investor testimonial" className="w-16 h-16 rounded-full object-cover flex-shrink-0" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100'; (e.target as HTMLImageElement).onerror = null; }} />
+                      <div className="flex-1">
+                        <div className="flex items-center mb-2">
+                          {[...Array(5)].map((_, i) => (
+                            <svg key={i} className="w-5 h-5 text-warning fill-current" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                          ))}
+                        </div>
+                        <h4 className="font-bold text-text-primary">Emily Rodriguez</h4>
+                        <p className="text-sm text-text-secondary">Financial Advisor</p>
+                      </div>
+                    </div>
+                    <p className="text-lg text-text-primary leading-relaxed italic">"I recommend BuildVest to my clients looking for alternative investment opportunities. The platform's security measures and regulatory compliance give me peace of mind. The returns have been impressive and the dashboard makes tracking everything simple."</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Carousel Controls */}
+            <button id="prevTestimonial" onClick={handlePrevious} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-surface transition-colors duration-150 touch-target" aria-label="Previous testimonial">
+              <svg className="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <button id="nextTestimonial" onClick={handleNext} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-surface transition-colors duration-150 touch-target" aria-label="Next testimonial">
+              <svg className="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+
+            {/* Carousel Indicators */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {[0, 1, 2].map((index) => (
+                <button
+                  key={index}
+                  className={`carousel-indicator w-3 h-3 rounded-full transition-all duration-300 ${currentTestimonial === index ? 'bg-primary' : 'bg-surface-200'}`}
+                  data-index={index}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                  onClick={() => updateCarousel(index)}
+                ></button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-20 bg-surface">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text-primary mb-4">Frequently Asked Questions</h2>
+            <p className="text-lg text-text-secondary">Everything you need to know about investing with BuildVest</p>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              {
+                question: "What is the minimum investment amount?",
+                answer: "The minimum investment amount on BuildVest is just $100. This low barrier to entry allows investors of all levels to access fractional ownership in real-world assets and build diversified portfolios without requiring large capital commitments."
+              },
+              {
+                question: "How are returns distributed to investors?",
+                answer: "Returns are distributed directly to your BuildVest wallet on a quarterly basis. You can choose to reinvest your returns into new opportunities or withdraw them to your bank account or USDC wallet. All distributions are transparent and tracked in your dashboard."
+              },
+              {
+                question: "What types of assets can I invest in?",
+                answer: "BuildVest offers tokenized investments in commercial real estate, residential properties, infrastructure projects, renewable energy installations, and other verified real-world assets. Each opportunity undergoes rigorous due diligence before being listed on our marketplace."
+              },
+              {
+                question: "Is my investment secure?",
+                answer: "Yes. BuildVest employs bank-level security with 256-bit encryption, multi-factor authentication, and cold storage for digital assets. We are fully SEC compliant and all investments are backed by legal ownership structures. Your funds are held in segregated accounts for maximum protection."
+              },
+              {
+                question: "Can I sell my investment shares?",
+                answer: "Yes, BuildVest offers a secondary marketplace where you can list your investment shares for sale to other investors. Liquidity varies by asset, but this feature provides flexibility to exit positions before the investment term ends. Transaction fees apply to secondary market sales."
+              },
+              {
+                question: "What payment methods are accepted?",
+                answer: "We accept USDC (stablecoin), credit/debit cards, and bank transfers (ACH). USDC transactions are processed instantly, while card and bank transfers may take 1-3 business days to clear. All payment methods are secure and encrypted."
+              }
+            ].map((faq, index) => (
+              <div key={index} className="card overflow-hidden">
+                <button 
+                  className="faq-question w-full px-6 py-5 flex items-center justify-between text-left hover:bg-surface transition-colors duration-150 touch-target" 
+                  aria-expanded={openFAQIndex === index}
+                  onClick={() => handleToggleFAQ(index)}
+                >
+                  <span className="font-semibold text-text-primary pr-4">{faq.question}</span>
+                  <svg 
+                    className="w-6 h-6 text-text-secondary flex-shrink-0 transition-transform duration-300" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                    style={{ transform: openFAQIndex === index ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div className={`faq-answer ${openFAQIndex === index ? '' : 'hidden'} px-6 pb-5`}>
+                  <p className="text-text-secondary leading-relaxed">{faq.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="py-20 bg-gradient-to-br from-primary to-primary-700 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23FFFFFF\\' fill-opacity=\\'1\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
+        </div>
+        
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Start Building Wealth?</h2>
+          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">Join thousands of investors accessing real-world assets with just $100. Start your investment journey today.</p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="investment_marketplace.html" className="btn bg-white text-primary hover:bg-primary-50 text-lg px-8 py-4 shadow-lg">
+              Browse Investments
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+            <button onClick={openWaitlistModal} className="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4">
+              Join Waitlist
+            </button>
+          </div>
+
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-white">
+            <div className="flex items-center space-x-2">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+              </svg>
+              <span className="font-medium">No Hidden Fees</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+              </svg>
+              <span className="font-medium">Transparent Returns</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+              </svg>
+              <span className="font-medium">Secure Platform</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-slate-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            {/* Company Info */}
+            <div>
+              <div className="flex items-center space-x-3 mb-4">
+                <img src="https://buildvest.net/img/BuildvestLogo_icon_white.png" alt="BuildVest footer logo" className="h-8 w-auto" onError={(e) => { (e.target as HTMLImageElement).src = 'https://buildvest.net/img/BuildvestLogo_icon_white.png?q=80&w=200&auto=format&fit=crop'; (e.target as HTMLImageElement).onerror = null; }} />
+                <span className="text-xl font-bold">BuildVest</span>
+              </div>
+              <p className="text-slate-400 text-sm leading-relaxed mb-6">Democratizing access to high-yield real-world assets through blockchain technology.</p>
+              <div className="flex items-center gap-4">
+                <div className="text-xs text-slate-500">Regulatory Certifications</div>
+              </div>
+            </div>
+
+            {/* Platform Links */}
+            <div>
+              <h4 className="font-semibold mb-4">Platform</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="landing_page.html" className="text-slate-400 hover:text-white transition-colors duration-150">For Investors</a></li>
+                <li><a href="originator_onboarding.html" className="text-slate-400 hover:text-white transition-colors duration-150">For Originators</a></li>
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h4 className="font-semibold mb-4">Resources</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="about_build_vest.html" className="text-slate-400 hover:text-white transition-colors duration-150">About</a></li>
+                <li><a href="frequently_asked_questions.html" className="text-slate-400 hover:text-white transition-colors duration-150">FAQs</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-white transition-colors duration-150">Blog</a></li>
+                <li><a href="legal_compliance_center.html" className="text-slate-400 hover:text-white transition-colors duration-150">Legal & Compliance</a></li>
+              </ul>
+            </div>
+
+            {/* Social & Support */}
+            <div>
+              <h4 className="font-semibold mb-4">Connect</h4>
+              <div className="flex items-center space-x-4 mb-4">
+                <a href="#" className="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Twitter">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                  </svg>
+                </a>
+                <a href="#" className="text-slate-400 hover:text-white transition-colors duration-150" aria-label="LinkedIn">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                  </svg>
+                </a>
+                <a href="#" className="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Facebook">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Disclaimer Section */}
+          <div className="border-t border-slate-800 pt-8 mb-8">
+            <div className="text-xs text-slate-500 leading-relaxed space-y-2">
+              <p><strong className="text-slate-400">Investment Disclaimer:</strong> Investing involves risks, including loss of principal. Past performance is not indicative of future results. BuildVest is not a financial advisor; consult professionals before investing. All investments are subject to regulatory approval and due diligence.</p>
+              <p><strong className="text-slate-400">Regulatory Compliance:</strong> BuildVest operates under applicable securities regulations. All offerings are subject to regulatory review and approval. Please review our Legal & Compliance section for detailed information.</p>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="border-t border-slate-800 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <p className="text-slate-400 text-sm">© 2026 BuildVest. All Rights Reserved.</p>
+              <div className="flex items-center space-x-6 text-xs text-slate-500">
+                <a href="pages/legal_compliance_center.html" className="hover:text-slate-400 transition-colors">Terms of Service</a>
+                <a href="pages/legal_compliance_center.html" className="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                <a href="pages/legal_compliance_center.html" className="hover:text-slate-400 transition-colors">Risk Disclosure</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* WAITLIST MODAL */}
+      {isWaitlistModalOpen && (
+        <div id="waitlistModal" className="fixed inset-0 z-50">
+          <div className="modal-overlay" onClick={closeWaitlistModal}></div>
+          <div className="flex items-center justify-center min-h-screen p-4">
+            <div className="modal-content relative z-50 animate-scale-in">
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-2xl font-bold text-text-primary">Join the Waitlist</h3>
+                  <button onClick={closeWaitlistModal} className="p-2 hover:bg-surface rounded-lg transition-colors duration-150 touch-target" aria-label="Close modal">
+                    <svg className="w-6 h-6 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <p className="text-text-secondary mb-6">Be among the first to access exclusive investment opportunities. We'll notify you when new assets are available.</p>
+
+                <form id="waitlistForm" className="space-y-4" onSubmit={handleWaitlistSubmit}>
+                  <div>
+                    <label htmlFor="waitlistName" className="block text-sm font-medium text-text-primary mb-2">Full Name</label>
+                    <input 
+                      type="text" 
+                      id="waitlistName" 
+                      className="input" 
+                      placeholder="John Doe" 
+                      required 
+                      value={waitlistFormData.name}
+                      onChange={handleWaitlistInputChange}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="waitlistEmail" className="block text-sm font-medium text-text-primary mb-2">Email Address</label>
+                    <input 
+                      type="email" 
+                      id="waitlistEmail" 
+                      className="input" 
+                      placeholder="john@example.com" 
+                      required 
+                      value={waitlistFormData.email}
+                      onChange={handleWaitlistInputChange}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="investmentInterest" className="block text-sm font-medium text-text-primary mb-2">Investment Interest</label>
+                    <select 
+                      id="investmentInterest" 
+                      className="input"
+                      value={waitlistFormData.interest}
+                      onChange={handleWaitlistInputChange}
+                    >
+                      <option value="">Select your interest</option>
+                      <option value="real-estate">Real Estate</option>
+                      <option value="infrastructure">Infrastructure</option>
+                      <option value="renewable-energy">Renewable Energy</option>
+                      <option value="all">All Asset Types</option>
+                    </select>
+                  </div>
+
+                  <button type="submit" className="w-full btn btn-primary" disabled={isSubmitting}>
+                    Join Waitlist
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
