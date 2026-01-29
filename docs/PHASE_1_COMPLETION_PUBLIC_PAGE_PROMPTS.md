@@ -32,7 +32,7 @@ If unsure, **copy — do not improve**.
 
 ---
 
-## 1️⃣ ABOUT BUILDVEST
+## 1️ ABOUT BUILDVEST
 
 SOURCE:
 ```
@@ -58,7 +58,7 @@ Stop after generating this file.
 
 ---
 
-## 2️⃣ FREQUENTLY ASKED QUESTIONS
+## 2️ FREQUENTLY ASKED QUESTIONS
 
 SOURCE:
 ```
@@ -83,7 +83,7 @@ Stop after generating this file.
 
 ---
 
-## 3️⃣ LEGAL & COMPLIANCE CENTER
+## 3️ LEGAL & COMPLIANCE CENTER
 
 SOURCE:
 ```
@@ -108,7 +108,7 @@ Stop after generating this file.
 
 ---
 
-## 4️⃣ HELP & SUPPORT
+## 4️ HELP & SUPPORT
 
 SOURCE:
 ```
@@ -133,7 +133,7 @@ Stop after generating this file.
 
 ---
 
-## 5️⃣ PUBLIC INVESTMENT MARKETPLACE (SEO)
+## 5️ PUBLIC INVESTMENT MARKETPLACE (SEO)
 
 SOURCE:
 ```
@@ -158,7 +158,7 @@ Stop after generating this file.
 
 ---
 
-## 6️⃣ REAL ESTATE DEVELOPERS
+## 6️ REAL ESTATE DEVELOPERS
 
 SOURCE:
 ```
@@ -182,7 +182,7 @@ Stop after generating this file.
 
 ---
 
-## 7️⃣ CORPORATE DEBT & PRIVATE PLACEMENTS
+## 7️ CORPORATE DEBT & PRIVATE PLACEMENTS
 
 SOURCE:
 ```
@@ -204,9 +204,10 @@ Rules:
 
 Stop after generating this file.
 
+// STOPPED HERE
 ---
 
-## 8️⃣ PRIVATE EQUITY FUNDS
+## 8️ PRIVATE EQUITY FUNDS
 
 SOURCE:
 ```
@@ -222,6 +223,7 @@ PROMPT:
 Convert `private_equity_funds.html` into a single React + TypeScript file.
 
 Rules:
+- If the "PrivateEquityFundsPage.tsx" already exist, empty it and begin code afresh.
 - Preserve fund positioning content
 - No dynamic behavior
 - Inline everything
@@ -230,7 +232,7 @@ Stop after generating this file.
 
 ---
 
-## 9️⃣ INFRASTRUCTURE PROJECTS
+## 9️ INFRASTRUCTURE PROJECTS
 
 SOURCE:
 ```
