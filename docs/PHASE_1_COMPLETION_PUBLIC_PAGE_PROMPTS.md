@@ -254,7 +254,93 @@ Rules:
 
 Stop after generating this file.
 
+
 ---
+
+## 10 Originator Onboarding Page Refactor Prompt
+
+Source of Truth:
+Legacy file:
+- `/legacy/originator_onboarding.html`
+
+Reference link source:
+- `/legacy/index.html` (navigation link to originator onboarding)
+
+The legacy HTML is always correct.
+
+---
+
+## Target Output
+
+Create:
+- `src/pages/public/OriginatorOnboardingPage.tsx`
+
+Requirements:
+- Single React component (no sub-components)
+- Use `use client`
+- Preserve:
+  - Copy
+  - Section order
+  - Visual hierarchy
+  - CTA wording
+- Mock all data
+- No API calls
+- No routing abstraction
+
+---
+
+## Implementation Rules
+
+### File structure
+- One file only
+- No shared layouts
+- No imports from other public pages
+- Inline JSX sections with clear comments:
+```tsx
+{/* HERO */}
+{/* VALUE PROPOSITION */}
+{/* BENEFITS */}
+{/* PROCESS */}
+{/* CTA */}
+```
+
+### State & effects
+- Only include state that exists in the HTML (accordions, modals, toggles)
+- No new interactivity
+
+### Styling
+- Use existing Tailwind utility classes
+- Do not introduce new design tokens
+- Do not refactor class names
+
+---
+
+## Explicitly Forbidden
+- Creating a layout component
+- Refactoring navbar/footer into shared files
+- Introducing dynamic routing
+- Using Next.js server components
+- Optimizing or simplifying markup
+
+---
+
+## Completion Criteria
+
+The task is complete when:
+- The page renders fully in isolation
+- All sections match the legacy HTML
+- No console errors
+- No missing content
+
+If the file exceeds 800–1000 lines, that is acceptable.
+
+Proceed carefully and do not collapse content.
+
+
+---
+
+
+
 
 ## ✅ PHASE 1 COMPLETION CHECK
 
