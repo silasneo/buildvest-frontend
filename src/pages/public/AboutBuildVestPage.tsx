@@ -1,0 +1,770 @@
+'use client';
+
+export default function AboutBuildVestPage() {
+  return (
+    <div className="bg-background">
+      {/* Sticky Navigation */}
+      <nav id="mainNav" className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-all duration-300 ease-in-out">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <a href="../index.html" className="flex items-center space-x-3">
+                <img src="https://buildvest.net/buildvest-logo.png" alt="BuildVest" className="h-10 w-auto" />
+              </a>
+            </div>
+
+            {/* Desktop Navigation with Mega Dropdowns */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {/* Investments Dropdown */}
+              <div className="relative group">
+                <button className="nav-link-with-dropdown text-text-primary hover:text-primary transition-colors duration-150 font-semibold flex items-center space-x-1">
+                  <span>Investments</span>
+                  <svg className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div className="mega-dropdown absolute top-full left-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+                  <div className="p-6">
+                    <div className="mb-4">
+                      <p className="text-sm font-bold text-text-primary mb-3">For Investors</p>
+                      <ul className="space-y-2">
+                        <li><a href="landing_page.html" className="block px-4 py-2 rounded-lg hover:bg-primary-50 text-text-secondary hover:text-primary transition-colors">Investment Overview</a></li>
+                        <li><a href="investment_marketplace.html" className="block px-4 py-2 rounded-lg hover:bg-primary-50 text-text-secondary hover:text-primary transition-colors">Browse Opportunities</a></li>
+                      </ul>
+                    </div>
+                    <div className="pt-4 border-t border-border">
+                      <p className="text-xs text-text-tertiary">Minimum $100 · Fractional ownership · Blockchain-transparent</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Solutions Dropdown */}
+              <div className="relative group">
+                <button className="nav-link-with-dropdown text-text-primary hover:text-primary transition-colors duration-150 font-semibold flex items-center space-x-1">
+                  <span>Solutions</span>
+                  <svg className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div className="mega-dropdown absolute top-full left-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+                  <div className="p-6">
+                    <div className="mb-4">
+                      <p className="text-sm font-bold text-text-primary mb-3">For Asset Originators & Institutions</p>
+                      <ul className="space-y-2">
+                        <li><a href="originator_onboarding.html" className="block px-4 py-2 rounded-lg hover:bg-secondary-50 text-text-secondary hover:text-secondary transition-colors">Tokenization Overview</a></li>
+                        <li><a href="real_estate_developers.html" className="block px-4 py-2 rounded-lg hover:bg-secondary-50 text-text-secondary hover:text-secondary transition-colors">For Real Estate Developers</a></li>
+                        <li><a href="corporate_debt_private_placements.html" className="block px-4 py-2 rounded-lg hover:bg-secondary-50 text-text-secondary hover:text-secondary transition-colors">For Corporate Equity & Debt</a></li>
+                        <li><a href="infrastructure_projects_landing_page.html" className="block px-4 py-2 rounded-lg hover:bg-secondary-50 text-text-secondary hover:text-secondary transition-colors">For Infrastructure Projects</a></li>
+                      </ul>
+                    </div>
+                    <div className="pt-4 border-t border-border">
+                      <p className="text-xs text-text-tertiary">Raise from $1M–$100M+ with global investors</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* About Dropdown */}
+              <div className="relative group">
+                <button className="nav-link-with-dropdown text-text-primary hover:text-primary transition-colors duration-150 font-semibold flex items-center space-x-1">
+                  <span>About</span>
+                  <svg className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div className="mega-dropdown absolute top-full left-0 mt-2 w-80 bg-white rounded-xl shadow-2xl border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+                  <div className="p-6">
+                    <ul className="space-y-2">
+                      <li><a href="about_build_vest.html" className="block px-4 py-2 rounded-lg hover:bg-surface text-text-secondary hover:text-text-primary transition-colors">Company</a></li>
+                      <li><a href="frequently_asked_questions.html" className="block px-4 py-2 rounded-lg hover:bg-surface text-text-secondary hover:text-text-primary transition-colors">FAQs</a></li>
+                      <li><a href="#" className="block px-4 py-2 rounded-lg hover:bg-surface text-text-secondary hover:text-text-primary transition-colors">Blog</a></li>
+                      <li><a href="legal_compliance_center.html" className="block px-4 py-2 rounded-lg hover:bg-surface text-text-secondary hover:text-text-primary transition-colors">Legal & Compliance</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side CTA Buttons */}
+            <div className="hidden lg:flex items-center space-x-4">
+              <a href="authentication_hub.html" className="btn btn-outline">Sign In</a>
+              <div className="relative group">
+                <button className="btn btn-primary flex items-center space-x-2">
+                  <span>Get Started</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="p-3">
+                    <a href="investment_marketplace.html" className="block px-4 py-3 rounded-lg hover:bg-primary-50 text-text-primary hover:text-primary transition-colors">
+                      <div className="font-semibold">Invest Now</div>
+                      <div className="text-xs text-text-secondary">Browse opportunities</div>
+                    </a>
+                    <a href="originator_onboarding.html" className="block px-4 py-3 rounded-lg hover:bg-secondary-50 text-text-primary hover:text-secondary transition-colors">
+                      <div className="font-semibold">List Your Asset</div>
+                      <div className="text-xs text-text-secondary">For originators</div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button id="mobileMenuBtn" className="lg:hidden p-2 rounded-lg hover:bg-surface transition-colors duration-150 touch-target" aria-label="Toggle mobile menu">
+              <svg className="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div id="mobileMenu" className="hidden lg:hidden bg-white border-t border-border shadow-lg max-h-screen overflow-y-auto">
+          <div className="px-4 py-6 space-y-4">
+            {/* Mobile Investments Accordion */}
+            <div className="mobile-accordion">
+              <button className="mobile-accordion-btn w-full flex items-center justify-between py-2 text-text-primary font-semibold">
+                <span>Investments</span>
+                <svg className="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div className="mobile-accordion-content hidden pl-4 pt-2 space-y-2">
+                <a href="landing_page.html" className="block py-2 text-text-secondary hover:text-primary">Investment Overview</a>
+                <a href="investment_marketplace.html" className="block py-2 text-text-secondary hover:text-primary">Browse Opportunities</a>
+              </div>
+            </div>
+
+            {/* Mobile Solutions Accordion */}
+            <div className="mobile-accordion">
+              <button className="mobile-accordion-btn w-full flex items-center justify-between py-2 text-text-primary font-semibold">
+                <span>Solutions</span>
+                <svg className="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div className="mobile-accordion-content hidden pl-4 pt-2 space-y-2">
+                <a href="originator_onboarding.html" className="block py-2 text-text-secondary hover:text-secondary">Tokenization Overview</a>
+                <a href="real_estate_developers.html" className="block py-2 text-text-secondary hover:text-secondary">For Real Estate Developers</a>
+                <a href="corporate_debt_private_placements.html" className="block py-2 text-text-secondary hover:text-secondary">For Corporate Equity & Debt</a>
+                <a href="infrastructure_projects_landing_page.html" className="block py-2 text-text-secondary hover:text-secondary">For Infrastructure Projects</a>
+              </div>
+            </div>
+
+            {/* Mobile About Accordion */}
+            <div className="mobile-accordion">
+              <button className="mobile-accordion-btn w-full flex items-center justify-between py-2 text-text-primary font-semibold">
+                <span>About</span>
+                <svg className="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div className="mobile-accordion-content hidden pl-4 pt-2 space-y-2">
+                <a href="about_build_vest.html" className="block py-2 text-text-secondary">Company</a>
+                <a href="frequently_asked_questions.html" className="block py-2 text-text-secondary">FAQs</a>
+                <a href="#" className="block py-2 text-text-secondary">Blog</a>
+                <a href="legal_compliance_center.html" className="block py-2 text-text-secondary">Legal & Compliance</a>
+              </div>
+            </div>
+
+            {/* Mobile CTAs */}
+            <div className="pt-4 space-y-3 border-t border-border">
+              <a href="authentication_hub.html" className="block w-full btn btn-outline text-center">Sign In</a>
+              <a href="investment_marketplace.html" className="block w-full btn btn-primary text-center">Invest Now</a>
+              <a href="originator_onboarding.html" className="block w-full btn bg-secondary text-white hover:bg-secondary-dark text-center">List Your Asset</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden bg-gradient-to-br from-primary-50 via-white to-secondary-50">
+        <div className="absolute inset-0" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23017EFE\\' fill-opacity=\\'0.05\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')", opacity: 0.4 }}></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center px-4 py-2 bg-primary-50 rounded-full mb-6">
+              <svg className="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+              </svg>
+              <span className="text-sm font-semibold text-primary">Empowering Global Investors</span>
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary mb-6 leading-tight">
+              Democratizing Access to <span className="text-primary">Real-World Assets</span>
+            </h1>
+            
+            <p className="text-lg sm:text-xl text-text-secondary mb-8 leading-relaxed">
+              BuildVest is revolutionizing investment by making tokenized real-world assets accessible to everyone. Our mission is to break down barriers and create opportunities for global investors to build wealth through fractional ownership.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission Statement Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-6">Our Mission</h2>
+              <p className="text-lg text-text-secondary mb-6 leading-relaxed">
+                At BuildVest, we believe that quality investment opportunities should be accessible to everyone, not just institutional investors or the ultra-wealthy. Our platform leverages blockchain technology to tokenize real-world assets, enabling fractional ownership starting at just $100.
+              </p>
+              <p className="text-lg text-text-secondary mb-6 leading-relaxed">
+                We're building a transparent, secure, and compliant marketplace where investors can access verified opportunities in real estate, infrastructure, and emerging markets. Every asset undergoes rigorous due diligence, and every transaction is protected by industry-leading security measures.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-text-primary mb-1">Accessibility</h3>
+                    <p className="text-sm text-text-secondary">Low minimum investments for everyone</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-text-primary mb-1">Transparency</h3>
+                    <p className="text-sm text-text-secondary">Full disclosure and verified data</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-text-primary mb-1">Security</h3>
+                    <p className="text-sm text-text-secondary">Bank-level encryption and compliance</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-text-primary mb-1">Innovation</h3>
+                    <p className="text-sm text-text-secondary">Blockchain-powered tokenization</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <img src="https://img.rocket.new/generatedImages/rocket_gen_img_171170bd3-1764687877901.png" alt="Team collaboration representing BuildVest's mission" className="rounded-2xl shadow-2xl w-full h-auto object-cover" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800'; }} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Company Story Section */}
+      <section className="py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-6">Our Story</h2>
+            <p className="text-lg text-text-secondary leading-relaxed">
+              BuildVest was founded in 2023 by a team of fintech innovators, blockchain experts, and real estate professionals who recognized a critical gap in the investment landscape. Traditional real-world asset investments required significant capital and were accessible only to institutional investors and high-net-worth individuals.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="card text-center p-8">
+              <div className="w-16 h-16 mx-auto mb-4 bg-primary-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">2023: Founded</h3>
+              <p className="text-text-secondary">Launched with vision to democratize real-world asset investments through blockchain technology</p>
+            </div>
+
+            <div className="card text-center p-8">
+              <div className="w-16 h-16 mx-auto mb-4 bg-secondary-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">2024: SEC Compliant</h3>
+              <p className="text-text-secondary">Achieved full regulatory compliance and security certifications for investor protection</p>
+            </div>
+
+            <div className="card text-center p-8">
+              <div className="w-16 h-16 mx-auto mb-4 bg-accent-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">2025: Scaling</h3>
+              <p className="text-text-secondary">Growing community of 10,000+ investors with $45M+ in total investments</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Team Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-4">Our Leadership Team</h2>
+            <p className="text-lg text-text-secondary max-w-3xl mx-auto">Meet the experienced professionals driving BuildVest's mission forward</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Team Member 1 */}
+            <div className="card text-center p-8 hover:shadow-xl transition-shadow duration-300">
+              <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10b297d8a-1763295238550.png" alt="David Chen, CEO & Co-Founder" className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-primary-100" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg'; }} />
+              <h3 className="text-xl font-bold text-text-primary mb-1">David Chen</h3>
+              <p className="text-primary font-semibold mb-3">CEO & Co-Founder</p>
+              <p className="text-sm text-text-secondary mb-4">15+ years in fintech and blockchain. Former VP at major investment bank.</p>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:text-primary-700 transition-colors">
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+
+            {/* Team Member 2 */}
+            <div className="card text-center p-8 hover:shadow-xl transition-shadow duration-300">
+              <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1de82ac24-1763301372736.png" alt="Sarah Mitchell, CTO & Co-Founder" className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-secondary-100" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=300'; }} />
+              <h3 className="text-xl font-bold text-text-primary mb-1">Sarah Mitchell</h3>
+              <p className="text-secondary font-semibold mb-3">CTO & Co-Founder</p>
+              <p className="text-sm text-text-secondary mb-4">Blockchain architect with expertise in tokenization protocols and smart contracts.</p>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:text-primary-700 transition-colors">
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+
+            {/* Team Member 3 */}
+            <div className="card text-center p-8 hover:shadow-xl transition-shadow duration-300">
+              <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ec28c614-1765254159176.png" alt="Marcus Rodriguez, Chief Investment Officer" className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-accent-100" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pixabay.com/photo/2016/11/29/03/35/man-1867175_1280.jpg'; }} />
+              <h3 className="text-xl font-bold text-text-primary mb-1">Marcus Rodriguez</h3>
+              <p className="text-accent font-semibold mb-3">Chief Investment Officer</p>
+              <p className="text-sm text-text-secondary mb-4">20+ years in real estate investment and asset management. MBA from Harvard.</p>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:text-primary-700 transition-colors">
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+
+            {/* Team Member 4 */}
+            <div className="card text-center p-8 hover:shadow-xl transition-shadow duration-300">
+              <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19de8e366-1763301724443.png" alt="Emily Thompson, Chief Compliance Officer" className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-warning-100" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=300'; }} />
+              <h3 className="text-xl font-bold text-text-primary mb-1">Emily Thompson</h3>
+              <p className="text-warning font-semibold mb-3">Chief Compliance Officer</p>
+              <p className="text-sm text-text-secondary mb-4">Former SEC attorney specializing in securities law and regulatory compliance.</p>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:text-primary-700 transition-colors">
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+
+            {/* Team Member 5 */}
+            <div className="card text-center p-8 hover:shadow-xl transition-shadow duration-300">
+              <img src="https://img.rocket.new/generatedImages/rocket_gen_img_13c686c1a-1763295142635.png" alt="James Park, Head of Operations" className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-primary-100" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pixabay.com/photo/2017/08/01/08/29/people-2563491_1280.jpg'; }} />
+              <h3 className="text-xl font-bold text-text-primary mb-1">James Park</h3>
+              <p className="text-primary font-semibold mb-3">Head of Operations</p>
+              <p className="text-sm text-text-secondary mb-4">Operations expert with experience scaling fintech platforms globally.</p>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:text-primary-700 transition-colors">
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+
+            {/* Team Member 6 */}
+            <div className="card text-center p-8 hover:shadow-xl transition-shadow duration-300">
+              <img src="https://img.rocket.new/generatedImages/rocket_gen_img_12672b149-1763294392419.png" alt="Aisha Patel, Chief Marketing Officer" className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-secondary-100" onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/1239288/pexels-photo-1239288.jpeg?auto=compress&cs=tinysrgb&w=300'; }} />
+              <h3 className="text-xl font-bold text-text-primary mb-1">Aisha Patel</h3>
+              <p className="text-secondary font-semibold mb-3">Chief Marketing Officer</p>
+              <p className="text-sm text-text-secondary mb-4">Growth marketing leader with track record in investor acquisition and community building.</p>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:text-primary-700 transition-colors">
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Platform Advantages Section */}
+      <section className="py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-4">Why Choose BuildVest</h2>
+            <p className="text-lg text-text-secondary max-w-3xl mx-auto">Our platform combines cutting-edge technology with robust security and compliance</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="card p-8">
+              <div className="w-16 h-16 mb-6 bg-primary-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">Regulatory Excellence</h3>
+              <p className="text-text-secondary mb-4">Fully SEC compliant with all necessary registrations and licenses. We adhere to the highest regulatory standards.</p>
+              <ul className="space-y-2 text-sm text-text-secondary">
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  SEC Registered
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  KYC/AML Compliant
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Regular Audits
+                </li>
+              </ul>
+            </div>
+
+            <div className="card p-8">
+              <div className="w-16 h-16 mb-6 bg-secondary-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">Advanced Security</h3>
+              <p className="text-text-secondary mb-4">Multi-layered security infrastructure protecting your investments and personal data at every level.</p>
+              <ul className="space-y-2 text-sm text-text-secondary">
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  256-bit Encryption
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Cold Storage Wallets
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Multi-Factor Auth
+                </li>
+              </ul>
+            </div>
+
+            <div className="card p-8">
+              <div className="w-16 h-16 mb-6 bg-accent-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">Due Diligence</h3>
+              <p className="text-text-secondary mb-4">Every asset undergoes comprehensive verification before listing on our platform.</p>
+              <ul className="space-y-2 text-sm text-text-secondary">
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-accent mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Financial Analysis
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-accent mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Legal Review
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-accent mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Third-party Audits
+                </li>
+              </ul>
+            </div>
+
+            <div className="card p-8">
+              <div className="w-16 h-16 mb-6 bg-warning-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">Blockchain Technology</h3>
+              <p className="text-text-secondary mb-4">Leveraging blockchain for transparent, immutable, and efficient asset tokenization.</p>
+              <ul className="space-y-2 text-sm text-text-secondary">
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-warning mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Smart Contracts
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-warning mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Immutable Records
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-warning mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Fractional Ownership
+                </li>
+              </ul>
+            </div>
+
+            <div className="card p-8">
+              <div className="w-16 h-16 mb-6 bg-primary-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
+                  <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">Fast Transactions</h3>
+              <p className="text-text-secondary mb-4">Efficient processing with instant USDC transfers and quick settlement times.</p>
+              <ul className="space-y-2 text-sm text-text-secondary">
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Instant USDC
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  1-3 Day Bank Transfer
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Real-time Updates
+                </li>
+              </ul>
+            </div>
+
+            <div className="card p-8">
+              <div className="w-16 h-16 mb-6 bg-secondary-100 rounded-xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-text-primary mb-3">Investor Support</h3>
+              <p className="text-text-secondary mb-4">Dedicated support team available to assist you throughout your investment journey.</p>
+              <ul className="space-y-2 text-sm text-text-secondary">
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  24/7 Chat Support
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Educational Resources
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-4 h-4 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                  </svg>
+                  Investment Guidance
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-4">BuildVest By The Numbers</h2>
+            <p className="text-lg text-text-secondary">Our growth reflects the trust investors place in our platform</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center p-8 bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl">
+              <div className="text-4xl lg:text-5xl font-bold text-primary mb-2">$45M+</div>
+              <p className="text-text-secondary font-medium">Total Assets Tokenized</p>
+            </div>
+
+            <div className="text-center p-8 bg-gradient-to-br from-secondary-50 to-secondary-100 rounded-2xl">
+              <div className="text-4xl lg:text-5xl font-bold text-secondary mb-2">10,000+</div>
+              <p className="text-text-secondary font-medium">Active Investors</p>
+            </div>
+
+            <div className="text-center p-8 bg-gradient-to-br from-accent-50 to-accent-100 rounded-2xl">
+              <div className="text-4xl lg:text-5xl font-bold text-accent mb-2">12.5%</div>
+              <p className="text-text-secondary font-medium">Average Annual Returns</p>
+            </div>
+
+            <div className="text-center p-8 bg-gradient-to-br from-warning-50 to-warning-100 rounded-2xl">
+              <div className="text-4xl lg:text-5xl font-bold text-warning mb-2">150+</div>
+              <p className="text-text-secondary font-medium">Verified Assets</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partnerships & Compliance Section */}
+      <section className="py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-4">Trusted By Industry Leaders</h2>
+            <p className="text-lg text-text-secondary">Strategic partnerships ensuring security and reliability</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+            <div className="flex items-center justify-center p-6 bg-white rounded-xl shadow-md w-full h-32">
+              <span className="text-2xl font-bold text-slate-400">SEC</span>
+            </div>
+            <div className="flex items-center justify-center p-6 bg-white rounded-xl shadow-md w-full h-32">
+              <span className="text-2xl font-bold text-slate-400">FINRA</span>
+            </div>
+            <div className="flex items-center justify-center p-6 bg-white rounded-xl shadow-md w-full h-32">
+              <span className="text-2xl font-bold text-slate-400">Chainlink</span>
+            </div>
+            <div className="flex items-center justify-center p-6 bg-white rounded-xl shadow-md w-full h-32">
+              <span className="text-2xl font-bold text-slate-400">Circle</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-primary to-primary-700 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23FFFFFF\\' fill-opacity=\\'1\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
+        </div>
+        
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Join BuildVest?</h2>
+          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">Start building your wealth with tokenized real-world assets today. Join thousands of investors already on the platform.</p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="investment_marketplace.html" className="btn bg-white text-primary hover:bg-primary-50 text-lg px-8 py-4 shadow-lg">
+              Browse Investments
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+            <a href="frequently_asked_questions.html" className="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4">
+              Learn More
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            {/* Company Info */}
+            <div>
+              <div className="flex items-center space-x-3 mb-4">
+                <img src="https://buildvest.net/img/BuildvestLogo_icon_white.png" alt="BuildVest" className="h-8 w-auto" />
+                <span className="text-xl font-bold">BuildVest</span>
+              </div>
+              <p className="text-slate-400 text-sm leading-relaxed mb-6">Democratizing access to high-yield real-world assets through blockchain technology.</p>
+              <div className="flex items-center gap-4">
+                <div className="text-xs text-slate-500">Regulatory Certifications</div>
+              </div>
+            </div>
+
+            {/* Platform Links */}
+            <div>
+              <h4 className="font-semibold mb-4">Platform</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="landing_page.html" className="text-slate-400 hover:text-white transition-colors duration-150">For Investors</a></li>
+                <li><a href="originator_onboarding.html" className="text-slate-400 hover:text-white transition-colors duration-150">For Originators</a></li>
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h4 className="font-semibold mb-4">Resources</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="about_build_vest.html" className="text-slate-400 hover:text-white transition-colors duration-150">About</a></li>
+                <li><a href="frequently_asked_questions.html" className="text-slate-400 hover:text-white transition-colors duration-150">FAQs</a></li>
+                <li><a href="#" className="text-slate-400 hover:text-white transition-colors duration-150">Blog</a></li>
+                <li><a href="legal_compliance_center.html" className="text-slate-400 hover:text-white transition-colors duration-150">Legal & Compliance</a></li>
+              </ul>
+            </div>
+
+            {/* Social & Support */}
+            <div>
+              <h4 className="font-semibold mb-4">Connect</h4>
+              <div className="flex items-center space-x-4 mb-4">
+                <a href="#" className="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Twitter">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                  </svg>
+                </a>
+                <a href="#" className="text-slate-400 hover:text-white transition-colors duration-150" aria-label="LinkedIn">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                  </svg>
+                </a>
+                <a href="#" className="text-slate-400 hover:text-white transition-colors duration-150" aria-label="Facebook">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Disclaimer Section */}
+          <div className="border-t border-slate-800 pt-8 mb-8">
+            <div className="text-xs text-slate-500 leading-relaxed space-y-2">
+              <p><strong className="text-slate-400">Investment Disclaimer:</strong> Investing involves risks, including loss of principal. Past performance is not indicative of future results. BuildVest is not a financial advisor; consult professionals before investing. All investments are subject to regulatory approval and due diligence.</p>
+              <p><strong className="text-slate-400">Regulatory Compliance:</strong> BuildVest operates under applicable securities regulations. All offerings are subject to regulatory review and approval. Please review our Legal & Compliance section for detailed information.</p>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="border-t border-slate-800 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <p className="text-slate-400 text-sm">© 2026 BuildVest. All Rights Reserved.</p>
+              <div className="flex items-center space-x-6 text-xs text-slate-500">
+                <a href="legal_compliance_center.html" className="hover:text-slate-400 transition-colors">Terms of Service</a>
+                <a href="legal_compliance_center.html" className="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                <a href="legal_compliance_center.html" className="hover:text-slate-400 transition-colors">Risk Disclosure</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
