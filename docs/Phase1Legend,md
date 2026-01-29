@@ -1,0 +1,142 @@
+Phase 1 Legend
+
+You can now visit
+| Page                      | URL                      |
+| ------------------------- | ------------------------ |
+| Home                      | `http://localhost:5173/` |
+| Investor landing          | `/invest`                |
+| About                     | `/about`                 |
+| FAQ                       | `/faq`                   |
+| Legal                     | `/legal`                 |
+| Help                      | `/help`                  |
+| Marketplace               | `/marketplace`           |
+| Real estate               | `/real-estate`           |
+| Corporate debt            | `/corporate-debt`        |
+| Private equity            | `/private-equity`        |
+| Infrastructure            | `/infrastructure`        |
+| **Originator onboarding** | `/originators`           |
+
+
+# Refactoring Roadmap & Phase Strategy
+
+## Order of Operations
+
+- ✅ **PHASE 1** — Public HTML → React  
+  *(you’ve DONE this)*
+
+- 🔜 **PHASE 2** — Public layout + shared components  
+  *(this is next)*
+
+- ⏭️ **PHASE 3** — Internal app refactor (Investor / Originator / Admin)
+
+- 🚀 **PHASE 4** — Product hardening (permissions, performance, UX)
+
+> **Important:** Anything earlier than **PHASE 3** is risky for internal pages.
+
+## Why Internal Pages MUST Wait
+
+Internal pages are **fundamentally different** from public pages.
+
+### Public pages are:
+
+- Mostly static
+- Marketing / informational
+- SEO-oriented
+- Low state complexity
+- Few permissions
+
+### Internal pages are:
+
+- State-heavy
+- Auth-dependent
+- Role-based
+- Data-driven (API, charts, tables)
+- Error-prone if refactored prematurely
+
+**If you refactor them before the public layer stabilizes:**
+
+- Layout decisions will change underneath you
+- Auth & routing assumptions may break
+- You’ll redo work when roles diverge
+
+## PHASE-BY-PHASE CLARITY
+
+### ✅ PHASE 1 (DONE)
+
+**Goal:** Parity, not elegance
+
+- HTML → React conversion
+- One-file pages allowed
+- No abstraction
+- No shared layouts
+
+→ You executed this correctly.
+
+### 🔜 PHASE 2 (NEXT)
+
+**Scope:** Public surface **only**
+
+You will:
+
+- Introduce `PublicLayout.tsx`
+- Extract:
+  - NavBar
+  - Footer
+  - Possibly CTA / FAQ primitives
+- Apply to **public pages only**
+
+**🚫 Explicitly excluded:**
+
+- Investor dashboard
+- Originator onboarding flows
+- Admin panels
+
+### 🧱 PHASE 3 (INTERNAL REFACTOR)
+
+This is where **Investor**, **Originator**, and **SuperAdmin** pages belong.
+
+**Why PHASE 3?**  
+By then:
+
+- Public layout is stable
+- Routing patterns are proven
+- Auth model is clearer
+
+You can safely introduce:
+
+- `AppLayout.tsx`
+- `InvestorLayout.tsx`
+- `OriginatorLayout.tsx`
+- `AdminLayout.tsx`
+
+You refactor **with intent**, not guesswork.
+
+#### Recommended PHASE 3 Order (Very Important)
+
+**Do not refactor all roles at once.**
+
+1. **Step 1 — Investor** (Lowest Risk)  
+   - Most read-only views  
+   - Portfolio, transactions, documents  
+   - Few destructive actions
+
+2. **Step 2 — Originator**  
+   - Forms  
+   - Uploads  
+   - Status workflows  
+   - More state complexity
+
+3. **Step 3 — SuperAdmin** (Last)  
+   - Global permissions  
+   - Overrides  
+   - Data mutation  
+   - Highest blast radius
+
+## What You Should NOT Do Yet ❌
+
+- Don’t share layouts between public & internal
+- Don’t extract auth logic prematurely
+- Don’t optimize dashboards for performance yet
+- Don’t normalize UI tokens yet
+
+→ Those belong to **PHASE 4**.
