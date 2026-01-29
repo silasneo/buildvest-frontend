@@ -4,7 +4,7 @@ interface NavBarProps {
     onOpenWaitlist: () => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ onOpenWaitlist }) => {
+const NavBar: React.FC<NavBarProps> = ({ onOpenWaitlist: _onOpenWaitlist }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const mobileMenuRef = useRef<HTMLDivElement>(null);
