@@ -2,7 +2,7 @@
 ## BuildVest Frontend Refactor — Phase 1A (Public Entry Pages)
 
 > Paste this **after** `COPILOT_SYSTEM_PROMPT.md`.  
-> Paste **only after** `PHASE_0_EXECUTOR.md` has reported **PHASE 0 COMPLETE**.
+
 
 ---
 
